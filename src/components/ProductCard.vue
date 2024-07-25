@@ -23,4 +23,7 @@ export default {
 }
 </script>
 <style scoped lang="">
+p{
+    color: #662f25;
+}
 </style>
