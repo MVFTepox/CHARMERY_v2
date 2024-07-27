@@ -1,4 +1,4 @@
-<template lang="">
+<template >
     <div class="rounded-lg border-solid border-[3px] p-3 flex flex-col justify-between h-[250px] w-[200px] border-[#eddaab] font-['DM Sans']">
         <div class="flex justify-between">
             <div class="flex flex-col">
@@ -17,13 +17,13 @@
         </button>
     </div>
 </template>
-<script>
+<script lang="ts">
 export default {
     name: 'ProductCard'
 }
 </script>
-<style scoped lang="">
-p{
+<style scoped>
+p {
     color: #662f25;
 }
 </style>

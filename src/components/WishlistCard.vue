@@ -1,4 +1,4 @@
-<template lang="">
+<template lang="ts">
     <div class="flex justify-between" style="width: 500px; height: 280px;">
         <div class="rounded-lg border-solid  border-[#eddaab] m-3" id="wishlistImage" style="border-width: 3px;width: 200px;height: 250px;"></div>
         <div class="flex flex-col justify-between h-full w-1/2 p-3">
@@ -43,7 +43,7 @@
         </div>
     </div>
 </template>
-<script>
+<script lang="ts">
 export default {
     name: 'WishlistCard'
 }

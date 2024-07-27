@@ -1,4 +1,4 @@
-<template lang="">
+<template >
     <div class="flex flex-col rounded-lg p-4 bg-[#eddaab] w-[250px] h-[175px]">
         <h4>{{Username}}</h4>
         <hr style="border-color: #b66141;">
@@ -8,12 +8,12 @@
         <p style="font-weight: bold; font-size: small;">{{reviewDate}}</p>
     </div>
 </template>
-<script>
+<script lang="ts">
 export default {
     name: 'ReviewCard'
 }
 </script>
-<style scoped lang="">
+<style scoped>
     h4{
         font-family: "El Messiri", sans-serif;
         color: #cb8844;
