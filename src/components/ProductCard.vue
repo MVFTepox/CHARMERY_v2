@@ -5,7 +5,7 @@
                 <p>productName</p>
                 <p>$productPrice</p>
             </div>
-            <span class="material-symbols-rounded filler" style="color: #b66141;">
+            <span class="material-symbols-rounded filler text-[#b66141]" @click="wishClick" :style="{ fontVariationSettings: `'FILL' ${currentFill}` }">
                 favorite
             </span>
         </div>
@@ -20,6 +20,22 @@
 <script lang="ts">
 export default {
     name: 'ProductCard'
+    ,
+    data() {
+        return {
+            currentFill : 0
+        }
+    },
+    methods: {
+        wishClick(){
+            if (this.currentFill === 0){
+                this.currentFill++;
+            }
+            else if(this.currentFill === 1){
+                this.currentFill--;
+            }
+        }
+    },
 }
 </script>
 <style scoped>

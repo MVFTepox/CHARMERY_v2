@@ -12,6 +12,7 @@
 
 <template >
   <ProductCard></ProductCard>
+
   <WishlistCard></WishlistCard>
   <main>
     <h1 class=" text-center tex ">preparacion de la App</h1>

@@ -7,14 +7,14 @@
                     <p>productName</p>
                     <p>$productPrice</p>
                 </div>
-                <span class="material-symbols-rounded filler" style="color: #b66141;">
+                <span class="material-symbols-rounded hover:cursor-pointer text-[#b66141]" @click="removeFromWished" :style="{ fontVariationSettings: `'FILL' ${currentFill}` }">
                     favorite
                 </span>
             </div>
             <div>
                 <div class="rounded-full bg-[#eddaab]  m-1 flex  justify-between w-24" style="height:30px ;">
-                    <button type="button" @click="quantityDecrement" class="hover:bg-[#cb8844] rounded-s-full flex items-center px-1" data-input-counter-decrement="quantity-input">
-                        <span class="material-symbols-rounded" style="color: #b66141;">
+                    <button type="button" @click="quantityDecrement" class="hover:bg-[#cb8844] rounded-s-full flex items-center px-1" >
+                        <span class="material-symbols-rounded text-[#b66141]">
                             remove
                         </span>
                     </button>
@@ -49,7 +49,8 @@ export default {
     ,
     data() {
         return {
-            productQuantity: 1
+            productQuantity: 1,
+            currentFill: 1,
         }
     },
     methods: {
@@ -61,6 +62,10 @@ export default {
             if (this.productQuantity > 1) {
                 this.productQuantity--;
          }
+        },
+
+        removeFromWished(){
+            this.currentFill = 0;
         }
     },
 }
@@ -77,8 +82,5 @@ export default {
             
     }
 
-    .filler:hover{
-        font-variation-settings:'FILL' 1; 
-        cursor: pointer;
-    }
+
 </style>
