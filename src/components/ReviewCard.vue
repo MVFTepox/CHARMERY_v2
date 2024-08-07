@@ -1,24 +1,32 @@
-<template >
-    <div class="flex flex-col rounded-lg p-4 bg-[#eddaab] w-[250px] h-[175px]">
-        <h4>{{Username}}</h4>
+<template>
+    <div class="flex flex-col rounded-lg p-4 mx-5 bg-[#eddaab] w-full lg:w-[300px] h-[175px]">
+        <h4>{{ username }}</h4>
         <hr style="border-color: #b66141;">
         <div class="m-1 overflow-y-auto text-wrap text-sm h-[90px] w-[210px]" style="scrollbar-width: thin;">
-            <p>{{reviewContent}}</p>
+            <p>{{ reviewContent }}</p>
         </div>
-        <p style="font-weight: bold; font-size: small;">{{reviewDate}}</p>
+        <p style="font-weight: bold; font-size: small;">{{ reviewDate }}</p>
     </div>
 </template>
+
 <script lang="ts">
 export default {
-    name: 'ReviewCard'
+    name: 'ReviewCard',
+    props: {
+        username: String,
+        reviewContent: String,
+        reviewDate: String,
+    },
 }
 </script>
+
 <style scoped>
-    h4{
-        font-family: "El Messiri", sans-serif;
-        color: #cb8844;
-    }
-    p{
-        color: #662f25;
-    }
+h4 {
+    font-family: "El Messiri", sans-serif;
+    color: #cb8844;
+}
+
+p {
+    color: #662f25;
+}
 </style>
