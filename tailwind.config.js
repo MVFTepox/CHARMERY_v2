@@ -1,18 +1,24 @@
-const { default: daisyui } = require('daisyui');
-
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: [
     "./index.html",
     "./src/**/*.{vue,js,ts,jsx,tsx}",
+    // "./node_modules/flowbite/**/*.js",
   ],
   theme: {
-    extend: {},
+    extend: {
+
+      fontFamily: {
+        'DMsans': ['DmSans', 'sans-serif'],
+        'elmessiri': ['elMessiri', 'sans-serif'],
+      },
+    },
   },
   plugins: [
-    require('daisyui'),
+    require('daisyui', '@tailwindcss/forms'),
   ],
   daisyui: {
-    themes: ["light"], // Cambia "dark" a "light" para un tema claro
+    themes: ["light"],
+    // Configura DaisyUI para usar el tema claro
   },
 }
