@@ -14,7 +14,7 @@
             <div class="social-media-icons">
                 <a href="https://www.instagram.com/charmeryy.store?igsh=b2dwaHBlM25rYzg0"><img src="instagram-icon.png" alt="Instagram"></a>
                 <a href="https://www.tiktok.com/@charmeryystore?is_from_webapp=1&sender_device=pc"><img src="tiktok-icon.png" alt="TikTok"></a>
-                <a href="https://l.instagram.com/?u=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61561006452486%26mibextid%3DZbWKwL&e=AT2b-D8Q7qz5K6yMvZnZvufM4uzc7DCVnbOinuySNWWGQNuuuZYnaLWzP3EgtMtI3rfDdahz7DoCueHr6Mz6oEpvmdYMNqMZJZFHCSeqfHh49Ctr2kx7pkg"><img src="facebook-icon.png" alt="Facebook"></a>
+                <a href="https://l.instagram.com/?u=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61561006452486%26mibextid%3DZbWKwL&e=AT2b-D8Q7qz5K6yMvZnZvufM4uzc7DCVnbOinuySNWWGQNuuuZYnaLWzP3EgtMtI3rfDdahz7DoCueHr6Mz6oEpvmdYMNqMZJZFHCSeqfHh49Ctr2kx7pkg"><img src="@/assets/img/facebook-icon.png" alt="Facebook"></a>
             </div>
         </div>
     </footer>
