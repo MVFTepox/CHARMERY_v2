@@ -1,28 +1,50 @@
 <template>
-    <div class="body">
+    <<<<<<< HEAD <div class="body">
         <footer class="footer">
             <div class="logo">
                 <img src="logo.png" alt="Charmery Logo">
-            </div>
-            <div class="contact-info">
-                <p><strong>Contáctanos en...</strong></p>
-                <p><a href="mailto:charmeryy.store@gmail.com">charmeryy.store@gmail.com</a></p>
-                <p><a href="#">Sobre Nosotros</a></p>
-            </div>
-            <div class="social-media">
-                <p><strong>No Olvides Seguirnos en...</strong></p>
-                <div class="social-media-icons">
-                    <a href="https://www.instagram.com/charmeryy.store?igsh=b2dwaHBlM25rYzg0"><img
-                            src="instagram-icon.png" alt="Instagram"></a>
-                    <a href="https://www.tiktok.com/@charmeryystore?is_from_webapp=1&sender_device=pc"><img
-                            src="tiktok-icon.png" alt="TikTok"></a>
-                    <a
-                        href="https://l.instagram.com/?u=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61561006452486%26mibextid%3DZbWKwL&e=AT2b-D8Q7qz5K6yMvZnZvufM4uzc7DCVnbOinuySNWWGQNuuuZYnaLWzP3EgtMtI3rfDdahz7DoCueHr6Mz6oEpvmdYMNqMZJZFHCSeqfHh49Ctr2kx7pkg"><img
-                            src="facebook-icon.png" alt="Facebook"></a>
+                =======
+                <div class="body">
+                    <footer class="footer">
+                        <div class="logo">
+                            <img src="logo.png" alt="Charmery Logo">
+                        </div>
+                        <div class="contact-info">
+                            <p><strong>Contáctanos en...</strong></p>
+                            <p><a href="mailto:charmeryy.store@gmail.com">charmeryy.store@gmail.com</a></p>
+                            <p><a href="#">Sobre Nosotros</a></p>
+                        </div>
+                        <div class="social-media">
+                            <p><strong>No Olvides Seguirnos en...</strong></p>
+                            <div class="social-media-icons">
+                                <a href="https://www.instagram.com/charmeryy.store?igsh=b2dwaHBlM25rYzg0"><img
+                                        src="instagram-icon.png" alt="Instagram"></a>
+                                <a href="https://www.tiktok.com/@charmeryystore?is_from_webapp=1&sender_device=pc"><img
+                                        src="tiktok-icon.png" alt="TikTok"></a>
+                                <a
+                                    href="https://l.instagram.com/?u=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61561006452486%26mibextid%3DZbWKwL&e=AT2b-D8Q7qz5K6yMvZnZvufM4uzc7DCVnbOinuySNWWGQNuuuZYnaLWzP3EgtMtI3rfDdahz7DoCueHr6Mz6oEpvmdYMNqMZJZFHCSeqfHh49Ctr2kx7pkg"><img
+                                        src="@/assets/img/facebook-icon.png" alt="Facebook"></a>
+                                >>>>>>> b2a9f06153c5e79b6471dfad98667fa8b5f7a8ea
+                            </div>
+                            <div class="contact-info">
+                                <p><strong>Contáctanos en...</strong></p>
+                                <p><a href="mailto:charmeryy.store@gmail.com">charmeryy.store@gmail.com</a></p>
+                                <p><a href="#">Sobre Nosotros</a></p>
+                            </div>
+                            <div class="social-media">
+                                <p><strong>No Olvides Seguirnos en...</strong></p>
+                                <div class="social-media-icons">
+                                    <a href="https://www.instagram.com/charmeryy.store?igsh=b2dwaHBlM25rYzg0"><img
+                                            src="instagram-icon.png" alt="Instagram"></a>
+                                    <a href="https://www.tiktok.com/@charmeryystore?is_from_webapp=1&sender_device=pc"><img
+                                            src="tiktok-icon.png" alt="TikTok"></a>
+                                    <a
+                                        href="https://l.instagram.com/?u=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61561006452486%26mibextid%3DZbWKwL&e=AT2b-D8Q7qz5K6yMvZnZvufM4uzc7DCVnbOinuySNWWGQNuuuZYnaLWzP3EgtMtI3rfDdahz7DoCueHr6Mz6oEpvmdYMNqMZJZFHCSeqfHh49Ctr2kx7pkg"><img
+                                            src="facebook-icon.png" alt="Facebook"></a>
+                                </div>
+                            </div>
+                    </footer>
                 </div>
-            </div>
-        </footer>
-    </div>
 
 
 </template>
