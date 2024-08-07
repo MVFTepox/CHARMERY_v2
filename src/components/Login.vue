@@ -12,7 +12,7 @@
         <input type="password" id="password" required>
       </div>
       <div class="linea"></div>
-      <a href="../components/Registro.vue" class="register-link">¿Aún no tienes cuenta? Regístrate <span>aquí</span></a>
+      <a href="../views/registro.vue" class="register-link">¿Aún no tienes cuenta? Regístrate <span>aquí</span></a>
       <button type="submit" class="submit-button">Iniciar sesión</button>
     </form>
   </div>
