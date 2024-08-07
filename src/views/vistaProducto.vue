@@ -1,9 +1,19 @@
 <template>
     <div>
         <Navbarr />
-        <productPureb  />
+        <productPureb />
 
+
+        <div class="mx-10">
+            <CommentSection />
+            dsds
+        </div>
+
+        <ProductCard />
         
+
+
+
 
 
 
@@ -11,14 +21,22 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
-import productPureb  from '@/components/productPureb.vue';
+import productPureb from '@/components/productPureb.vue';
 import Navbarr from '@/components/Navbarr.vue';
+import ReviewCard from '@/components/ReviewCard.vue';
+import CommentSection from '@/components/CommentSection.vue';
+import ProductCard from '@/components/ProductCard.vue';
 
 export default defineComponent({
     name: 'pageVistaProducto',
+
+
     components: {
         productPureb,
-        Navbarr 
+        Navbarr,
+        ReviewCard,
+        CommentSection,
+        ProductCard
     }
 })
 </script>
