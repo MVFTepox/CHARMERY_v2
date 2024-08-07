@@ -1,22 +1,12 @@
 <template>
     <div>
         <Navbarr />
-        <productPureb />
-
-
+        <productPureb class="my-5"/>
         <div class="mx-10">
             <CommentSection />
-            dsds
         </div>
-
         <ProductCard />
         
-
-
-
-
-
-
     </div>
 </template>
 <script lang="ts">
