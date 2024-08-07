@@ -49,6 +49,7 @@
   </div>
 </template>
 
+
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import img1Src from '@/assets/img/moño perla zoom editado.png';

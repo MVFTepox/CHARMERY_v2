@@ -6,6 +6,7 @@
             <CommentSection />
         </div>
         <ProductCard />
+        <footer />
         
     </div>
 </template>
@@ -13,6 +14,7 @@
 import { defineComponent } from 'vue'
 import productPureb from '@/components/productPureb.vue';
 import Navbarr from '@/components/Navbarr.vue';
+import footer from '@/components/footer.vue';
 import ReviewCard from '@/components/ReviewCard.vue';
 import CommentSection from '@/components/CommentSection.vue';
 import ProductCard from '@/components/ProductCard.vue';
@@ -26,7 +28,8 @@ export default defineComponent({
         Navbarr,
         ReviewCard,
         CommentSection,
-        ProductCard
+        ProductCard,
+        footer
     }
 })
 </script>

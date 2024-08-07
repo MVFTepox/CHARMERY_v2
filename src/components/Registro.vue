@@ -28,7 +28,7 @@
         <label for="promotions">Quiero recibir promociones en mi correo</label>
       </div>
       <div class="linea"></div>
-      <a href="@/views/Login.vue" class="register-link">Ya tienes una cuenta? Inicia sesión <span>aquí</span></a>
+      <a href="/registrarse" class="register-link">Ya tienes una cuenta? Inicia sesión <span>aquí</span></a>
       <button type="submit" class="submit-button">Regístrate</button>
     </form>
   </div>
