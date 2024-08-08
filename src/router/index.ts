@@ -1,13 +1,19 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import HomeView from '../views/prueba.vue'
-import Home from '@/views/Home.vue'
+import Home from '@/views/homeverdadero.vue'
 import registro from '@/views/registro.vue'
 import Formulario from '@/views/Formulario.vue'
 import SobreNosotros from '@/views/SobreNosotros.vue'
 import vistaProducto from '@/views/vistaProducto.vue'
 import login from '@/views/Login.vue'
 import account from '@/views/account.vue'
+import confirmationPage from '@/views/pedidoConfirmado.vue'
+
+
+
+
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -51,6 +57,11 @@ const router = createRouter({
       path: '/account',
       name: 'account',
       component: account
+    },
+    {
+      path: '/pedidoConfirm',
+      name: 'pedidoConfirm',
+      component: confirmationPage
     }
   ]
 })
