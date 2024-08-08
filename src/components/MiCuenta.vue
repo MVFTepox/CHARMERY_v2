@@ -1,16 +1,18 @@
 <template>
+
     <div>
       <p class="titulo"><b>Mi Cuenta</b></p>
-  
+
       <div class="container">
         <div class="buttons-container">
           <div class="flex flex-col gap-3">
-            <button type="button" class="btn1 rounded-r-none" @click="showContent('info')">Información de mi cuenta</button>
+            <button type="button" class="btn1 rounded-r-none" @click="showContent('info')">Información de mi
+              cuenta</button>
             <button type="button" class="btn2 rounded-r-none" @click="showContent('orders')">Mis pedidos</button>
           </div>
           <button type="button" class="btn3" id="logout-button" @click="logout">Cerrar Sesión</button>
         </div>
-  
+
         <div class="content-panels">
           <div id="info" class="content-panel" :class="{ active: activePanel === 'info' }">
             <div class="header-with-button">
@@ -21,25 +23,30 @@
             <div class="form">
               <div class="form-group">
                 <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre" v-model="form.nombre" required :disabled="!isEditing">
+                <input type="text" class="form-control" id="nombre" v-model="form.nombre" required
+                  :disabled="!isEditing">
               </div>
               <div class="form-group">
                 <label for="apellido" class="form-label">Apellido</label>
-                <input type="text" class="form-control" id="apellido" v-model="form.apellido" required :disabled="!isEditing">
+                <input type="text" class="form-control" id="apellido" v-model="form.apellido" required
+                  :disabled="!isEditing">
               </div>
             </div>
             <div class="form2">
               <div class="form-group2">
                 <label for="correo" class="form-label">Correo electrónico</label>
-                <input type="email" class="form-control" id="correo" v-model="form.correo" required :disabled="!isEditing">
+                <input type="email" class="form-control" id="correo" v-model="form.correo" required
+                  :disabled="!isEditing">
               </div>
               <div class="form-group2">
                 <label for="telefono" class="form-label">Número de teléfono</label>
-                <input type="tel" class="form-control" id="telefono" v-model="form.telefono" pattern="[0-9]{10}" maxlength="10" required :disabled="!isEditing">
+                <input type="tel" class="form-control" id="telefono" v-model="form.telefono" pattern="[0-9]{10}"
+                  maxlength="10" required :disabled="!isEditing">
               </div>
               <div class="form-group2 password-container">
                 <label for="contraseña" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="contraseña" v-model="form.contraseña" required :disabled="!isEditing">
+                <input type="password" class="form-control" id="contraseña" v-model="form.contraseña" required
+                  :disabled="!isEditing">
                 <button type="button" class="password-toggle" @click="togglePassword">&#128065;</button>
               </div>
               <div class="header-with-button">
@@ -47,7 +54,8 @@
                 <button type="button" class="header-button" @click="addAddress">Añadir otra dirección</button>
               </div>
               <div class="address-container" id="address-container">
-                <div v-for="(address, index) in addresses" :key="index" class="info" :class="{ selected: selectedAddress === index }" @click="selectAddress(index)">
+                <div v-for="(address, index) in addresses" :key="index" class="info"
+                  :class="{ selected: selectedAddress === index }" @click="selectAddress(index)">
                   <div v-if="isEditingAddress !== index">
                     <p v-if="!isEditingAddress">{{ address.nombre }}</p>
                     <p v-if="!isEditingAddress">{{ address.telefono }}</p>
@@ -72,105 +80,108 @@
               </div>
             </div>
           </div>
-  
+
           <div id="orders" class="content-panel" :class="{ active: activePanel === 'orders' }">
             <p class="titulos2"><b>Mis pedidos</b></p>
           </div>
         </div>
       </div>
     </div>
-  </template>
   
-  <script>
-  export default {
-    data() {
-      return {
-        activePanel: 'info',
-        isEditing: false,
-        form: {
-          nombre: '',
-          apellido: '',
-          correo: '',
-          telefono: '',
-          contraseña: ''
-        },
-        addresses: [
-          {
-            nombre: 'Nombre',
-            telefono: '000-000-0000',
-            direccion: 'Calle #0, Colonia, 00000, Ciudad, Estado, Pais'
-          }
-        ],
-        selectedAddress: null,
-        isEditingAddress: null
-      };
-    },
-    methods: {
-      showContent(panelId) {
-        this.activePanel = panelId;
+</template>
+
+<script>
+export default {
+  name: 'PageAccount',
+  
+  data() {
+    return {
+      activePanel: 'info',
+      isEditing: false,
+      form: {
+        nombre: '',
+        apellido: '',
+        correo: '',
+        telefono: '',
+        contraseña: ''
       },
-      editInfo() {
-        this.isEditing = true;
-      },
-      saveInfo() {
-        this.isEditing = false;
-      },
-      addAddress() {
-        this.addresses.push({
+      addresses: [
+        {
           nombre: 'Nombre',
           telefono: '000-000-0000',
           direccion: 'Calle #0, Colonia, 00000, Ciudad, Estado, Pais'
-        });
-      },
-      selectAddress(index) {
-        this.selectedAddress = index;
-      },
-      setDefaultAddress() {
-        this.selectedAddress = 0;
-      },
-      editAddress(index) {
-        this.isEditingAddress = index;
-      },
-      saveAddress(index) {
-        this.isEditingAddress = null;
-      },
-      removeAddress(index) {
-        this.addresses.splice(index, 1);
-        if (this.selectedAddress === index) {
-          this.selectedAddress = null; // Deselect the removed address if it was selected
         }
-      },
-      togglePassword() {
-        const passwordInput = document.getElementById('contraseña');
-        passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
-      },
-      logout() {
-        this.form = {
-          nombre: '',
-          apellido: '',
-          correo: '',
-          telefono: '',
-          contraseña: ''
-        };
-        this.addresses = [
-          {
-            nombre: 'Nombre',
-            telefono: '000-000-0000',
-            direccion: 'Calle #0, Colonia, 00000, Ciudad, Estado, Pais'
-          }
-        ];
-        this.selectedAddress = 0;
-        this.showContent('info');
+      ],
+      selectedAddress: null,
+      isEditingAddress: null
+    };
+  },
+  methods: {
+    showContent(panelId) {
+      this.activePanel = panelId;
+    },
+    editInfo() {
+      this.isEditing = true;
+    },
+    saveInfo() {
+      this.isEditing = false;
+    },
+    addAddress() {
+      this.addresses.push({
+        nombre: 'Nombre',
+        telefono: '000-000-0000',
+        direccion: 'Calle #0, Colonia, 00000, Ciudad, Estado, Pais'
+      });
+    },
+    selectAddress(index) {
+      this.selectedAddress = index;
+    },
+    setDefaultAddress() {
+      this.selectedAddress = 0;
+    },
+    editAddress(index) {
+      this.isEditingAddress = index;
+    },
+    saveAddress(index) {
+      this.isEditingAddress = null;
+    },
+    removeAddress(index) {
+      this.addresses.splice(index, 1);
+      if (this.selectedAddress === index) {
+        this.selectedAddress = null; // Deselect the removed address if it was selected
       }
     },
-    mounted() {
+    togglePassword() {
+      const passwordInput = document.getElementById('contraseña');
+      passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+    },
+    logout() {
+      this.form = {
+        nombre: '',
+        apellido: '',
+        correo: '',
+        telefono: '',
+        contraseña: ''
+      };
+      this.addresses = [
+        {
+          nombre: 'Nombre',
+          telefono: '000-000-0000',
+          direccion: 'Calle #0, Colonia, 00000, Ciudad, Estado, Pais'
+        }
+      ];
       this.selectedAddress = 0;
+      this.showContent('info');
     }
-  };
-  </script>
-  
-  <style scoped>
-  body {
+  },
+  mounted() {
+    this.selectedAddress = 0;
+  }
+};
+</script>
+
+<style scoped>
+body {
   font-family: 'DM Sans', sans-serif;
 }
 
@@ -193,11 +204,12 @@
 .buttons-container {
   display: flex;
   flex-direction: column;
-  gap: 10px; 
+  gap: 10px;
   align-items: flex-start;
 }
 
-.btn1, .btn2 {
+.btn1,
+.btn2 {
   padding: 15px;
   border-radius: 20px 0 0 20px;
   border: 2px solid #eddaab;
@@ -218,7 +230,7 @@
 }
 
 .content-panels {
-  flex: 1; 
+  flex: 1;
 }
 
 .content-panel {
@@ -258,7 +270,8 @@
   flex-wrap: wrap;
 }
 
-.form-group, .form-group2 {
+.form-group,
+.form-group2 {
   display: flex;
   flex-direction: column;
   flex: 1 1 45%;
@@ -266,7 +279,8 @@
   color: #c27a60;
 }
 
-.form-group input, .form-group2 input {
+.form-group input,
+.form-group2 input {
   padding: 5px;
   border-radius: 40px;
   border: 2px solid #c27a60;
@@ -280,10 +294,10 @@
   border: 2px solid #b66141;
   color: #662f25;
   width: 200px;
-  margin-right: 20px; 
+  margin-right: 20px;
   margin-top: 10px;
-  display: inline-block; 
-  position: relative; 
+  display: inline-block;
+  position: relative;
   cursor: pointer;
 }
 
@@ -291,12 +305,15 @@
   border: 3px solid #662f25;
 }
 
-.edit-info, .save-info {
+.edit-info,
+.save-info {
   display: flex;
   gap: 10px;
 }
 
-.editar, .guardar, .eliminar {
+.editar,
+.guardar,
+.eliminar {
   background-color: #cb8844;
   border: none;
   padding: 5px;
@@ -329,24 +346,26 @@
 }
 
 
-.info input { 
-  border-radius: 5px; 
-  border: 2px solid #b66141; 
+.info input {
+  border-radius: 5px;
+  border: 2px solid #b66141;
   background-color: transparent;
-  color: #662f25; 
-  font-size: 14px; 
-  margin-bottom: 10px; 
-  width: 100%; 
-  box-sizing: border-box; 
+  color: #662f25;
+  font-size: 14px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 
 .info input:focus {
-  border-color: #cb8844; 
-  outline: none; 
+  border-color: #cb8844;
+  outline: none;
 }
 
-.editar, .guardar, .eliminar {
+.editar,
+.guardar,
+.eliminar {
   background-color: transparent;
   border: none;
   color: #662f25;
@@ -373,7 +392,8 @@
     width: 100%;
   }
 
-  .form-group, .form-group2 {
+  .form-group,
+  .form-group2 {
     flex: 1 1 100%;
   }
 
@@ -386,6 +406,4 @@
     right: 5px;
   }
 }
-
-  </style>
-  
+</style>

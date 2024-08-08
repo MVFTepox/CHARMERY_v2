@@ -1,9 +1,17 @@
-<script setup lang="ts">
-</script>
-
 <template>
-  <main>
-    <h1>preparacion de la App</h1>
-    <h2>creacioon de compoentes de manera individual en un proyectos individuales antes de pasarlos a este archivo :D</h2>
-  </main>
+  <div>
+    <pageVentaProducto />
+  </div>
 </template>
+<script lang="ts">
+import { defineComponent, ref } from 'vue'
+import pageVentaProducto from '@/components/productPureb.vue'
+
+export default defineComponent({
+  name: 'HomeView',
+  components: {
+    pageVentaProducto
+  }
+})
+
+</script>
