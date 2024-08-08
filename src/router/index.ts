@@ -1,11 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/prueba.vue'
-import Home from '@/views/Home.vue'
+import Home from '@/views/homeverdadero.vue'
 import registro from '@/views/registro.vue'
 import Formulario from '@/views/Formulario.vue'
 import SobreNosotros from '@/views/SobreNosotros.vue'
 import vistaProducto from '@/views/vistaProducto.vue'
 import login from '@/views/Login.vue'
+import confirmationPage from '@/views/pedidoConfirmado.vue'
+
 
 
 
@@ -49,7 +51,11 @@ const router = createRouter({
       name: 'login',
       component: login
     },
-
+    {
+      path: '/pedidoConfirm',
+      name: 'pedidoConfirm',
+      component: confirmationPage
+    }
   ]
 })
 

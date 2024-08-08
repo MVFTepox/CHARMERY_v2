@@ -145,7 +145,7 @@ background-color: rgb(182,97,65);
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
-    name: 'Login'
+    name: 'Login',
         setup() {
             const email = ref<string>('');
             const password = ref<string>('');
