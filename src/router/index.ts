@@ -39,11 +39,11 @@ const router = createRouter({
       name: 'sobrenosotros',
       component: SobreNosotros
     },
-    {
-      path: '/vistaproducto',
-      name: 'vistaproducto',
-      component: vistaProducto
-    },
+    // {
+    //   path: '/vistaproducto',
+    //   name: 'vistaproducto',
+    //   component: vistaProducto
+    // },
     {
       path: '/login',
       name: 'login',

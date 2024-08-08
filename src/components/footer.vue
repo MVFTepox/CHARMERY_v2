@@ -1,130 +1,141 @@
 <template>
-<div class="body">
+  <div class="body">
     <footer class="footer">
-        <div class="logo">
-            <img src="logo.png" alt="Charmery Logo">
+      <div class="logo">
+        <img src="@/assets/img/logo.png" alt="Charmery Logo" />
+      </div>
+      <div class="contact-info">
+        <p><strong>Contáctanos en...</strong></p>
+        <p><a href="mailto:charmeryy.store@gmail.com">charmeryy.store@gmail.com</a></p>
+        <p><a href="#">Sobre Nosotros</a></p>
+      </div>
+      <div class="social-media">
+        <p><strong>No Olvides Seguirnos en...</strong></p>
+        <div class="social-media-icons">
+          <a href="https://www.instagram.com/charmeryy.store?igsh=b2dwaHBlM25rYzg0"
+            ><img src="@/assets/img/instagram-icon.png" alt="Instagram"
+          /></a>
+          <a href="https://www.tiktok.com/@charmeryystore?is_from_webapp=1&sender_device=pc"
+            ><img src="@/assets/img/tiktok-icon.png" alt="TikTok"
+          /></a>
+          <a
+            href="https://l.instagram.com/?u=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61561006452486%26mibextid%3DZbWKwL&e=AT2b-D8Q7qz5K6yMvZnZvufM4uzc7DCVnbOinuySNWWGQNuuuZYnaLWzP3EgtMtI3rfDdahz7DoCueHr6Mz6oEpvmdYMNqMZJZFHCSeqfHh49Ctr2kx7pkg"
+            ><img src="@/assets/img/facebook-icon.png" alt="Facebook"
+          /></a>
         </div>
-        <div class="contact-info">
-            <p><strong>Contáctanos en...</strong></p>
-            <p><a href="mailto:charmeryy.store@gmail.com">charmeryy.store@gmail.com</a></p>
-            <p><a href="#">Sobre Nosotros</a></p>
-        </div>
-        <div class="social-media">
-            <p><strong>No Olvides Seguirnos en...</strong></p>
-            <div class="social-media-icons">
-                <a href="https://www.instagram.com/charmeryy.store?igsh=b2dwaHBlM25rYzg0"><img src="instagram-icon.png" alt="Instagram"></a>
-                <a href="https://www.tiktok.com/@charmeryystore?is_from_webapp=1&sender_device=pc"><img src="tiktok-icon.png" alt="TikTok"></a>
-                <a href="https://l.instagram.com/?u=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61561006452486%26mibextid%3DZbWKwL&e=AT2b-D8Q7qz5K6yMvZnZvufM4uzc7DCVnbOinuySNWWGQNuuuZYnaLWzP3EgtMtI3rfDdahz7DoCueHr6Mz6oEpvmdYMNqMZJZFHCSeqfHh49Ctr2kx7pkg"><img src="@/assets/img/facebook-icon.png" alt="Facebook"></a>
-            </div>
-        </div>
+      </div>
     </footer>
-</div>
-        
-        
+  </div>
 </template>
 
 <style scoped>
-           .body {
-            font-family: Arial, Helvetica, sans-serif;
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            color: rgb(102, 47, 37);
-        }
+.body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: rgb(102, 47, 37);
+}
 
-        .footer {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            padding: 20px;
-            background-color: #fbf8ee;
-            border-top: 1px solid #ddd;
-            width: 100%;
-            position: absolute;
-            bottom: 0;
-            box-sizing: border-box;
-        }
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 20px;
+  background-color: #fbf8ee;
+  border-top: 1px solid #ddd;
+  width: 100%;
+  box-sizing: border-box;
+}
 
-        .footer .logo {
-            flex: 1;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            width: 200px; /* Ajusta el ancho del contenedor del logo si es necesario */
-        }
+.footer .logo {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 200px;
+}
 
-        .footer img {
-            height: 100px;
-        }
+.footer img {
+  height: 100px;
+}
 
-        .footer .contact-info,
-        .footer .social-media {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            text-align: center;
-        }
+.footer .contact-info,
+.footer .social-media {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
 
-        .footer .social-media {
-            margin-top: 10px;
-        }
+.footer .social-media {
+  margin-top: 10px;
+}
 
-        .footer .social-media-icons {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            margin-top: 5px;
-        }
+.footer .social-media-icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 5px;
+}
 
-        .footer .social-media a {
-            margin: 0 5px;
-            display: inline-block;
-        }
+.footer .social-media a {
+  margin: 0 5px;
+  display: inline-block;
+}
 
-        .footer .social-media img {
-            height: 24px;
-            width: 24px;
-        }
+.footer .social-media img {
+  height: 24px;
+  width: 24px;
+}
 
-        a {
-            color: rgb(102, 47, 37);
-            text-decoration: none;
-        }
+a {
+  color: rgb(102, 47, 37);
+  text-decoration: none;
+}
 
-        @media (min-width: 600px) {
-            .footer {
-                flex-wrap: nowrap;
-                justify-content: space-between;
-                text-align: left;
-            }
-            .footer .contact-info,
-            .footer .social-media {
-                width: auto;
-                text-align: left;
-            }
-            .footer .logo {
-         }
+@media (min-width: 600px) {
+  .footer {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    text-align: left;
+  }
 
-        @media (max-width: 600px) {
-                   flex: 0 0 auto;
-                margin-right: 20px; /* Separación con los otros elementos */
-            }
-        .footer {
-                flex-direction: column;
-                text-align: center;
-            }
-            .footer .logo {
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                margin-bottom: 10px;
-            }
-            .footer .contact-info,
-            .footer .social-media {
-                width: 100%;
-            }
-        } 
+  .footer .contact-info,
+  .footer .social-media {
+    width: auto;
+    text-align: left;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer .logo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .footer .contact-info,
+  .footer .social-media {
+    width: 100%;
+  }
+}
 </style>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  name: 'PageFooter'
+})
+</script>
