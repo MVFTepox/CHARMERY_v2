@@ -7,6 +7,7 @@ import Formulario from '@/views/Formulario.vue'
 import SobreNosotros from '@/views/SobreNosotros.vue'
 import vistaProducto from '@/views/vistaProducto.vue'
 import login from '@/views/Login.vue'
+import account from '@/views/account.vue'
 import confirmationPage from '@/views/pedidoConfirmado.vue'
 
 
@@ -51,6 +52,11 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: login
+    },
+    {
+      path: '/account',
+      name: 'account',
+      component: account
     },
     {
       path: '/pedidoConfirm',
