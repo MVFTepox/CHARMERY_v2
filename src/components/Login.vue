@@ -1,22 +1,24 @@
 <template>
-    <div>
-        <div class="container">
-    <h2 class="title">Bienvenido</h2>
-    <form onsubmit="login(event)">
-      <div class="form-group">
-        <label for="email">Correo electrónico</label>
-        <input type="email" id="email" required>
-      </div>
-      <div class="form-group">
-        <label for="password">Contraseña</label>
-        <input type="password" id="password" required>
-      </div>
-      <div class="linea"></div>
-      <a href="../components/Registro.vue" class="register-link">¿Aún no tienes cuenta? Regístrate <span>aquí</span></a>
-      <button type="submit" class="submit-button">Iniciar sesión</button>
-    </form>
-  </div>
+  <div>
+    <div class="container">
+      <h2 class="title">Bienvenido</h2>
+      <form onsubmit="login(event)">
+        <div class="form-group">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" required />
+        </div>
+        <div class="linea"></div>
+        <a href="../views/registro.vue" class="register-link"
+          >¿Aún no tienes cuenta? Regístrate <span>aquí</span></a
+        >
+        <button type="submit" class="submit-button">Iniciar sesión</button>
+      </form>
     </div>
+  </div>
 </template>
 <style scoped>
 body {
@@ -72,13 +74,13 @@ body {
   border-color: #c1785c;
 }
 
-.linea{
-margin: 10px 13px;
-width: calc(100% - 20px);
-border-top: 1px solid #999;
-float: left;
-padding: .5px;
-background-color: rgb(182,97,65);
+.linea {
+  margin: 10px 13px;
+  width: calc(100% - 20px);
+  border-top: 1px solid #999;
+  float: left;
+  padding: 0.5px;
+  background-color: rgb(182, 97, 65);
 }
 
 .register-link {
@@ -142,20 +144,19 @@ background-color: rgb(182,97,65);
 </style>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
-    name: 'Login'
-        setup() {
-            const email = ref<string>('');
-            const password = ref<string>('');
-            
-            const login = (event: Event) => {
-                event.preventDefault();
-                console.log(email.value, password.value);
-            }
-            return { login }
-        }
-})
+  name: 'Login',
+  setup() {
+    const email = ref<string>('')
+    const password = ref<string>('')
 
+    const login = (event: Event) => {
+      event.preventDefault()
+      console.log(email.value, password.value)
+    }
+    return { login }
+  }
+})
 </script>
