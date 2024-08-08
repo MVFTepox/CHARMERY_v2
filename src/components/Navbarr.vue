@@ -50,33 +50,33 @@ export default {
     return {
       showDropdown: false,
       showAccountMenu: false
-    };
+    }
   },
   methods: {
     toggleDropdown(event) {
-      event.preventDefault();
-      this.showDropdown = !this.showDropdown;
+      event.preventDefault()
+      this.showDropdown = !this.showDropdown
     },
     toggleAccountMenu(event) {
-      event.preventDefault();
-      this.showAccountMenu = !this.showAccountMenu;
+      event.preventDefault()
+      this.showAccountMenu = !this.showAccountMenu
     },
     closeMenus(event) {
       if (!event.target.closest('#dropdown-toggle')) {
-        this.showDropdown = false;
+        this.showDropdown = false
       }
       if (!event.target.closest('#account-toggle')) {
-        this.showAccountMenu = false;
+        this.showAccountMenu = false
       }
     }
   },
   mounted() {
-    window.addEventListener('click', this.closeMenus);
+    window.addEventListener('click', this.closeMenus)
   },
   beforeDestroy() {
-    window.removeEventListener('click', this.closeMenus);
+    window.removeEventListener('click', this.closeMenus)
   }
-};
+}
 </script>
 
 <style scoped>
@@ -93,7 +93,8 @@ export default {
   background: transparent;
   border: none;
 }
-.dropdown-menu, .account-menu {
+.dropdown-menu,
+.account-menu {
   display: none;
   position: absolute;
   top: 50px;
@@ -105,26 +106,31 @@ export default {
   width: 150px;
   border-radius: 15px;
 }
-.dropdown-menu a, .account-menu a {
+.dropdown-menu a,
+.account-menu a {
   display: flex;
   flex-direction: column;
 }
 .account-menu p {
   color: #662f25;
 }
-.dropdown-menu.show, .account-menu.show {
+.dropdown-menu.show,
+.account-menu.show {
   display: block;
 }
-.dropdown-menu a:hover, .account-menu a:hover {
-  background-color: #b66141; 
-  color: #fff; 
-  padding: 5px; 
+.dropdown-menu a:hover,
+.account-menu a:hover {
+  background-color: #b66141;
+  color: #fff;
+  padding: 5px;
   border-radius: 15px;
 }
-.icons a img:hover, .search button img:hover, .categorias a img:hover {
-  background-color: #662f25; 
-  border-radius: 50%; 
-  padding: 5px; 
-  transition: background-color 0.7s; 
+.icons a img:hover,
+.search button img:hover,
+.categorias a img:hover {
+  background-color: #662f25;
+  border-radius: 50%;
+  padding: 5px;
+  transition: background-color 0.7s;
 }
 </style>

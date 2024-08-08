@@ -5,6 +5,9 @@ import registro from '@/views/registro.vue'
 import Formulario from '@/views/Formulario.vue'
 import SobreNosotros from '@/views/SobreNosotros.vue'
 import vistaProducto from '@/views/vistaProducto.vue'
+import login from '@/views/Login.vue'
+
+
 
 
 
@@ -36,10 +39,15 @@ const router = createRouter({
       name: 'sobrenosotros',
       component: SobreNosotros
     },
+    // {
+    //   path: '/vistaproducto',
+    //   name: 'vistaproducto',
+    //   component: vistaProducto
+    // },
     {
-      path: '/vistaproducto',
-      name: 'vistaproducto',
-      component: vistaProducto
+      path: '/login',
+      name: 'login',
+      component: login
     },
 
   ]
