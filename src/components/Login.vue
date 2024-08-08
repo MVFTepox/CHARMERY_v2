@@ -1,29 +1,33 @@
 <template>
-  <div>
+  <div class="body">
     <div class="container">
       <h2 class="title">Bienvenido</h2>
-      <form @submit="login">
+      <form @submit.prevent="login">
         <div class="form-group">
           <label for="email">Correo electrónico</label>
-          <input type="email" id="email" v-model="email" required />
+          <input type="email" id="email" v-model="email">
+          <span v-if="errors.email" class="error-message">{{ errors.email }}</span>
         </div>
         <div class="form-group">
           <label for="password">Contraseña</label>
-          <input type="password" id="password" v-model="password" required />
+          <input type="password" id="password" v-model="password">
+          <span v-if="errors.password" class="error-message">{{ errors.password }}</span>
         </div>
         <div class="linea"></div>
-        <a href="../views/registro.vue" class="register-link"
-          >¿Aún no tienes cuenta? Regístrate <span>aquí</span></a
-        >
+        <a href="/registrarse" class="register-link">¿Aún no tienes cuenta? Regístrate <span>aquí</span></a>
         <button type="submit" class="submit-button">Iniciar sesión</button>
       </form>
+      <div v-if="Object.keys(errors).length" class="alert">
+        <ul>
+          <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-/* Tus estilos aquí */
-body {
+.body {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -143,6 +147,36 @@ body {
     padding: 10px;
   }
 }
+.error-message {
+  color: #d8000c;
+  background-color: #ffd2d2;
+  border: 1px solid #d8000c;
+  border-radius: 4px;
+  padding: 8px;
+  display: block;
+  margin-top: 4px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.alert {
+  background-color: #ffdddd;
+  color: #d8000c;
+  padding: 20px;
+  margin-top: 20px;
+  border: 1px solid #d8000c;
+  border-radius: 20px;
+}
+
+.alert ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.alert li {
+  margin-bottom: 10px;
+}
 </style>
 
 <script lang="ts">
@@ -151,14 +185,34 @@ import { defineComponent, ref } from 'vue'
 export default defineComponent({
   name: 'Login',
   setup() {
-    const email = ref<string>('')
-    const password = ref<string>('')
+    const email = ref<string>('');
+    const password = ref<string>('');
+    const errors = ref<{ email?: string; password?: string }>({});
 
-    const login = (event: Event) => {
-      event.preventDefault()
-      console.log(email.value, password.value)
-    }
-    return { email, password, login }
+    const login = () => {
+      errors.value = {};
+
+      if (!email.value) {
+        errors.value.email = "🔴 El correo electrónico es obligatorio";
+      }
+
+      if (!password.value) {
+        errors.value.password = "🔴 La contraseña es obligatoria";
+      }
+
+      if (Object.keys(errors.value).length === 0) {
+        console.log("Formulario válido. Proceder con la autenticación.");
+      } else {
+        console.log("Errores:", errors.value);
+      }
+    };
+
+    return {
+      email,
+      password,
+      errors,
+      login
+    };
   }
-})
+});
 </script>
