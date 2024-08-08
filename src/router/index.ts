@@ -1,11 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
 import HomeView from '../views/prueba.vue'
-import Home from '@/views/Home.vue'
-import registro from '@/views/Registro.vue'
+import Home from '@/views/homeverdadero.vue'
+import registro from '@/views/registro.vue'
 import Formulario from '@/views/Formulario.vue'
 import SobreNosotros from '@/views/SobreNosotros.vue'
 import vistaProducto from '@/views/vistaProducto.vue'
 import login from '@/views/Login.vue'
+import account from '@/views/account.vue'
+import confirmationPage from '@/views/pedidoConfirmado.vue'
+
 
 
 
@@ -25,8 +29,8 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/registrarse',
-      name: 'registrarse',
+      path: '/registro',
+      name: 'registro',
       component: registro
     },
     {
@@ -49,7 +53,16 @@ const router = createRouter({
       name: 'login',
       component: login
     },
-
+    {
+      path: '/account',
+      name: 'account',
+      component: account
+    },
+    {
+      path: '/pedidoConfirm',
+      name: 'pedidoConfirm',
+      component: confirmationPage
+    }
   ]
 })
 

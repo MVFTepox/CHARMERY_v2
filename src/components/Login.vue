@@ -25,6 +25,7 @@
     </div>
   </div>
 </template>
+
 <style scoped>
 .body {
   display: flex;
@@ -79,13 +80,13 @@
   border-color: #c1785c;
 }
 
-.linea{
-margin: 10px 13px;
-width: calc(100% - 20px);
-border-top: 1px solid #999;
-float: left;
-padding: .5px;
-background-color: rgb(182,97,65);
+.linea {
+  margin: 10px 13px;
+  width: calc(100% - 20px);
+  border-top: 1px solid #999;
+  float: left;
+  padding: 0.5px;
+  background-color: rgb(182, 97, 65);
 }
 
 .register-link {
@@ -179,7 +180,7 @@ background-color: rgb(182,97,65);
 </style>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
   name: 'Login',
