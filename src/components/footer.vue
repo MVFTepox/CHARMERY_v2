@@ -29,16 +29,7 @@
 </template>
 
 <style scoped>
-.body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  color: rgb(102, 47, 37);
-}
+
 
 .footer {
   display: flex;

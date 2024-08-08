@@ -10,7 +10,7 @@
                 </div>
             </div>
             <button @click="prevSlide"
-                class="btn absolute top-1/2 left-0 transform -translate-y-1/2 bg-[#B66141] text-white p-2 rounded-full">
+                class="btn absolute top-1/2 left-0 transform p-2 -translate-y-1/2 bg-[#B66141] text-white  rounded-full">
                 <
             </button>
             <button @click="nextSlide"

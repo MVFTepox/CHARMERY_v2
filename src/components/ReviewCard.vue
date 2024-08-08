@@ -3,7 +3,7 @@
     <h4>{{ username }}</h4>
     <hr style="border-color: #b66141" />
     <div
-      class="m-1 overflow-y-auto text-wrap text-sm h-[90px] w-[210px]"
+      class="m-1 overflow-auto text-balance text-sm  h-[90px] w-[250px]"
       style="scrollbar-width: thin"
     >
       <p>{{ reviewContent }}</p>
