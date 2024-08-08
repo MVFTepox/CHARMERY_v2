@@ -21,6 +21,11 @@ export default defineComponent({
   <ReviewCard></ReviewCard>
 
   <Carousel></Carousel>
+  <Carousel></Carousel>
+  <WishlistCard></WishlistCard>
+  <ReviewCard></ReviewCard>
+
+  <Carousel></Carousel>
   <main>
     <h1 class="text-center tex">preparacion de la App</h1>
     <h2>

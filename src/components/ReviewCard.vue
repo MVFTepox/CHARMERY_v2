@@ -12,6 +12,7 @@
   </div>
 </template>
 
+
 <script lang="ts">
 export default {
   name: 'ReviewCard',
@@ -22,6 +23,7 @@ export default {
   }
 }
 </script>
+
 
 <style scoped>
 h4 {
