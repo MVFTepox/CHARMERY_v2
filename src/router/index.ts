@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
 import HomeView from '../views/prueba.vue'
 import Home from '@/views/homeverdadero.vue'
 import registro from '@/views/registro.vue'
@@ -27,8 +28,8 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/registrarse',
-      name: 'registrarse',
+      path: '/registro',
+      name: 'registro',
       component: registro
     },
     {
