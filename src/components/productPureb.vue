@@ -2,7 +2,7 @@
   <div>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6   rounded-3xl px-10">
       <div class="flex justify-center items-center">
-        <div class="carousel size-5/6 w rounded-3xl shadow-lg shadow-gray-400">
+        <div class="carousel size-5/6 rounded-3xl shadow-lg shadow-gray-400">
           <div id="slide1" class="carousel-item relative w-full">
             <img :src="img1" class="w-full" />
             <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
