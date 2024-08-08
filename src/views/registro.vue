@@ -1,21 +1,20 @@
 <template>
     <div>
-        <navbarr />
-        <Registro />
+      <Navbarr />
+      <Registro />
     </div>
-</template>
-<script lang="ts">
-import { defineComponent, ref } from 'vue'
-import Registro from '@/components/Registro.vue'; 
-import Navbarr from '@/components/Navbarr.vue';   
-
-export default defineComponent({
-    name: 'registro',
+  </template>
+  
+  <script lang="ts">
+  import { defineComponent } from 'vue';
+  import Registro from '@/components/Registro.vue'; 
+  import Navbarr from '@/components/Navbarr.vue';   
+  
+  export default defineComponent({
+    name: 'App',
     components: {
-        Registro
-        , Navbarr
+      Registro,
+      Navbarr
     }
-})
-</script>
-<style scoped >
-</style>
+  });
+  </script>

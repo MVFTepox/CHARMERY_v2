@@ -1,7 +1,7 @@
 <template>
     <div>
         <navbarr />
-        <Login />
+        <Login/> 
     </div>
 </template>
 

@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/prueba.vue'
 import Home from '@/views/Home.vue'
-import registro from '@/views/registro.vue'
+import registro from '@/views/Registro.vue'
 import Formulario from '@/views/Formulario.vue'
 import SobreNosotros from '@/views/SobreNosotros.vue'
 import vistaProducto from '@/views/vistaProducto.vue'
@@ -15,7 +15,7 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
+      path: '/home',
       name: 'home',
       component: Home
     },
