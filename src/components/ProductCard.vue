@@ -16,7 +16,7 @@
       </span>
     </div>
     <button
-      class="flex rounded-full justify-center h-[30px] bg-[#b66141] border-solid border-[3px] hover:border-[#eddaab] border-[#b66141] hover:bg-white text-[#eddaab] text-[#eddaab]"
+      class="flex rounded-full justify-center h-[30px] bg-[#b66141] border-solid border-[3px] hover:border-[#eddaab] border-[#b66141] hover:bg-white text-[#eddaab] "
     >
       <span class="material-symbols-rounded"> shopping_bag </span>
       Añadir a Bolsa

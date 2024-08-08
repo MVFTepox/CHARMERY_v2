@@ -4,14 +4,26 @@ import ProductCard from '@/components/ProductCard.vue'
 import WishlistCard from '@/components/WishlistCard.vue'
 import Carousel from '@/components/Carousel.vue'
 import ReviewCard from '@/components/ReviewCard.vue'
+import footer from '@/components/footer.vue'
+import productoindividual from '@/components/productoindividual.vue'
+import pepe from '@/components/CarruselProducto.vue'
+import img1 from '@/assets/img/moño perla zoom editado.png'
+import img2 from '@/assets/img/collar corazon realista editado.png'
+
 export default defineComponent({
   components: {
     ProductCard,
     WishlistCard,
     Carousel,
-    ReviewCard
-  }
+    ReviewCard,
+    footer,
+    productoindividual,
+    pepe
+
+  },
+  
 })
+
 </script>
 
 <template>
@@ -24,6 +36,10 @@ export default defineComponent({
   <Carousel></Carousel>
   <WishlistCard></WishlistCard>
   <ReviewCard></ReviewCard>
+
+  <productoindividual></productoindividual>
+
+  <footer></footer>
 
   <Carousel></Carousel>
   <main>

@@ -2,14 +2,14 @@
   <div>
     <div class="container">
       <h2 class="title">Bienvenido</h2>
-      <form onsubmit="login(event)">
+      <form @submit="login">
         <div class="form-group">
           <label for="email">Correo electrónico</label>
-          <input type="email" id="email" required />
+          <input type="email" id="email" v-model="email" required />
         </div>
         <div class="form-group">
           <label for="password">Contraseña</label>
-          <input type="password" id="password" required />
+          <input type="password" id="password" v-model="password" required />
         </div>
         <div class="linea"></div>
         <a href="../views/registro.vue" class="register-link"
@@ -20,7 +20,9 @@
     </div>
   </div>
 </template>
+
 <style scoped>
+/* Tus estilos aquí */
 body {
   display: flex;
   justify-content: center;
@@ -156,7 +158,7 @@ export default defineComponent({
       event.preventDefault()
       console.log(email.value, password.value)
     }
-    return { login }
+    return { email, password, login }
   }
 })
 </script>
