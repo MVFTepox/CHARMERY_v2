@@ -1,98 +1,168 @@
 <template>
-  <nav class="bg-[#eddaab] flex">
-    <div class="container mx-auto flex flex-wrap items-center justify-between p-4">
-      <a class="navbar-brand" href="#">
-        <img src="../assets/img/logo.png" alt="Logo" class="w-[80px]" />
-      </a>
-      <div class="categorias flex items-center relative">
-        <p class="mb-0"><b>Categorías</b></p>
-        <a href="#" id="dropdown-toggle" @click="toggleDropdown">
-          <img src="../assets/img/down.png" alt="Dropdown Icon" class="w-[25px]" />
+  <div>
+    <nav>
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="../assets/img/logo.png" alt="Logo" />
         </a>
-        <div class="dropdown-menu" v-if="showDropdown">
-          <a href="#">Anillos</a>
-          <a href="#">Aretes</a>
-          <a href="#">Collares</a>
-          <a href="#">Pulseras</a>
-          <a href="#">Phone Charms</a>
+        <div class="p-0">
+          <label for="toggle" class="categorias cursor-pointer text-xl font-medium" @click="toggleCollapse">
+            <p>Categorías</p>
+            <img src="../assets/img/down.png" alt="Down">
+          </label>
+          <div :class="{'collapse-content mt-2': true, 'collapsed': !isCollapsed}">
+            <a href="#">Anillos</a>
+            <a href="#">Aretes</a>
+            <a href="#">Collares</a>
+            <a href="#">Pulseras</a>
+            <a href="#">Phone Charms</a>
+          </div>
+        </div>
+        <form class="search" role="search">
+          <input type="search" placeholder="Buscar..." class="placeholder:text-[#662f25]" />
+          <button type="submit">
+            <img src="../assets/img/search.png" alt="Search">
+          </button>
+        </form>
+        <div class="icons">
+          <a href="#"><img src="../assets/img/fav.png" alt="Favorite"></a>
+          <a href="#" @click="toggleAccountMenu">
+            <img src="../assets/img/perf.png" alt="Cuenta">
+          </a>
+          <div :class="{'account-menu': true, 'show': isAccountMenuVisible}" @click.stop>
+            <p><b>¡Bienvenido usuario!</b></p>
+            <a href="#">Mi perfil</a>
+            <a href="#">Mis pedidos</a>
+            <a href="#">Cerrar sesión</a>
+          </div>
+          <a href="#"><img src="../assets/img/bag.png" alt="Bolsa"></a>
         </div>
       </div>
-      <form class="search flex items-center my-2 sm:my-0" role="search">
-        <input
-          class="form-control border border-[#b66141] rounded-full px-4 py-2 w-full sm:w-[300px]"
-          type="search"
-          placeholder="Buscar..."
-        />
-        <button type="submit">
-          <img src="../assets/img/search.png" alt="Buscar" class="w-[30px]" />
-        </button>
-      </form>
-      <div class="icons flex items-center space-x-5 relative">
-        <a href="#" id="account-toggle" @click="toggleAccountMenu">
-          <img src="../assets/img/perf.png" alt="Cuenta" class="w-[30px]" />
-        </a>
-        <div class="account-menu" v-if="showAccountMenu">
-          <p><b>¡Bienvenido usuario!</b></p>
-          <a href="#">Mi perfil</a>
-          <a href="#">Mis pedidos</a>
-          <a href="#">Cerrar sesion</a>
-        </div>
-        <a href="#"><img src="../assets/img/fav.png" alt="Favoritos" class="w-[30px]" /></a>
-        <a href="#"><img src="../assets/img/bag.png" alt="Carrito" class="w-[30px]" /></a>
-      </div>
-    </div>
-  </nav>
+    </nav>
+  </div>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      showDropdown: false,
-      showAccountMenu: false
-    }
+      isCollapsed: false,
+      isAccountMenuVisible: false,
+    };
   },
   methods: {
-    toggleDropdown(event) {
-      event.preventDefault()
-      this.showDropdown = !this.showDropdown
+    toggleCollapse() {
+      this.isCollapsed = !this.isCollapsed;
     },
-    toggleAccountMenu(event) {
-      event.preventDefault()
-      this.showAccountMenu = !this.showAccountMenu
+    toggleAccountMenu() {
+      this.isAccountMenuVisible = !this.isAccountMenuVisible;
     },
-    closeMenus(event) {
-      if (!event.target.closest('#dropdown-toggle')) {
-        this.showDropdown = false
-      }
-      if (!event.target.closest('#account-toggle')) {
-        this.showAccountMenu = false
-      }
-    }
   },
   mounted() {
-    window.addEventListener('click', this.closeMenus)
+    window.addEventListener('click', this.hideAccountMenu);
   },
-  beforeDestroy() {
-    window.removeEventListener('click', this.closeMenus)
-  }
-}
+  beforeUnmount() {
+    window.removeEventListener('click', this.hideAccountMenu);
+  },
+  methods: {
+    toggleCollapse() {
+      this.isCollapsed = !this.isCollapsed;
+    },
+    toggleAccountMenu() {
+      this.isAccountMenuVisible = !this.isAccountMenuVisible;
+    },
+    hideAccountMenu(event) {
+      if (!event.target.closest('.icons')) {
+        this.isAccountMenuVisible = false;
+      }
+    },
+  },
+};
 </script>
 
 <style scoped>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+nav {
+  background-color: #fbf8ee;
+  display: flex;
+  padding: 16px;
+  flex-wrap: wrap;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.navbar-brand img {
+  width: 60px;
+  max-width: 100%;
+  height: auto;
+}
+
+.categorias {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-left: 150px;
+}
+
 .categorias p {
+  margin: 0;
   font-size: 1.1rem;
   color: #b66141;
 }
-.search input {
-  background: transparent;
-  border-radius: 20px;
-  border-color: #b66141;
+
+.search img, .icons img, .categorias img {
+  width: 40px;
 }
-.search button {
-  background: transparent;
-  border: none;
+
+.collapse-content {
+  display: flex;
+  flex-direction: column;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  margin-left: 150px;
 }
+
+.collapsed {
+  max-height: 500px;
+}
+
+.collapse-content a {
+  text-decoration: none;
+  color: #662f25;
+  display: block;
+  padding: 5px 0;
+  position: relative;
+}
+
+.collapse-content a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 5px;
+  border-radius: 5px;
+  background-color: #b66141;
+  transition: width 0.3s ease;
+}
+
+.collapse-content a:hover::after {
+  width: 100%;
+}
+
 .dropdown-menu,
 .account-menu {
   display: none;
@@ -106,31 +176,82 @@ export default {
   width: 150px;
   border-radius: 15px;
 }
-.dropdown-menu a,
+
+.account-menu p {
+  color: #662f25;
+  margin: 0;
+  padding-bottom: 5px;
+}
+
 .account-menu a {
   display: flex;
   flex-direction: column;
-}
-.account-menu p {
+  text-decoration: none;
   color: #662f25;
 }
+
 .dropdown-menu.show,
 .account-menu.show {
   display: block;
 }
+
 .dropdown-menu a:hover,
 .account-menu a:hover {
   background-color: #b66141;
   color: #fff;
-  padding: 5px;
   border-radius: 15px;
-}
-.icons a img:hover,
-.search button img:hover,
-.categorias a img:hover {
-  background-color: #662f25;
-  border-radius: 50%;
   padding: 5px;
-  transition: background-color 0.7s;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  flex: 1;
+  justify-content: center;
+}
+
+.search input {
+  background: transparent;
+  border-radius: 20px;
+  border: 1px solid #b66141;
+  padding: 8px 16px;
+  outline: none;
+  width: 100%;
+  max-width: 300px;
+}
+
+
+.search button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+}
+
+/* Media queries para pantallas pequeñas */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .search input {
+    width: 100%;
+  }
+  .icons {
+    gap: 10px;
+  }
+  .categorias {
+    width: 100%;
+    justify-content: space-between;
+    margin-left: 0;
+  }
 }
 </style>

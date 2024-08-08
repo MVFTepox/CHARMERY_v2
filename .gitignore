@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 node_modules
 =======
 # Logs
@@ -25,10 +24,9 @@ coverage
 !.vscode/extensions.json
 .idea
 *.suo
-*.ntvs*
+.ntvs
 *.njsproj
 *.sln
 *.sw?
 
 *.tsbuildinfo
->>>>>>> 76ad80e8446906b7148d891c34327de96aa14029
