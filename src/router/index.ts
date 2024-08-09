@@ -8,13 +8,8 @@ import vistaProducto from '@/views/vistaProducto.vue'
 import login from '@/views/Login.vue'
 import account from '@/views/account.vue'
 import confirmationPage from '@/views/pedidoConfirmado.vue'
+import footerpage from '@/components/footer.vue'
 import listaDeDeseos from '@/views/listaDeDeseos.vue'
-
-
-
-
-
-
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -65,6 +60,16 @@ const router = createRouter({
       path: '/cuenta',
       name: 'account',
       component: account
+    },
+    {
+      path: '/pedidoConfirm',
+      name: 'pedidoConfirm',
+      component: confirmationPage
+    },
+    {
+      path: '/footer',
+      name: 'footer',
+      component: footerpage
     },
     {
       path: '/prueba',
