@@ -1,6 +1,6 @@
 <template>
   <div
-    class="rounded-lg border-solid border-[3px] p-3 m-2 flex flex-col justify-between h-[250px] w-[250px] border-[#eddaab] font-DMsans">
+    class="rounded-lg border-solid border-[3px] p-3 m-2 flex flex-col justify-between h-[350px] w-[250px] border-[#eddaab] font-DMsans">
     <div class="flex justify-between">
       <div class="flex flex-col">
         <p>productName</p>

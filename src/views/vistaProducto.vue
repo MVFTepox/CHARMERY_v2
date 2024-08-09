@@ -31,7 +31,6 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
-import productPureb from '@/components/productPureb.vue'
 import Navbarr from '@/components/Navbarr.vue'
 import PageFooter from '@/components/footer.vue'
 import ReviewCard from '@/components/ReviewCard.vue'
@@ -44,7 +43,6 @@ export default defineComponent({
   name: 'pageVistaProducto',
 
   components: {
-    productPureb,
     Navbarr,
     ReviewCard,
     CommentSection,

@@ -5,22 +5,22 @@
       <form @submit.prevent="register">
         <div class="form-group">
           <label for="name">Nombre y apellido</label>
-          <input type="text" id="name" v-model="name" >
+          <input type="text" id="name" v-model="name" class="rounded-full">
           <span v-if="errors.name" class="error-message">{{ errors.name }}</span>
         </div>
         <div class="form-group">
           <label for="email">Correo electrónico</label>
-          <input type="email" id="email" v-model="email" >
+          <input type="email" id="email" v-model="email" class="rounded-full" >
           <span v-if="errors.email" class="error-message">{{ errors.email }}</span>
         </div>
         <div class="form-group">
           <label for="password">Contraseña</label>
-          <input type="password" id="password" v-model="password" >
+          <input type="password" id="password" v-model="password" class="rounded-full" >
           <span v-if="errors.password" class="error-message">{{ errors.password }}</span>
         </div>
         <div class="form-group">
           <label for="confirm-password">Confirmar contraseña</label>
-          <input type="password" id="confirm-password" v-model="confirmPassword" >
+          <input type="password" id="confirm-password" v-model="confirmPassword" class="rounded-full">
           <span v-if="errors.confirmPassword" class="error-message">{{ errors.confirmPassword }}</span>
         </div>
         <div class="checkbox-group">
@@ -61,21 +61,13 @@
   font-family: 'DMSans', sans-serif;
   background-color: #fff8ec;
   padding: 24px;
-  border-radius: 12px;
+  
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 400px;
   text-align: center;
 }
-.container {
-  background-color: #fff8ec;
-  padding: 24px;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 400px;
-  text-align: center;
-}
+
 
 .title {
   font-size: 24px;
@@ -114,7 +106,6 @@
   width: 100%;
   padding: 8px 12px;
   border: 1px solid #c1785c;
-  border-radius: 4px;
   outline: none;
   transition: border-color 0.2s;
   background-color: #fff8ec;
