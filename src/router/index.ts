@@ -8,6 +8,8 @@ import SobreNosotros from '@/views/SobreNosotros.vue'
 import vistaProducto from '@/views/vistaProducto.vue'
 import login from '@/views/Login.vue'
 import account from '@/views/account.vue'
+import Navbarr from '@/components/Navbarr.vue'
+import MiCuenta from '@/components/MiCuenta.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -51,6 +53,16 @@ const router = createRouter({
       path: '/account',
       name: 'account',
       component: account
+    },
+    {
+      path: '/navbarr',
+      name: 'navbarr',
+      component: Navbarr
+    },
+    {
+      path: '/MiCuenta',
+      name: 'MiCuenta',
+      component: MiCuenta
     }
   ]
 })
