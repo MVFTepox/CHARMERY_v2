@@ -3,25 +3,25 @@
         <Navbarr />
     </div>
     <div>
-        <componetAccount />
+        <componentAccount />
     </div>
     <div>
         <Pagefooter />
     </div>
 </template>
+
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import PageAccount from '@/components/MiCuenta.vue'
-import Pagefooter from '@/components/footer.vue'
-import Navbarr from '@/components/Navbarr.vue'
+import { defineComponent } from 'vue';
+import componentAccount from '@/components/MiCuenta.vue';
+import Pagefooter from '@/components/footer.vue';
+import Navbarr from '@/components/Navbarr.vue';
 
 export default defineComponent({
     name: 'PageAccount',
-    component: {
-        PageAccount,
+    components: {  
+        componentAccount,
         Navbarr,
         Pagefooter
     }
 })
-
 </script>
