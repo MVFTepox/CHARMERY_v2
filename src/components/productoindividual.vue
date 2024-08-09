@@ -22,7 +22,9 @@
                     </p>
                     <p class="text-7xl font-elmessiri my-4 text-[#CB8844]">{{ precioDelArticulo }}</p>
                 </div>
-                <div class="my-4">sds</div>
+                <div class="my-4">
+                    <QuantitySelector :initialQuantity="productQuantity" @update:quantity="updateQuantity" />
+                </div>
                 <div class="my-4">
                     <button class="btn rounded-3xl bg-[#B66141] text-white w-full text-2xl hover:text-[#cb8844]">
                         Agregar al carrito
@@ -43,12 +45,14 @@ import { defineComponent, ref } from 'vue'
 import img1Src from '@/assets/img/moño perla zoom editado.png'
 import img2Src from '@/assets/img/collar corazon realista editado.png'
 import CarouselProduct from '@/components/CarruselProducto.vue'
+import QuantitySelector from '@/components/Cantidad.vue';
 
 export default defineComponent({
     name: 'pageVentaProducto',
 
     components: {
-        CarouselProduct
+        CarouselProduct,
+        QuantitySelector
     },
 
     data() {
@@ -56,27 +60,37 @@ export default defineComponent({
             images: [
                 img1Src, img2Src
             ],
+            productQuantity: 1,
+            currentFill: 1
         };
+    },
+    methods: {
+        updateQuantity(newQuantity: number) {
+            this.productQuantity = newQuantity;
+        },
+        removeFromWished() {
+            this.currentFill = 0;
+        },
     },
 
     setup() {
-        const img1 = ref(img1Src)
-        const img2 = ref(img2Src)
+            const img1 = ref(img1Src)
+            const img2 = ref(img2Src)
 
-        const Categoría = ref('Collar')
-        const Estilo = ref('Corazón Realista')
+            const Categoría = ref('Collar')
+            const Estilo = ref('Corazón Realista')
 
-        const nombreDelArticulo = ref('Collar Corazón Realista')
-        const precioDelArticulo = ref('$ 15')
+            const nombreDelArticulo = ref('Collar Corazón Realista')
+            const precioDelArticulo = ref('$ 15')
 
-        return {
-            img1,
-            img2,
-            nombreDelArticulo,
-            precioDelArticulo,
-            Categoría,
-            Estilo
+            return {
+                img1,
+                img2,
+                nombreDelArticulo,
+                precioDelArticulo,
+                Categoría,
+                Estilo
+            }
         }
-    }
-})
+    })
 </script>

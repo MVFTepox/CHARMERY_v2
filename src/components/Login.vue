@@ -1,26 +1,28 @@
 <template>
-  <div class="body">
-    <div class="container">
-      <h2 class="title">Bienvenido</h2>
-      <form @submit.prevent="login">
-        <div class="form-group">
-          <label for="email">Correo electrónico</label>
-          <input type="email" id="email" v-model="email">
-          <span v-if="errors.email" class="error-message">{{ errors.email }}</span>
+  <div class=" ">
+    <div class="body">
+      <div class="container border-2 rounded-3xl">
+        <h2 class="title font-elmessiri">Bienvenido</h2>
+        <form @submit.prevent="login">
+          <div class="form-group">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" v-model="email">
+            <span v-if="errors.email" class="error-message">{{ errors.email }}</span>
+          </div>
+          <div class="form-group">
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" v-model="password">
+            <span v-if="errors.password" class="error-message">{{ errors.password }}</span>
+          </div>
+          <div class="linea"></div>
+          <a href="/registro" class="register-link">¿Aún no tienes cuenta? Regístrate <span>aquí</span></a>
+          <button type="submit" class="btn submit-button">Iniciar sesión</button>
+        </form>
+        <div v-if="Object.keys(errors).length" class="alert">
+          <ul>
+            <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
+          </ul>
         </div>
-        <div class="form-group">
-          <label for="password">Contraseña</label>
-          <input type="password" id="password" v-model="password">
-          <span v-if="errors.password" class="error-message">{{ errors.password }}</span>
-        </div>
-        <div class="linea"></div>
-        <a href="/registrarse" class="register-link">¿Aún no tienes cuenta? Regístrate <span>aquí</span></a>
-        <button type="submit" class="submit-button">Iniciar sesión</button>
-      </form>
-      <div v-if="Object.keys(errors).length" class="alert">
-        <ul>
-          <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
-        </ul>
       </div>
     </div>
   </div>
@@ -31,10 +33,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 74vh;
   background-color: #fdfaf4;
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'DmSans', sans-serif;
   padding: 16px;
 }
 
@@ -42,7 +44,7 @@
   background-color: #fff8ec;
   padding: 24px;
   border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.159);
   width: 100%;
   max-width: 400px;
   text-align: center;
@@ -122,6 +124,9 @@
 }
 
 @media (max-width: 600px) {
+  .body {
+    min-height: 50vh;
+  }
   .container {
     padding: 16px;
   }
@@ -147,6 +152,7 @@
     padding: 10px;
   }
 }
+
 .error-message {
   color: #d8000c;
   background-color: #ffd2d2;

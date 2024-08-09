@@ -7,7 +7,7 @@
       <div class="contact-info">
         <p><strong>Contáctanos en...</strong></p>
         <p><a href="mailto:charmeryy.store@gmail.com">charmeryy.store@gmail.com</a></p>
-        <p><a href="#">Sobre Nosotros</a></p>
+        <p><a href="/sobrenosotros">Sobre Nosotros</a></p>
       </div>
       <div class="social-media">
         <p><strong>No Olvides Seguirnos en...</strong></p>

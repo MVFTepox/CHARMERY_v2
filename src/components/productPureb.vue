@@ -1,3 +1,4 @@
+
 <template>
   <div>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 rounded-3xl px-10">

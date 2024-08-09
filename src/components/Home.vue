@@ -2,7 +2,7 @@
   <div class="body">
     <div class="container">
       <div class="text-section">
-        <h1 class="font-elmessiri">Charmery</h1>
+        <h1 class="font-elmessiri text-x">Charmery</h1>
         <p class="font-elmessiri">
           El encanto<br>
           de la joyería<br>
@@ -38,7 +38,7 @@ export default {
 <style scoped>
 .body {
   height: 100vh;
-  width: 100vw; 
+  width: auto;
   position: relative;
   overflow: hidden;
 }
@@ -60,9 +60,9 @@ export default {
 
 .text-section h1 {
   top: 40%;
-  left: 52%;
+  left: 60%;
   transform: translate(-50%, -50%);
-  font-size: 7rem;
+  font-size: 8rem;
    font-weight: 600; /* Aumenta el peso de la fuente */
   text-shadow: 
     4px 4px 20px rgba(255, 255, 255, 0.8),  /* Aumenta el tamaño del desplazamiento y el desenfoque */
@@ -74,7 +74,7 @@ export default {
 
 .text-section p {
   top: 70%;
-  left: 52%;
+  left: 60%;
   transform: translate(-50%, -50%);
   font-size: 2rem;
   line-height: 1.2;
@@ -112,6 +112,7 @@ export default {
 .card:hover {
   flex: 3;
 }
+
 
 
 .carousel:hover .card:not(:hover)::after {

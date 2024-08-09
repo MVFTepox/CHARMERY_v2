@@ -1,25 +1,27 @@
 <template>
   <div>
-    <navbarr />
-    <div class="container mx-auto my-10">
+    <Navbarr2 />
+    <div class="">
 
       <Registro />
     </div>
-    <footer />
+    <footerpage />
   </div>
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import Registro from '@/components/Registro.vue'
 import Navbarr from '@/components/Navbarr.vue'
-import footer from '@/components/footer.vue'
+import footerpage from '@/components/footer.vue'
+import Navbarr2 from '@/components/Navbarr2.vue';
 
 export default defineComponent({
   name: 'registro',
   components: {
     Registro,
     Navbarr,
-    footer
+    footerpage,
+    Navbarr2
   }
 })
 </script>
