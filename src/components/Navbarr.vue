@@ -2,7 +2,7 @@
   <div>
     <nav>
       <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
           <img src="../assets/img/logo.png" alt="Logo" />
         </a>
         <div class="categorias-wrapper">

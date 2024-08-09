@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-
+import prueba from '@/views/prueba.vue'
 import Home from '@/views/homeverdadero.vue'
 import registro from '@/views/registro.vue'
 import Formulario from '@/views/Formulario.vue'
@@ -9,6 +9,7 @@ import login from '@/views/Login.vue'
 import account from '@/views/account.vue'
 import confirmationPage from '@/views/pedidoConfirmado.vue'
 import listaDeDeseos from '@/views/listaDeDeseos.vue'
+
 
 
 
@@ -65,6 +66,11 @@ const router = createRouter({
       name: 'account',
       component: account
     },
+    {
+      path: '/prueba',
+      name: 'prueba',
+      component: prueba
+    }
   ]
 })
 

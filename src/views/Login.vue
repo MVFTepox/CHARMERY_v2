@@ -2,6 +2,7 @@
   <div>
     <navbarr />
     <Login />
+    <footerPAge />
   </div>
 </template>
 
@@ -9,14 +10,14 @@
 import { defineComponent, ref } from 'vue'
 import Login from '@/components/Login.vue'
 import Navbarr from '@/components/Navbarr.vue'
-import footer from '@/components/footer.vue'
+import footerPAge from '@/components/footer.vue'
 
 export default defineComponent({
   name: 'pageLogin',
   components: {
     Login,
     Navbarr,
-    footer
+    footerPAge
   },
   setup() {}
 })

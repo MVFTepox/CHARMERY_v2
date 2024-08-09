@@ -8,26 +8,26 @@
       <div class="confirmation-icon">
         <img src="@/assets/img/listo.png" alt="Confirmación">
       </div>
-      <p class="font-elmessiri">Gracias por tu orden!</p>
-      <button>Terminar</button>
+      <p >Gracias  por tu orden!</p>
+      <input type="button" class="font-DMsans" value="Terminar" />
     </div>
   </div>
   <div>
-    <footer />
+    <footerPAge />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import Navbarr from '@/components/Navbarr.vue';
-import footer from '@/components/footer.vue';
+import footerPAge from '@/components/footer.vue';
 
 export default defineComponent({
 
   name: 'ConfirmationPage',
   components: {
     Navbarr,
-    footer
+    footerPAge
   }
 })
 
@@ -68,13 +68,13 @@ h1 {
 }
 
 p {
-  font-family: sans-serif;
+  font-family: 'elMessiri',sans-serif;
   font-size: 1.6em;
   margin: 30px;
   color: #662F25;
 }
 
-button {
+input[type="button"] {
   background-color: #cb8844;
   color: #FFFFFF;
   border: none;
@@ -102,7 +102,7 @@ button {
     height: 80px;
   }
 
-  button {
+  input [type="button"] {
     padding: 8px 16px;
     font-size: 0.9em;
   }
@@ -123,7 +123,7 @@ button {
     height: 45px;
   }
 
-  button {
+  input [type="button"] {
     padding: 9px 18px;
     font-size: 0.95em;
   }

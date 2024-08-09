@@ -6,11 +6,11 @@
         <carouselHome />
     </div>
     <div class="  my-1  ">
+        <div class="divider"></div>
         <div class=" w-full my-auto ">
             <carruselprincipalPage :images="images" class="" />
         </div>
         <div class="mt-10">
-
             <p class="py-2 divider text-5xl font-elmessiri text-center text-[#B66141]">Y2K</p>
         </div>
     </div>

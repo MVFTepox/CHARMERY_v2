@@ -1,14 +1,15 @@
 <template>
-    <div class="carousel-container w-full overflow-x-auto py-4">
-        <div class="carousel flex gap-4">
+    <div class="carousel-container carousel w-full overflow-x-auto py-4">
+        <div class="  flex gap-4">
             <ProductCard v-for="(product, index) in products" :key="index" :productName="product.name"
                 :productPrice="product.price" />
         </div>
     </div>
+    
 </template>
 
 <script lang="ts">
-import ProductCard from './ProductCard.vue';
+import ProductCard from '@/components/ProductCardCArrusel.vue';
 
 export default {
     name: 'ProductCarousel',
@@ -23,6 +24,9 @@ export default {
                 { name: 'Producto 3', price: 49.99 },
                 { name: 'Producto 4', price: 59.99 },
                 { name: 'Producto 5', price: 69.99 },
+                { name: 'Producto 6', price: 69.99 },
+                { name: 'Producto 7', price: 69.99 },
+                
             ],
         };
     },
@@ -30,15 +34,17 @@ export default {
 </script>
 
 <style scoped>
-.carousel::-webkit-scrollbar {
-    @apply h-2;
+.carousel-container::-webkit-scrollbar {
+    height: 2px; /* Usando CSS puro */
 }
 
-.carousel::-webkit-scrollbar-thumb {
-    @apply bg-[#b66141] rounded-md;
+.carousel-container::-webkit-scrollbar-thumb {
+    background-color: #b66141;
+    border-radius: 0.25rem;
 }
 
-.carousel::-webkit-scrollbar-track {
-    @apply bg-[#f7ecc9];
+.carousel-container::-webkit-scrollbar-track {
+    background-color: #f7ecc9;
 }
+
 </style>

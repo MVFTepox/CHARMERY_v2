@@ -2,7 +2,7 @@
   <div>
     <Navbarr />
   </div>
-  <div>
+  <div class="mx-auto">
     <div class=" bg-[#FBF8EE] text-center p-4">
       <h1>¿QUIÉNES SOMOS?</h1>
       <div class="container p-4 flex items-center my-2">
@@ -65,7 +65,7 @@
     </div>
   </div>
   <div>
-    <footer />
+    <PageFooter />
   </div>
 </template>
 <script lang="ts">
