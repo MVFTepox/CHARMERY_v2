@@ -1,6 +1,6 @@
 <template>
   <div>
-    <navbarr />
+    <Navbarr2 />
     <div class="">
 
       <Registro />
@@ -13,13 +13,15 @@ import { defineComponent, ref } from 'vue'
 import Registro from '@/components/Registro.vue'
 import Navbarr from '@/components/Navbarr.vue'
 import footerpage from '@/components/footer.vue'
+import Navbarr2 from '@/components/Navbarr2.vue';
 
 export default defineComponent({
   name: 'registro',
   components: {
     Registro,
     Navbarr,
-    footerpage
+    footerpage,
+    Navbarr2
   }
 })
 </script>

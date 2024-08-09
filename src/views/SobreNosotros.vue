@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbarr />
+    <Navbarr2 />
   </div>
   <div class="mx-auto">
     <div class=" bg-[#FBF8EE] text-center p-4">
@@ -72,12 +72,14 @@
 import { defineComponent } from 'vue';
 import Navbarr from '@/components/Navbarr.vue';
 import PageFooter from '@/components/footer.vue';
+import Navbarr2 from '@/components/Navbarr2.vue';
 
 export default defineComponent({
   name: 'SobreNosotros',
   components: {
     Navbarr,
-    PageFooter
+    PageFooter,
+    Navbarr2,
   },
 })
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container mx-auto">
     <p class="titulo"><b>Mi Cuenta</b></p>
 
     <div class="container">

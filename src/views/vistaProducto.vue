@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbarr />
+    <Navbarr2 />
     <productoindividual class="my-5" />
     <div class="mx-10 my-10">
       <CommentSection />
@@ -38,6 +38,7 @@ import CommentSection from '@/components/CommentSection.vue'
 import Carousel from '@/components/Carousel.vue'
 import productoindividual from '@/components/productoindividual.vue'
 import CarruselProductosdeArticulos from '@/components/CarruselProductosdeArticulos.vue'
+import Navbarr2 from '@/components/Navbarr2.vue'
 
 export default defineComponent({
   name: 'pageVistaProducto',
@@ -49,7 +50,8 @@ export default defineComponent({
     PageFooter,
     Carousel,
     productoindividual,
-    CarruselProductosdeArticulos
+    CarruselProductosdeArticulos,
+    Navbarr2
 
   }
 })

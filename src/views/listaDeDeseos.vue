@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbarr />
+    <Navbarr2 />
   </div>
   <div class="">
     <div class="container mx-auto p-4">
@@ -28,12 +28,14 @@
 import { defineComponent } from 'vue'
 import Navbarr from '@/components/Navbarr.vue'
 import footerPage from '@/components/footer.vue'
+import Navbarr2 from '@/components/Navbarr2.vue';
 
 export default defineComponent({
   name: 'listasDeseos',
   components: {
     Navbarr,
-    footerPage
+    footerPage,
+    Navbarr2
   }
 })
 </script>

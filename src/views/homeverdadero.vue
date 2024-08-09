@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Navbarr1 />
+        <Navbarr2 />
     </div>
     <div>
         <carouselHome />

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbarr />
+    <Navbarr2 />
   </div>
   <div>
     <div class="confirmation-page">
@@ -21,13 +21,15 @@
 import { defineComponent, ref } from 'vue'
 import Navbarr from '@/components/Navbarr.vue';
 import footerPAge from '@/components/footer.vue';
+import Navbarr2 from '@/components/Navbarr2.vue';
 
 export default defineComponent({
 
   name: 'ConfirmationPage',
   components: {
     Navbarr,
-    footerPAge
+    footerPAge,
+    Navbarr2
   }
 })
 
