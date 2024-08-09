@@ -5,12 +5,12 @@
         <a class="navbar-brand" href="#">
           <img src="../assets/img/logo.png" alt="Logo" />
         </a>
-        <div class="p-0">
-          <label for="toggle" class="categorias cursor-pointer text-xl font-medium" @click="toggleCollapse">
-            <p>Categorías</p>
-            <img src="../assets/img/down.png" alt="Down">
-          </label>
-          <div :class="{'collapse-content mt-2': true, 'collapsed': !isCollapsed}">
+        <div class="categorias">
+          <p><b>Categorías</b></p>
+          <a href="#" @click="toggleCategorias">
+            <img src="../assets/img/down.png" alt="Cuenta">
+          </a>
+          <div :class="{'categorias-menu': true, 'show': isCategorias}" @click.stop>
             <a href="#">Anillos</a>
             <a href="#">Aretes</a>
             <a href="#">Collares</a>
@@ -42,42 +42,54 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      isCollapsed: false,
-      isAccountMenuVisible: false,
+<script lang="ts">
+import { defineComponent, onMounted, onBeforeUnmount, ref } from 'vue';
+
+export default defineComponent({
+  setup() {
+    const isCategorias = ref(false);
+    const isAccountMenuVisible = ref(false);
+
+    const toggleCategorias = () => {
+      isCategorias.value = !isCategorias.value;
     };
-  },
-  methods: {
-    toggleCollapse() {
-      this.isCollapsed = !this.isCollapsed;
-    },
-    toggleAccountMenu() {
-      this.isAccountMenuVisible = !this.isAccountMenuVisible;
-    },
-  },
-  mounted() {
-    window.addEventListener('click', this.hideAccountMenu);
-  },
-  beforeUnmount() {
-    window.removeEventListener('click', this.hideAccountMenu);
-  },
-  methods: {
-    toggleCollapse() {
-      this.isCollapsed = !this.isCollapsed;
-    },
-    toggleAccountMenu() {
-      this.isAccountMenuVisible = !this.isAccountMenuVisible;
-    },
-    hideAccountMenu(event) {
-      if (!event.target.closest('.icons')) {
-        this.isAccountMenuVisible = false;
+
+    const toggleAccountMenu = () => {
+      isAccountMenuVisible.value = !isAccountMenuVisible.value;
+    };
+
+    const hideCategorias = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest('.categorias')) {
+        isCategorias.value = false;
       }
-    },
-  },
-};
+    };
+
+    const hideAccountMenu = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest('.icons')) {
+        isAccountMenuVisible.value = false;
+      }
+    };
+
+    onMounted(() => {
+      window.addEventListener('click', hideCategorias);
+      window.addEventListener('click', hideAccountMenu);
+    });
+
+    onBeforeUnmount(() => {
+      window.removeEventListener('click', hideCategorias);
+      window.removeEventListener('click', hideAccountMenu);
+    });
+
+    return {
+      isCategorias,
+      isAccountMenuVisible,
+      toggleCategorias,
+      toggleAccountMenu,
+    };
+  }
+});
 </script>
 
 <style scoped>
@@ -126,45 +138,8 @@ nav {
   width: 40px;
 }
 
-.collapse-content {
-  display: flex;
-  flex-direction: column;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease-out;
-  margin-left: 150px;
-}
-
-.collapsed {
-  max-height: 500px;
-}
-
-.collapse-content a {
-  text-decoration: none;
-  color: #662f25;
-  display: block;
-  padding: 5px 0;
-  position: relative;
-}
-
-.collapse-content a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0;
-  height: 5px;
-  border-radius: 5px;
-  background-color: #b66141;
-  transition: width 0.3s ease;
-}
-
-.collapse-content a:hover::after {
-  width: 100%;
-}
-
-.dropdown-menu,
-.account-menu {
+.account-menu,
+.categorias-menu {
   display: none;
   position: absolute;
   top: 50px;
@@ -173,7 +148,7 @@ nav {
   border: 1px solid #b66141;
   padding: 10px;
   z-index: 1000;
-  width: 150px;
+  width: 200px;
   border-radius: 15px;
 }
 
@@ -183,24 +158,38 @@ nav {
   padding-bottom: 5px;
 }
 
-.account-menu a {
-  display: flex;
-  flex-direction: column;
+.account-menu a,
+.categorias-menu a {
   text-decoration: none;
   color: #662f25;
-}
-
-.dropdown-menu.show,
-.account-menu.show {
   display: block;
+  padding: 5px 0;
+  position: relative;
+  overflow: hidden; 
+  transition: color 0.3s ease; 
 }
 
-.dropdown-menu a:hover,
-.account-menu a:hover {
+.account-menu a::after,
+.categorias-menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0; 
+  height: 5px; 
+  border-radius: 5px;
   background-color: #b66141;
-  color: #fff;
-  border-radius: 15px;
-  padding: 5px;
+  transition: width 0.3s ease; 
+}
+
+.account-menu a:hover::after,
+.categorias-menu a:hover::after {
+  width: 100%;
+}
+
+.account-menu.show,
+.categorias-menu.show {
+  display: block;
 }
 
 .search {
@@ -220,7 +209,6 @@ nav {
   width: 100%;
   max-width: 300px;
 }
-
 
 .search button {
   background: transparent;
