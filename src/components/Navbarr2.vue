@@ -2,7 +2,7 @@
   <div>
     <nav>
       <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
           <img src="../assets/img/logo.png" alt="Logo" />
         </a>
         <div class="categorias">
@@ -30,8 +30,8 @@
             <img src="../assets/img/perf.png" alt="Cuenta">
           </a>
           <div :class="{'account-menu': true, 'show': isAccountMenuVisible}" @click.stop>
-            <a href="#">Iniciar sesión</a>
-            <a href="#">Regístrate</a>
+            <a href="/login">Iniciar sesión</a>
+            <a href="/registro">Regístrate</a>
           </div>
           <a href="#"><img src="../assets/img/bag.png" alt="Bolsa"></a>
         </div>

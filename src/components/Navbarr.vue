@@ -2,7 +2,7 @@
   <div>
     <nav>
       <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
           <img src="../assets/img/logo.png" alt="Logo" />
         </a>
         <div class="categorias">
@@ -107,7 +107,6 @@ nav {
 
 .container {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   width: 100%;
@@ -117,14 +116,18 @@ nav {
 
 .navbar-brand img {
   width: 60px;
-  max-width: 100%;
   height: auto;
+}
+
+.categorias-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .categorias {
   display: flex;
   align-items: center;
-  position: relative;
   margin-left: 150px;
 }
 
@@ -143,13 +146,17 @@ nav {
   display: none;
   position: absolute;
   top: 50px;
-  left: 0;
+  right: 0;
   background-color: #fff;
   border: 1px solid #b66141;
   padding: 10px;
   z-index: 1000;
   width: 200px;
   border-radius: 15px;
+}
+
+.account-menu.show {
+  display: block;
 }
 
 .account-menu p {
@@ -224,7 +231,6 @@ nav {
   position: relative;
 }
 
-/* Media queries para pantallas pequeñas */
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
@@ -240,6 +246,10 @@ nav {
     width: 100%;
     justify-content: space-between;
     margin-left: 0;
+  }
+  .categorias-wrapper {
+    width: 100%;
+    margin-top: 10px;
   }
 }
 </style>
