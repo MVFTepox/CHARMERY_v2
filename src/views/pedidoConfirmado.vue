@@ -1,10 +1,10 @@
 <template>
   <div class="confirmation-page">
-    <h1>Tu pedido está confirmado!</h1>
+    <h1 class="font-elmessiri">Tu pedido está confirmado!</h1>
     <div class="confirmation-icon">
       <img src="@/assets/img/listo.png" alt="Confirmación">
     </div>
-    <p>Gracias por tu orden!</p>
+    <p class="font-elmessiri">Gracias por tu orden!</p>
     <button>Terminar</button>
   </div>
 </template>
