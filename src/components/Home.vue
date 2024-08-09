@@ -113,9 +113,6 @@ export default {
   flex: 3;
 }
 
-.carousel:hover .card:not(:hover) img {
-  filter: grayscale(100%) opacity(0.5);
-}
 
 .carousel:hover .card:not(:hover)::after {
   content: '';
