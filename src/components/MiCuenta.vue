@@ -1,99 +1,97 @@
 <template>
+  <div>
+    <p class="titulo"><b>Mi Cuenta</b></p>
 
-    <div>
-      <p class="titulo"><b>Mi Cuenta</b></p>
-
-      <div class="container">
-        <div class="buttons-container">
-          <div class="flex flex-col gap-3">
-            <button type="button" class="btn1 rounded-r-none" @click="showContent('info')">Información de mi
-              cuenta</button>
-            <button type="button" class="btn2 rounded-r-none" @click="showContent('orders')">Mis pedidos</button>
-          </div>
-          <button type="button" class="btn3" id="logout-button" @click="logout">Cerrar Sesión</button>
+    <div class="container">
+      <div class="buttons-container">
+        <div class="flex flex-col gap-3">
+          <button type="button" class="btn1 rounded-r-none" @click="showContent('info')">Información de mi
+            cuenta</button>
+          <button type="button" class="btn2 rounded-r-none" @click="showContent('orders')">Mis pedidos</button>
         </div>
+        <button type="button" class="btn3" id="logout-button" @click="logout">Cerrar Sesión</button>
+      </div>
 
-        <div class="content-panels">
-          <div id="info" class="content-panel" :class="{ active: activePanel === 'info' }">
+      <div class="content-panels">
+        <div id="info" class="content-panel" :class="{ active: activePanel === 'info' }">
+          <div class="header-with-button">
+            <p class="titulos2"><b>Datos Generales</b></p>
+            <button class="header-button" v-if="!isEditing" @click="editInfo">Editar Datos</button>
+            <button class="header-button" v-if="isEditing" @click="saveInfo">Guardar</button>
+          </div>
+          <div class="form">
+            <div class="form-group">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombre" v-model="form.nombre" required :disabled="!isEditing">
+            </div>
+            <div class="form-group">
+              <label for="apellido" class="form-label">Apellido</label>
+              <input type="text" class="form-control" id="apellido" v-model="form.apellido" required
+                :disabled="!isEditing">
+            </div>
+          </div>
+          <div class="form2">
+            <div class="form-group2">
+              <label for="correo" class="form-label">Correo electrónico</label>
+              <input type="email" class="form-control" id="correo" v-model="form.correo" required
+                :disabled="!isEditing">
+            </div>
+            <div class="form-group2">
+              <label for="telefono" class="form-label">Número de teléfono</label>
+              <input type="tel" class="form-control" id="telefono" v-model="form.telefono" pattern="[0-9]{10}"
+                maxlength="10" required :disabled="!isEditing">
+            </div>
+            <div class="form-group2 password-container">
+              <label for="contraseña" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="contraseña" v-model="form.contraseña" required
+                :disabled="!isEditing">
+              <button type="button" class="password-toggle" @click="togglePassword">&#128065;</button>
+            </div>
             <div class="header-with-button">
-              <p class="titulos2"><b>Datos Generales</b></p>
-              <button class="header-button" v-if="!isEditing" @click="editInfo">Editar Datos</button>
-              <button class="header-button" v-if="isEditing" @click="saveInfo">Guardar</button>
+              <p class="titulos2"><b>Dirección de envío</b></p>
+              <button type="button" class="header-button" @click="addAddress">Añadir otra dirección</button>
             </div>
-            <div class="form">
-              <div class="form-group">
-                <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre" v-model="form.nombre" required
-                  :disabled="!isEditing">
-              </div>
-              <div class="form-group">
-                <label for="apellido" class="form-label">Apellido</label>
-                <input type="text" class="form-control" id="apellido" v-model="form.apellido" required
-                  :disabled="!isEditing">
-              </div>
-            </div>
-            <div class="form2">
-              <div class="form-group2">
-                <label for="correo" class="form-label">Correo electrónico</label>
-                <input type="email" class="form-control" id="correo" v-model="form.correo" required
-                  :disabled="!isEditing">
-              </div>
-              <div class="form-group2">
-                <label for="telefono" class="form-label">Número de teléfono</label>
-                <input type="tel" class="form-control" id="telefono" v-model="form.telefono" pattern="[0-9]{10}"
-                  maxlength="10" required :disabled="!isEditing">
-              </div>
-              <div class="form-group2 password-container">
-                <label for="contraseña" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="contraseña" v-model="form.contraseña" required
-                  :disabled="!isEditing">
-                <button type="button" class="password-toggle" @click="togglePassword">&#128065;</button>
-              </div>
-              <div class="header-with-button">
-                <p class="titulos2"><b>Dirección de envío</b></p>
-                <button type="button" class="header-button" @click="addAddress">Añadir otra dirección</button>
-              </div>
-              <div class="address-container" id="address-container">
-                <div v-for="(address, index) in addresses" :key="index" class="info"
-                  :class="{ selected: selectedAddress === index }" @click="selectAddress(index)">
-                  <div v-if="isEditingAddress !== index">
-                    <p v-if="!isEditingAddress">{{ address.nombre }}</p>
-                    <p v-if="!isEditingAddress">{{ address.telefono }}</p>
-                    <p v-if="!isEditingAddress">{{ address.direccion }}</p>
-                  </div>
-                  <div v-if="isEditingAddress === index">
-                    <input type="text" v-model="address.nombre" />
-                    <input type="text" v-model="address.telefono" />
-                    <input type="text" v-model="address.direccion" />
-                  </div>
-                  <div class="edit-info" v-if="isEditingAddress !== index">
-                    <button class="editar" @click="editAddress(index)"><b>Editar</b></button>
-                    <button class="eliminar" @click="removeAddress(index)"><b>Eliminar</b></button>
-                  </div>
-                  <div class="save-info" v-if="isEditingAddress === index">
-                    <button class="guardar" @click="saveAddress(index)"><b>Guardar</b></button>
-                  </div>
+            <div class="address-container" id="address-container">
+              <div v-for="(address, index) in addresses" :key="index" class="info"
+                :class="{ selected: selectedAddress === index }" @click="selectAddress(index)">
+                <div v-if="isEditingAddress !== index">
+                  <p v-if="!isEditingAddress">{{ address.nombre }}</p>
+                  <p v-if="!isEditingAddress">{{ address.telefono }}</p>
+                  <p v-if="!isEditingAddress">{{ address.direccion }}</p>
+                </div>
+                <div v-if="isEditingAddress === index">
+                  <input type="text" v-model="address.nombre" />
+                  <input type="text" v-model="address.telefono" />
+                  <input type="text" v-model="address.direccion" />
+                </div>
+                <div class="edit-info" v-if="isEditingAddress !== index">
+                  <button class="editar" @click="editAddress(index)"><b>Editar</b></button>
+                  <button class="eliminar" @click="removeAddress(index)"><b>Eliminar</b></button>
+                </div>
+                <div class="save-info" v-if="isEditingAddress === index">
+                  <button class="guardar" @click="saveAddress(index)"><b>Guardar</b></button>
                 </div>
               </div>
-              <div class="pred">
-                <button class="direccion" @click="setDefaultAddress">Dirección predeterminada</button>
-              </div>
+            </div>
+            <div class="pred">
+              <button class="direccion" @click="setDefaultAddress">Dirección predeterminada</button>
             </div>
           </div>
+        </div>
 
-          <div id="orders" class="content-panel" :class="{ active: activePanel === 'orders' }">
-            <p class="titulos2"><b>Mis pedidos</b></p>
-          </div>
+        <div id="orders" class="content-panel" :class="{ active: activePanel === 'orders' }">
+          <p class="titulos2"><b>Mis pedidos</b></p>
         </div>
       </div>
     </div>
-  
+  </div>
+
 </template>
 
-<script>
+<script >
 export default {
   name: 'PageAccount',
-  
+
   data() {
     return {
       activePanel: 'info',

@@ -5,12 +5,12 @@
         <a class="navbar-brand" href="#">
           <img src="../assets/img/logo.png" alt="Logo" />
         </a>
-        <div class="p-0">
+        <div class="categorias-wrapper">
           <label for="toggle" class="categorias cursor-pointer text-xl font-medium" @click="toggleCollapse">
             <p>Categorías</p>
             <img src="../assets/img/down.png" alt="Down">
           </label>
-          <div :class="{'collapse-content mt-2': true, 'collapsed': !isCollapsed}">
+          <div :class="{'collapse-content mt-2': true, 'collapsed': isCollapsed}">
             <a href="#">Anillos</a>
             <a href="#">Aretes</a>
             <a href="#">Collares</a>
@@ -42,20 +42,29 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  name: 'pageNavbarr',
+  
   data() {
     return {
-      isCollapsed: false,
-      isAccountMenuVisible: false,
+      isCollapsed: false as boolean,
+      isAccountMenuVisible: false as boolean,
     };
   },
   methods: {
-    toggleCollapse() {
+    toggleCollapse(): void {
       this.isCollapsed = !this.isCollapsed;
     },
-    toggleAccountMenu() {
+    toggleAccountMenu(): void {
       this.isAccountMenuVisible = !this.isAccountMenuVisible;
+    },
+    hideAccountMenu(event: Event): void {
+      if (!(event.target as HTMLElement).closest('.icons')) {
+        this.isAccountMenuVisible = false;
+      }
     },
   },
   mounted() {
@@ -64,20 +73,7 @@ export default {
   beforeUnmount() {
     window.removeEventListener('click', this.hideAccountMenu);
   },
-  methods: {
-    toggleCollapse() {
-      this.isCollapsed = !this.isCollapsed;
-    },
-    toggleAccountMenu() {
-      this.isAccountMenuVisible = !this.isAccountMenuVisible;
-    },
-    hideAccountMenu(event) {
-      if (!event.target.closest('.icons')) {
-        this.isAccountMenuVisible = false;
-      }
-    },
-  },
-};
+});
 </script>
 
 <style scoped>
@@ -95,7 +91,6 @@ nav {
 
 .container {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   width: 100%;
@@ -105,14 +100,18 @@ nav {
 
 .navbar-brand img {
   width: 60px;
-  max-width: 100%;
   height: auto;
+}
+
+.categorias-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .categorias {
   display: flex;
   align-items: center;
-  position: relative;
   margin-left: 150px;
 }
 
@@ -132,7 +131,6 @@ nav {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease-out;
-  margin-left: 150px;
 }
 
 .collapsed {
@@ -142,39 +140,28 @@ nav {
 .collapse-content a {
   text-decoration: none;
   color: #662f25;
-  display: block;
   padding: 5px 0;
-  position: relative;
 }
 
-.collapse-content a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0;
-  height: 5px;
-  border-radius: 5px;
-  background-color: #b66141;
-  transition: width 0.3s ease;
+.collapse-content a:hover {
+  color: #b66141;
 }
 
-.collapse-content a:hover::after {
-  width: 100%;
-}
-
-.dropdown-menu,
 .account-menu {
   display: none;
   position: absolute;
   top: 50px;
-  left: 0;
+  right: 0;
   background-color: #fff;
   border: 1px solid #b66141;
   padding: 10px;
   z-index: 1000;
   width: 150px;
   border-radius: 15px;
+}
+
+.account-menu.show {
+  display: block;
 }
 
 .account-menu p {
@@ -184,23 +171,16 @@ nav {
 }
 
 .account-menu a {
-  display: flex;
-  flex-direction: column;
   text-decoration: none;
   color: #662f25;
+  margin-top: 5px;
 }
 
-.dropdown-menu.show,
-.account-menu.show {
-  display: block;
-}
-
-.dropdown-menu a:hover,
 .account-menu a:hover {
   background-color: #b66141;
   color: #fff;
-  border-radius: 15px;
   padding: 5px;
+  border-radius: 15px;
 }
 
 .search {
@@ -221,7 +201,6 @@ nav {
   max-width: 300px;
 }
 
-
 .search button {
   background: transparent;
   border: none;
@@ -236,7 +215,6 @@ nav {
   position: relative;
 }
 
-/* Media queries para pantallas pequeñas */
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
@@ -252,6 +230,10 @@ nav {
     width: 100%;
     justify-content: space-between;
     margin-left: 0;
+  }
+  .categorias-wrapper {
+    width: 100%;
+    margin-top: 10px;
   }
 }
 </style>

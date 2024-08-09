@@ -38,7 +38,7 @@ export default {
 <style scoped>
 .body {
   height: 100vh;
-  width: 100vw; 
+  width: auto;
   position: relative;
   overflow: hidden;
 }

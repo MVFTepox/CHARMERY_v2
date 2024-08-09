@@ -1,21 +1,41 @@
 <template>
-  <div class="confirmation-page">
-    <h1 class="font-elmessiri">Tu pedido está confirmado!</h1>
-    <div class="confirmation-icon">
-      <img src="@/assets/img/listo.png" alt="Confirmación">
+  <div>
+    <Navbarr />
+  </div>
+  <div>
+    <div class="confirmation-page">
+      <h1 class="font-elmessiri">Tu pedido está confirmado!</h1>
+      <div class="confirmation-icon">
+        <img src="@/assets/img/listo.png" alt="Confirmación">
+      </div>
+      <p class="font-elmessiri">Gracias por tu orden!</p>
+      <button>Terminar</button>
     </div>
-    <p class="font-elmessiri">Gracias por tu orden!</p>
-    <button>Terminar</button>
+  </div>
+  <div>
+    <footer />
   </div>
 </template>
 
 <script lang="ts">
-import {defineComponent, ref} from 'vue';
+import { defineComponent, ref } from 'vue'
+import Navbarr from '@/components/Navbarr.vue';
+import footer from '@/components/footer.vue';
+
+export default defineComponent({
+
+  name: 'ConfirmationPage',
+  components: {
+    Navbarr,
+    footer
+  }
+})
 
 
-export default {
-  name: 'ConfirmationPage'
-}
+
+
+
+
 </script>
 
 <style scoped>

@@ -10,15 +10,15 @@
     </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import componetAccount from '@/components/MiCuenta.vue';
-import Pagefooter from '@/components/footer.vue';
-import Navbarr from '@/components/Navbarr.vue';
+import { defineComponent, ref } from 'vue'
+import PageAccount from '@/components/MiCuenta.vue'
+import Pagefooter from '@/components/footer.vue'
+import Navbarr from '@/components/Navbarr.vue'
 
 export default defineComponent({
     name: 'PageAccount',
     component: {
-        componetAccount,
+        PageAccount,
         Navbarr,
         Pagefooter
     }

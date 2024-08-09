@@ -19,7 +19,11 @@
   </div>
 </template>
 <script lang="ts">
-export default {}
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  name: 'listasDeseos',
+})
 </script>
 <style scoped>
 h1 {
