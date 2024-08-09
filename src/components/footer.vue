@@ -12,16 +12,15 @@
       <div class="social-media">
         <p><strong>No Olvides Seguirnos en...</strong></p>
         <div class="social-media-icons">
-          <a href="https://www.instagram.com/charmeryy.store?igsh=b2dwaHBlM25rYzg0"
-            ><img src="@/assets/img/instagram-icon.png" alt="Instagram"
-          /></a>
-          <a href="https://www.tiktok.com/@charmeryystore?is_from_webapp=1&sender_device=pc"
-            ><img src="@/assets/img/tiktok-icon.png" alt="TikTok"
-          /></a>
-          <a
-            href="https://l.instagram.com/?u=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61561006452486%26mibextid%3DZbWKwL&e=AT2b-D8Q7qz5K6yMvZnZvufM4uzc7DCVnbOinuySNWWGQNuuuZYnaLWzP3EgtMtI3rfDdahz7DoCueHr6Mz6oEpvmdYMNqMZJZFHCSeqfHh49Ctr2kx7pkg"
-            ><img src="@/assets/img/facebook-icon.png" alt="Facebook"
-          /></a>
+          <a href="https://www.instagram.com/charmeryy.store?igsh=b2dwaHBlM25rYzg0">
+            <img src="@/assets/img/instagram-icon.png" alt="Instagram" />
+          </a>
+          <a href="https://www.tiktok.com/@charmeryystore?is_from_webapp=1&sender_device=pc">
+            <img src="@/assets/img/tiktok-icon.png" alt="TikTok" />
+          </a>
+          <a href="https://l.instagram.com/?u=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61561006452486%26mibextid%3DZbWKwL&e=AT2b-D8Q7qz5K6yMvZnZvufM4uzc7DCVnbOinuySNWWGQNuuuZYnaLWzP3EgtMtI3rfDdahz7DoCueHr6Mz6oEpvmdYMNqMZJZFHCSeqfHh49Ctr2kx7pkg">
+            <img src="@/assets/img/facebook-icon.png" alt="Facebook" />
+          </a>
         </div>
       </div>
     </footer>
@@ -29,8 +28,6 @@
 </template>
 
 <style scoped>
-
-
 .footer {
   display: flex;
   flex-wrap: wrap;
@@ -54,16 +51,19 @@
   height: 100px;
 }
 
-.footer .contact-info,
+.footer .contact-info {
+  
+  flex: 7;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
 .footer .social-media {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
   text-align: center;
-}
-
-.footer .social-media {
   margin-top: 10px;
 }
 
@@ -93,13 +93,11 @@ a {
   .footer {
     flex-wrap: nowrap;
     justify-content: space-between;
-    text-align: left;
   }
 
   .footer .contact-info,
   .footer .social-media {
     width: auto;
-    text-align: left;
   }
 }
 

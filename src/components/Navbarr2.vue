@@ -30,10 +30,8 @@
             <img src="../assets/img/perf.png" alt="Cuenta">
           </a>
           <div :class="{'account-menu': true, 'show': isAccountMenuVisible}" @click.stop>
-            <p><b>¡Bienvenido usuario!</b></p>
-            <a href="#">Mi perfil</a>
-            <a href="#">Mis pedidos</a>
-            <a href="#">Cerrar sesión</a>
+            <a href="#">Iniciar sesión</a>
+            <a href="#">Regístrate</a>
           </div>
           <a href="#"><img src="../assets/img/bag.png" alt="Bolsa"></a>
         </div>
