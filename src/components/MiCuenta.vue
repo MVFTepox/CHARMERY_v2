@@ -21,21 +21,25 @@
           <div class="form">
             <div class="form-group">
               <label for="nombre" class="form-label">Nombre</label>
-              <input type="text" class="form-control" id="nombre" v-model="form.nombre" required :disabled="!isEditing">
+              <input type="text" class="form-control" id="nombre" v-model="form.nombre" required :disabled="!isEditing" :class="{ 'input-error': formErrors.nombre }">
+              <p v-if="formErrors.nombre" class="error-message">Este campo es obligatorio</p>
             </div>
             <div class="form-group">
               <label for="apellido" class="form-label">Apellido</label>
-              <input type="text" class="form-control" id="apellido" v-model="form.apellido" required :disabled="!isEditing">
+              <input type="text" class="form-control" id="apellido" v-model="form.apellido" required :disabled="!isEditing" :class="{ 'input-error': formErrors.apellido }">
+              <p v-if="formErrors.apellido" class="error-message">Este campo es obligatorio</p>
             </div>
           </div>
           <div class="form2">
             <div class="form-group2">
               <label for="correo" class="form-label">Correo electrónico</label>
-              <input type="email" class="form-control" id="correo" v-model="form.correo" required :disabled="!isEditing">
+              <input type="email" class="form-control" id="correo" v-model="form.correo" required :disabled="!isEditing" :class="{ 'input-error': formErrors.correo }">
+              <p v-if="formErrors.correo" class="error-message">Correo electrónico inválido</p>
             </div>
             <div class="form-group2">
               <label for="telefono" class="form-label">Número de teléfono</label>
-              <input type="tel" class="form-control" id="telefono" v-model="form.telefono" pattern="[0-9]{10}" maxlength="10" required :disabled="!isEditing">
+              <input type="tel" class="form-control" id="telefono" v-model="form.telefono" pattern="[0-9]{10}" maxlength="10" required :disabled="!isEditing" :class="{ 'input-error': formErrors.telefono }">
+              <p v-if="formErrors.telefono" class="error-message">Número de teléfono inválido</p>
             </div>
             <div class="form-group2 password-container">
               <label for="contraseña" class="form-label">Contraseña</label>
@@ -124,6 +128,12 @@ export default defineComponent({
         telefono: '',
         contraseña: ''
       } as Form,
+      formErrors: {
+        nombre: false,
+        apellido: false,
+        correo: false,
+        telefono: false
+      },
       addresses: [
         {
           nombre: 'Nombre',
@@ -135,10 +145,10 @@ export default defineComponent({
       isEditingAddress: null as number | null,
       products: [
         { image: 'https://via.placeholder.com/100', name: 'Collar de corazón' },
-        { image: 'https://via.placeholder.com/100', name: 'Aretes de piedra brillates' },
+        { image: 'https://via.placeholder.com/100', name: 'Aretes de piedra brillantes' },
         { image: 'https://via.placeholder.com/100', name: 'Aretes de estrella' },
         { image: 'https://via.placeholder.com/100', name: 'Collar de corazón plateado' },
-        { image: 'https://via.placeholder.com/100', name: 'Aretes dorados' },
+        { image: 'https://via.placeholder.com/100', name: 'Aretes dorados' }
       ] as Product[]
     };
   },
@@ -151,6 +161,15 @@ export default defineComponent({
     },
     saveInfo() {
       this.isEditing = false;
+
+      // Validar el formulario
+      this.formErrors.nombre = !this.form.nombre;
+      this.formErrors.apellido = !this.form.apellido;
+      this.formErrors.correo = !this.form.correo || !this.validEmail(this.form.correo);
+      this.formErrors.telefono = !this.form.telefono || !this.validPhone(this.form.telefono);
+
+      // Si hay errores, evitar guardar
+      if (Object.values(this.formErrors).includes(true)) return;
     },
     addAddress() {
       this.addresses.push({
@@ -181,6 +200,17 @@ export default defineComponent({
       const passwordInput = document.getElementById('contraseña') as HTMLInputElement;
       passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
     },
+    validEmail(email: string): boolean {
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return regex.test(email);
+    },
+    validPhone(phone: string): boolean {
+      const regex = /^[0-9]{10}$/;
+      return regex.test(phone);
+    },
+    removeProduct(index: number) {
+      this.products.splice(index, 1);
+    },
     logout() {
       this.form = {
         nombre: '',
@@ -205,13 +235,8 @@ export default defineComponent({
       ];
       this.selectedAddress = 0;
       this.showContent('info');
-    },
-    removeProduct(index: number) {
-      this.products.splice(index, 1);
+
     }
-  },
-  mounted() {
-    this.selectedAddress = 0;
   }
 });
 </script>
@@ -476,5 +501,15 @@ body {
   .password-toggle {
     right: 5px;
   }
+}
+
+.input-error {
+  border: 1px solid red;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
 }
 </style>
