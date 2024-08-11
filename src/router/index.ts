@@ -10,6 +10,8 @@ import account from '@/views/account.vue'
 import confirmationPage from '@/views/pedidoConfirmado.vue'
 import footerpage from '@/components/footer.vue'
 import listaDeDeseos from '@/views/listaDeDeseos.vue'
+import carrito from '@/views/Cart.vue'
+import categoria from '@/views/categorias.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,6 +20,18 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: Home
+    },
+
+    {
+      path: '/categoria',
+      name: 'categoria',
+      component: categoria
+    },
+
+    {
+      path: '/carrito',
+      name: 'carrito',
+      component: carrito
     },
 
     {

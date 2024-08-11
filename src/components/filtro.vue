@@ -1,6 +1,5 @@
 <template>
   <div class="card w-96 bg-[#FBF8EE] rounded-md font-sans shadow m-auto">
-    <div class="card-title text-4xl pl-8 pt-3">Filtro</div>
     <div class="card-body gap-0">
       <div class="collapse collapse-arrow rounded-none rounded-t-3xl border-0 bg-[#662F25]">
         <input type="radio" name="my-accordion-2" />
@@ -80,9 +79,13 @@
       </button>
     </div>
   </div>
-
-  <div></div>
 </template>
+
+<script>
+export default {
+  name: 'filtro',
+};
+</script>
 
 <style scoped>
 input[type='range']::-webkit-slider-thumb {

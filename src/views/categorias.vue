@@ -1,7 +1,111 @@
 <template>
-  <div></div>
+  <div @click="closeDropdowns">
+    <div class="relative zoom-out">
+      <img
+        src="../assets/img/category.png"
+        alt="Phone Charms"
+        class="w-full object-cover h-48 sm:h-64 md:h-80 lg:h-96 "
+      />
+      <h1 class="absolute inset-x-0 top-1/2 transform -translate-y-1/2 text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-center font-bold" style="font-family: 'El Messiri';">
+        Phone Charms
+      </h1>
+    </div>
+    <div class="p-4 sm:p-6 md:p-8">
+      <div class="flex sm:flex-row justify-between p-4">
+        <div @click.stop>
+          <button @click="toggleFilter" class=" text-[#b66141] flex items-center">
+            <span class="material-symbols-rounded mr-2 text-3xl font-bold">filter_list</span>
+            <p class="text-2xl" style="font-family: 'DM Sans';">Filtro</p>
+          </button>
+          <div v-if="filterOpen" class="absolute rounded-lg shadow-lg">
+            <Filtro />
+          </div>
+        </div>
+
+        <div class="relative" @click.stop>
+          <button @click="toggleSort" class=" text-[#b66141] flex items-center">
+            <span class="material-symbols-rounded mr-2 text-3xl font-bold">swap_vert</span>
+            <p class="text-2xl" style="font-family: 'DM Sans';">Ordenar por</p>
+          </button>
+          
+          <ul v-if="sortOpen" class="absolute right-0 mt-2 w-full sm:w-48 bg-[#662F25] rounded-lg shadow-lg text-[#EDDAAB] font-bold" style="font-family: 'DM Sans';">
+            <li class="px-4 py-3  hover:bg-[#b66141] rounded-lg cursor-pointer" @click="sortBy('price')">Precio mayor</li>
+            <li class="px-4 py-3  hover:bg-[#b66141] rounded-lg cursor-pointer" @click="sortBy('name')" >Precio menor</li>
+            <li class="px-4 py-3  hover:bg-[#b66141] rounded-lg cursor-pointer" @click="sortBy('popularity')">Nombre</li>
+          </ul>
+        </div>
+      </div>
+      <div class="product-grid grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 p-4">
+        <ProductCard v-for="n in 12" :key="n" />
+      </div>
+    </div>
+  </div>
 </template>
+
 <script lang="ts">
-export default {}
+import { defineComponent, ref } from 'vue';
+import ProductCard from '../components/ProductCard.vue';
+import Filtro from '../components/filtro.vue';
+
+export default defineComponent({
+  name: 'CategoryPage',
+  components: {
+    ProductCard,
+    Filtro,
+  },
+  setup() {
+    const filterOpen = ref(false);
+    const sortOpen = ref(false);
+
+    const toggleFilter = () => {
+      filterOpen.value = !filterOpen.value;
+      sortOpen.value = false;
+    };
+
+    const toggleSort = () => {
+      sortOpen.value = !sortOpen.value;
+      filterOpen.value = false;
+    };
+
+    const closeDropdowns = () => {
+      filterOpen.value = false;
+      sortOpen.value = false;
+    };
+
+    const sortBy = (criteria: string) => {
+      console.log(`Sorting by ${criteria}`);
+      closeDropdowns();
+    };
+
+    return {
+      filterOpen,
+      sortOpen,
+      toggleFilter,
+      toggleSort,
+      closeDropdowns,
+      sortBy,
+    };
+  },
+});
 </script>
-<style></style>
+
+<style scoped>
+.product-grid {
+  justify-items: center;
+}
+
+.zoom-out {
+  animation: zoomOut 1s ease-out;
+}
+
+@keyframes zoomOut {
+  0% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+</style>
