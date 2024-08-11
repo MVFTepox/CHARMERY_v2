@@ -1,159 +1,86 @@
 <template>
   <Navbarr2 />
-  <div class="px-10 lg:px-20 gap-5 grid grid-cols-1 md:grid-cols-12 my-4">
+  <div class="px-10 lg:px-20 gap-5 grid grid-cols-1 md:grid-cols-12 my-4 font-DMsans">
     <div class="md:col-span-8 mb-4">
       <div class="border-2 rounded-lg p-4 grid grid-cols-1 border-[#EDDAAB]">
-        <p>Escoje tu metodo de pago</p>
+        <p class="text-3xl mb-4 font-elmessiri">Escoje tu metodo de pago</p>
+        <div id="metodo">
 
-        <div
-          class="border-2 rounded-lg p-4 my-4 border-[#EDDAAB] hover:cursor-pointer hover:scale-95 hover:shadow-md"
-        >
-          <div class="form-control">
-            <label class="label cursor-pointer">
-              <span class="label-text">Metodo uno</span>
-              <input type="radio" name="radio-10" class="radio checked:bg-[#B66141]" />
-            </label>
+        </div>
+        <button @click="nextStep">
+          <div
+            class="border-2 rounded-lg p-4 my-4 border-[#EDDAAB] hover:cursor-pointer hover:scale-95 hover:shadow-md">
+            <div>
+              <span class="material-symbols-rounded text-5xl border-4 rounded-full border-[#B66141]">
+                add
+              </span>
+              <p class="text-3xl  font-elmessiri">Crear un nuevo metodo de Pago</p>
+            </div>
           </div>
-          <p>{{ valordelospago1 }}</p>
-        </div>
-
-        <div
-          class="border-2 rounded-lg p-4 my-4 border-[#EDDAAB] hover:cursor-pointer hover:scale-95 hover:shadow-md"
-        >
-          <div class="form-control">
-            <label class="label cursor-pointer">
-              <span class="label-text">Metodo dos</span>
-              <input type="radio" name="radio-10" class="radio border-3 checked:bg-[#B66141]" />
-            </label>
-          </div>
-          <p>{{ valordelospago2 }}</p>
-        </div>
-
-        <div
-          class="border-2 rounded-lg p-4 my-4 border-[#EDDAAB] hover:cursor-pointer hover:scale-95 hover:shadow-md"
-        >
-          <div class="form-control">
-            <label class="label cursor-pointer">
-              <span class="label-text">Metodo tres</span>
-              <input type="radio" name="radio-10" class="radio checked:bg-[#B66141]" />
-            </label>
-          </div>
-
-          <p>{{ valordelospago3 }}</p>
-        </div>
-
-        <div class="flex gap-4 flex-row-reverse">
-          <input
-            class="btn bg-[#B66141] text-[#EDDAAB] rounded-2xl hover:text-black"
-            type="button"
-            value="Pagar"
-          />
-          <input
-            @click="nextStep"
-            class="btn bg-[#B66141] text-[#EDDAAB] rounded-2xl hover:text-black"
-            type="button"
-            value="Crear Nuevo Metodo de Pago"
-          />
-        </div>
+        </button>
       </div>
-
       <div :class="{ 'slide-down': step >= 2 }" v-if="step >= 2">
         <p class="text-3xl mb-4 mt-5">Pago</p>
-        <div class="border-2 rounded-lg p-4 border-[#EDDAAB]">
+        <div class="border-2 rounded-lg p-4 border-[#EDDAAB] py-8">
           <!-- PRIMER PASO -->
           <div>
             <ul class="steps steps-vertical">
               <li class="step">Primer paso de pago</li>
             </ul>
             <div class="grid grid-cols-1 lg:grid-cols-2 mb-4">
+              <!-- Nombre -->
               <div>
                 <p class="text-2xl py-0.5 font-sans">Nombre</p>
-                <input
-                  v-model="nombre"
-                  :class="[
-                    'form-control',
-                    'border-2',
-                    'rounded-3xl',
-                    'px-4',
-                    'pt-0.5',
-                    'border-[#B66141]',
-                    'w-full',
-                    'lg:w-10/12',
-                    { 'border-red-500': showError && isFieldEmpty(nombre) }
-                  ]"
-                  type="text"
-                />
+                <input v-model="nombre"
+                  class="form-control border-2 rounded-3xl px-4 pt-0.5 border-[#B66141] w-full lg:w-10/12" type="text"
+                  aria-describedby="nombreError" />
+                <p v-if="!isNameValid && !confirmacion" id="nombreError" class="text-red-500">
+                  El campo de nombre no puede estar vacío.
+                </p>
               </div>
+              <!-- Apellido -->
               <div>
                 <p class="text-2xl py-0.5 font-sans">Apellido</p>
-                <input
-                  v-model="apellido"
-                  :class="[
-                    'form-control',
-                    'border-2',
-                    'rounded-3xl',
-                    'px-4',
-                    'pt-0.5',
-                    'border-[#B66141]',
-                    'w-full',
-                    'lg:w-10/12',
-                    { 'border-red-500': showError && isFieldEmpty(apellido) }
-                  ]"
-                  type="text"
-                />
+                <input v-model="apellido"
+                  class="form-control border-2 rounded-3xl px-4 pt-0.5 border-[#B66141] w-full lg:w-10/12" type="text"
+                  aria-describedby="apellidoError" />
+                <p v-if="!isapellidoValid" id="apellidoError" class="text-red-500">
+                  El campo de apellido no puede estar vacío.
+                </p>
               </div>
             </div>
+            <!-- Correo -->
             <div class="mb-4">
               <p class="text-2xl py-0.5 font-sans">Correo electrónico</p>
-              <input
-                v-model="correo"
-                :class="[
-                  'form-control',
-                  'border-2',
-                  'rounded-3xl',
-                  'px-4',
-                  'pt-0.5',
-                  'border-[#B66141]',
-                  'w-full',
-                  'lg:w-9/12',
-                  { 'border-red-500': showError && isFieldEmpty(correo) }
-                ]"
-                type="text"
-              />
+              <input v-model="correo"
+                class="form-control border-2 rounded-3xl px-4 pt-0.5 border-[#B66141] w-full lg:w-9/12" type="text"
+                aria-describedby="correoError" />
+              <p v-if="!isEmailValid" id="correoError" class="text-red-500">
+                El correo electrónico no es válido.
+              </p>
             </div>
             <div class="mb-4">
               <div>
                 <div class="form-control text-left my-4">
                   <label class="cursor-pointer flex items-center">
                     <input type="checkbox" class="checkbox checkbox-warning mr-2" />
-                    <span class="label-text">Remember me</span>
+                    <span class="label-text">Rellenar con la información de mi cuenta</span>
                   </label>
                 </div>
               </div>
               <p class="text-2xl py-0.5 font-MDsans my-2">Teléfono</p>
               <label class="flex items-center gap-2 border-none focus:aparece-none w-2/5">
                 +52
-                <input
-                  v-model="telefono"
-                  :class="[
-                    'grow',
-                    'border-2',
-                    'rounded-3xl',
-                    'px-4',
-                    'pt-0.5',
-                    'border-[#B66141]',
-                    { 'border-red-500': showError && isFieldEmpty(telefono) }
-                  ]"
-                  type="number"
-                  placeholder=""
-                />
+                <input v-model="telefono" class="grow border-2 rounded-3xl px-4 pt-1 border-[#B66141]" type="phone"
+                  aria-describedby="telefonoError" />
               </label>
+              <p v-if="!isPhoneNumberValid" id="telefonoError" class="text-red-500">
+                El campo no puede estar vacío y debe tener minimo 10 digitos
+              </p>
             </div>
           </div>
-          <button
-            @click="nextStep"
-            class="btn bg-[#B66141] text-[#EDDAAB] relative right-12 lg:right-16 w-2/5 lg:w-1/4 rounded-full hover:text-black"
-          >
+          <button @click="nextStep2" id="btn1" :class="{ 'hidden': !isFormValid1, 'block': isFormValid1 }"
+            class="btn bg-[#B66141] text-[#EDDAAB] relative right-12 lg:right-16 w-2/5 lg:w-1/4 rounded-full hover:text-black">
             Siguiente
           </button>
 
@@ -167,136 +94,68 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 mb-4">
               <div class="mb-4">
                 <p class="text-2xl py-0.5 font-sans">País</p>
-                <input
-                  v-model="pais"
-                  :class="[
-                    'form-control',
-                    'border-2',
-                    'rounded-3xl',
-                    'px-4',
-                    'pt-0.5',
-                    'border-[#B66141]',
-                    'w-10/12',
-                    { 'border-red-500': showError && isFieldEmpty(pais) }
-                  ]"
-                  type="text"
-                />
+                <input v-model="pais" class="form-control border-2 rounded-3xl px-4 pt-0.5 border-[#B66141] w-10/12"
+                  type="text" aria-describedby="paisError" />
+                <p v-if="!isPaisValid" id="paisError" class="text-red-500">
+                  El campo no puede estar vacío.
+                </p>
               </div>
               <div class="mb-4">
                 <p class="text-2xl py-0.5 font-sans">Estado</p>
-                <input
-                  v-model="estado"
-                  :class="[
-                    'form-control',
-                    'border-2',
-                    'rounded-3xl',
-                    'px-4',
-                    'pt-0.5',
-                    'border-[#B66141]',
-                    'w-10/12',
-                    { 'border-red-500': showError && isFieldEmpty(estado) }
-                  ]"
-                  type="text"
-                />
+                <input v-model="estado" class="form-control border-2 rounded-3xl px-4 pt-0.5 border-[#B66141] w-10/12"
+                  type="text" aria-describedby="estadoError" />
+                <p v-if="!isEstadoValid" id="estadoError" class="text-red-500">
+                  El campo no puede estar vacío.
+                </p>
               </div>
               <div class="mb-4">
                 <p class="text-2xl py-0.5 font-sans">Ciudad</p>
-                <input
-                  v-model="ciudad"
-                  :class="[
-                    'form-control',
-                    'border-2',
-                    'rounded-3xl',
-                    'px-4',
-                    'pt-0.5',
-                    'border-[#B66141]',
-                    'w-10/12',
-                    { 'border-red-500': showError && isFieldEmpty(ciudad) }
-                  ]"
-                  type="text"
-                />
+                <input v-model="ciudad" class="form-control border-2 rounded-3xl px-4 pt-0.5 border-[#B66141] w-10/12"
+                  type="text" aria-describedby="ciudadError" />
+                <p v-if="!isCiudadValid" id="ciudadError" class="text-red-500">
+                  El campo no puede estar vacío.
+                </p>
               </div>
               <div class="mb-4">
                 <p class="text-2xl py-0.5 font-sans">Código Postal</p>
-                <input
-                  v-model="codigoPostal"
-                  :class="[
-                    'form-control',
-                    'border-2',
-                    'rounded-3xl',
-                    'px-4',
-                    'pt-0.5',
-                    'border-[#B66141]',
-                    'w-10/12',
-                    { 'border-red-500': showError && isFieldEmpty(codigoPostal) }
-                  ]"
-                  type="text"
-                />
+                <input v-model="cp" class="form-control border-2 rounded-3xl px-4 pt-0.5 border-[#B66141] w-10/12"
+                  type="number" aria-describedby="cpError" />
+                <p v-if="!isCPValid" id="cpError" class="text-red-500">
+                  El campo no puede estar vacío.
+                </p>
               </div>
               <div class="mb-4">
                 <p class="text-2xl py-0.5 font-sans">Colonia</p>
-                <input
-                  v-model="colonia"
-                  :class="[
-                    'form-control',
-                    'border-2',
-                    'rounded-3xl',
-                    'px-4',
-                    'pt-0.5',
-                    'border-[#B66141]',
-                    'w-10/12',
-                    { 'border-red-500': showError && isFieldEmpty(colonia) }
-                  ]"
-                  type="text"
-                />
+                <input v-model="colonia" class="form-control border-2 rounded-3xl px-4 pt-0.5 border-[#B66141] w-10/12"
+                  type="text" aria-describedby="coloniaError" />
+                <p v-if="!isColoniaValid" id="coloniaError" class="text-red-500">
+                  El campo no puede estar vacío.
+                </p>
               </div>
               <div class="mb-4">
                 <p class="text-2xl py-0.5 font-sans">Calle y Número</p>
-                <input
-                  v-model="calleNumero"
-                  :class="[
-                    'form-control',
-                    'border-2',
-                    'rounded-3xl',
-                    'px-4',
-                    'pt-0.5',
-                    'border-[#B66141]',
-                    'w-10/12',
-                    { 'border-red-500': showError && isFieldEmpty(calleNumero) }
-                  ]"
-                  type="text"
-                />
+                <input v-model="calleNumero"
+                  class="form-control border-2 rounded-3xl px-4 pt-0.5 border-[#B66141] w-10/12" type="text"
+                  aria-describedby="calleNumeroError" />
+                <p v-if="!isCalleNumValid" id="calleNumeroError" class="text-red-500">
+                  El campo no puede estar vacío.
+                </p>
               </div>
               <div class="mb-4">
-                <p class="text-2xl py-0.5 font-sans">Apto., suite., unidad, etc.</p>
-                <input
-                  v-model="apto"
-                  :class="[
-                    'form-control',
-                    'border-2',
-                    'rounded-3xl',
-                    'px-4',
-                    'pt-0.5',
-                    'border-[#B66141]',
-                    'w-10/12',
-                    { 'border-red-500': showError && isFieldEmpty(apto) }
-                  ]"
-                  type="text"
-                />
+                <p class="text-2xl py-0.5 font-sans">Apto., suite., unidad, etc. (opcional)</p>
+                <input class="form-control border-2 rounded-3xl px-4 pt-0.5 border-[#B66141] w-10/12" type="text" />
               </div>
             </div>
             <div>
               <div class="form-control text-left my-4">
                 <label class="cursor-pointer flex items-center">
                   <input type="checkbox" class="checkbox checkbox-warning mr-2" />
-                  <span class="label-text">Remember me</span>
+                  <span class="label-text">Guardar como dirección predeterminada</span>
                 </label>
               </div>
             </div>
-            <button
-              @click="nextStep"
-              class="btn bg-[#B66141] text-[#EDDAAB] relative right-12 lg:right-16 w-2/5 lg:w-1/4 rounded-full hover:text-black"
-            >
+            <button @click="nextStep3" id="btn2" :class="{ 'hidden': !isFormValid2, 'block': isFormValid2 }"
+              class="btn bg-[#B66141] text-[#EDDAAB] relative right-12 lg:right-16 w-2/5 lg:w-1/4 rounded-full hover:text-black">
               Siguiente
             </button>
           </div>
@@ -308,25 +167,16 @@
             </ul>
             <!-- Muestra los componentes de los tipos de pago -->
             <div class="grid grid-cols-3 gap-4 my">
-              <button
-                class="btn rounded-2xl custom-border text-lg lg:text-3xl text-[#662F25] py-1"
-                @click="mostrarComponente('transferencias')"
-                type="button"
-              >
+              <button class="btn rounded-2xl custom-border text-lg lg:text-3xl text-[#662F25] py-1"
+                @click="mostrarComponente('transferencias')" type="button">
                 Transferencias
               </button>
-              <button
-                class="btn rounded-2xl custom-border text-md md:text-11px lg:text-3xl text-[#662F25] py-1"
-                @click="mostrarComponente('credito')"
-                type="button"
-              >
+              <button class="btn rounded-2xl custom-border text-md md:text-11px lg:text-3xl text-[#662F25] py-1"
+                @click="mostrarComponente('credito')" type="button">
                 Débito y Crédito
               </button>
-              <button
-                class="btn rounded-2xl custom-border text-lg lg:text-3xl text-[#662F25] py-1"
-                @click="mostrarComponente('efectivo')"
-                type="button"
-              >
+              <button class="btn rounded-2xl custom-border text-lg lg:text-3xl text-[#662F25] py-1"
+                @click="mostrarComponente('efectivo')" type="button">
                 Efectivo
               </button>
             </div>
@@ -335,10 +185,8 @@
               <credito v-if="componenteActual === 'credito'" />
               <efectivo v-if="componenteActual === 'efectivo'" />
             </div>
-            <button
-              type="button"
-              class="btn bg-[#B66141] text-[#EDDAAB] rounded-full w-2/4 relative top-10 hover:text-black"
-            >
+            <button type="button" @click="nextStep4"
+              class="btn bg-[#B66141] text-[#EDDAAB] rounded-full w-2/4 relative top-10 hover:text-black">
               Finalizar
             </button>
           </div>
@@ -360,8 +208,8 @@ import { defineComponent, ref, computed } from 'vue'
 import Credito from '@/components/credito.vue'
 import Transferencias from '@/components/transferencias.vue'
 import Efectivo from '@/components/efectivo.vue'
-import Navbarr from '@/components/Navbarr.vue'
 import Navbarr2 from '@/components/Navbarr2.vue'
+import { validateEmail, validateNombre, validateApellido, validateCP, validateCalleNum, validateCiudad, validateColonia, validatePais, validatePhoneNumber, validateEstado } from '@/Utils/validacionForm'
 
 export default defineComponent({
   name: 'pageFormulario',
@@ -369,7 +217,6 @@ export default defineComponent({
     Credito,
     Transferencias,
     Efectivo,
-    Navbarr,
     Navbarr2
   },
   setup() {
@@ -379,50 +226,73 @@ export default defineComponent({
     const valordelospago2 = ref('Metodo dos')
     const valordelospago3 = ref('Metodo tres')
 
-    const nombre = ref('')
-    const apellido = ref('')
-    const correo = ref('')
-    const telefono = ref('')
-    const pais = ref('')
-    const estado = ref('')
-    const ciudad = ref('')
-    const codigoPostal = ref('')
-    const colonia = ref('')
-    const calleNumero = ref('')
-    const apto = ref('')
+    const nombre = ref<string>('')
+    const apellido = ref<string>('')
+    const correo = ref<string>('')
+    const calleNumero = ref<string>('')
+    const colonia = ref<string>('')
+    const cp = ref<number>(0)
+    const estado = ref<string>('')
+    const ciudad = ref<string>('')
+    const pais = ref<string>('')
+    const telefono = ref<number>(0)
+    const confirmacion = ref(false)
 
-    const showError = ref(false)
+    const isNameValid = computed(() => validateNombre(nombre.value))
+    const isEmailValid = computed(() => validateEmail(correo.value))
+    const isapellidoValid = computed(() => validateApellido(apellido.value))
+    const isCPValid = computed(() => validateCP(cp.value))
+    const isCalleNumValid = computed(() => validateCalleNum(calleNumero.value))
+    const isColoniaValid = computed(() => validateColonia(colonia.value))
+    const isCiudadValid = computed(() => validateCiudad(ciudad.value))
+    const isPaisValid = computed(() => validatePais(pais.value))
+    const isPhoneNumberValid = computed(() => validatePhoneNumber(telefono.value))
+    const isEstadoValid = computed(() => validateEstado(estado.value))
+    const isFormValid1 = computed(() => isNameValid.value && isEmailValid.value && isapellidoValid.value && isPhoneNumberValid.value)
+    const isFormValid2 = computed(() => isCPValid.value && isCalleNumValid.value && isColoniaValid.value && isCiudadValid.value && isPaisValid.value)
 
-    const isFieldEmpty = (field: string) => field.trim() === ''
 
-    const validateStep1 = () => {
-      return !(
-        isFieldEmpty(nombre.value) ||
-        isFieldEmpty(apellido.value) ||
-        isFieldEmpty(correo.value) ||
-        isFieldEmpty(telefono.value)
-      )
+    const nextStep4 = () => {
+      const div = document.getElementById('metodo') as HTMLDivElement
+      const div2 = document.createElement('div')
+
+      div.classList.add('border-2', 'rounded-lg', 'p-4', 'my-4', 'border-[#EDDAAB]', 'hover:cursor-pointer', 'hover:scale-95', 'hover:shadow-md')
+
+      div2.innerHTML = `
+  <div class="form-control">
+    <label class="label cursor-pointer">
+      <span class="label-text">Metodo uno</span>
+      <input type="radio" name="radio-10" class="radio checked:bg-[#B66141]" />
+    </label>
+  </div>
+  <p>${nombre.value}</p>
+  `
+      div.appendChild(div2)
+
+
     }
 
-    const validateStep2 = () => {
-      return !(
-        isFieldEmpty(pais.value) ||
-        isFieldEmpty(estado.value) ||
-        isFieldEmpty(ciudad.value) ||
-        isFieldEmpty(codigoPostal.value) ||
-        isFieldEmpty(colonia.value) ||
-        isFieldEmpty(calleNumero.value) ||
-        isFieldEmpty(apto.value)
-      )
-    }
+
+
 
     const nextStep = () => {
-      if (step.value < 4) {
+      confirmacion.value = true
+      if (step.value <= 1) {
         step.value += 1
-        showError.value = false
       }
     }
-
+    const nextStep2 = () => {
+      confirmacion.value = true
+      if (step.value < 3 && isFormValid1.value) {
+        step.value += 1
+      }
+    }
+    const nextStep3 = () => {
+      confirmacion.value = true
+      if (step.value < 4 && isFormValid2.value) {
+        step.value += 1
+      }
+    }
     const mostrarComponente = (componente: 'transferencias' | 'credito' | 'efectivo') => {
       componenteActual.value = componente
     }
@@ -430,25 +300,57 @@ export default defineComponent({
     return {
       step,
       nextStep,
+      nextStep2,
+      nextStep3,
+      nextStep4,
       componenteActual,
       mostrarComponente,
-      nombre,
-      apellido,
+
+      valordelospago1,
+      valordelospago2,
+      valordelospago3,
+
       correo,
-      telefono,
-      pais,
-      estado,
-      ciudad,
-      codigoPostal,
-      colonia,
+      isEmailValid,
+
+      nombre,
+      isNameValid,
+
+      apellido,
+      isapellidoValid,
+
       calleNumero,
-      apto,
-      isFieldEmpty,
-      showError
+      isCalleNumValid,
+
+      colonia,
+      isColoniaValid,
+
+      cp,
+      isCPValid,
+
+      estado,
+      isEstadoValid,
+
+      pais,
+      isPaisValid,
+      ciudad,
+      isCiudadValid,
+
+      telefono,
+      isPhoneNumberValid,
+
+      isFormValid1,
+      isFormValid2,
+
+      confirmacion
+
+
+
     }
   }
 })
 </script>
+
 
 <style scoped>
 input[type='number'] {
@@ -488,9 +390,5 @@ input[type='number']::-webkit-outer-spin-button {
     transform: translateY(0);
     opacity: 1;
   }
-}
-
-.border-red-500 {
-  border-color: red;
 }
 </style>
