@@ -1,5 +1,5 @@
 <template>
-  <Navbarr />
+  <Navbarr2 />
   <div class="px-10 lg:px-20 gap-5 grid grid-cols-1 md:grid-cols-12 my-4">
     <div class="md:col-span-8 mb-4">
       <div class="border-2 rounded-lg p-4 grid grid-cols-1 border-[#EDDAAB]">
@@ -361,6 +361,7 @@ import Credito from '@/components/credito.vue'
 import Transferencias from '@/components/transferencias.vue'
 import Efectivo from '@/components/efectivo.vue'
 import Navbarr from '@/components/Navbarr.vue'
+import Navbarr2 from '@/components/Navbarr2.vue'
 
 export default defineComponent({
   name: 'pageFormulario',
@@ -368,7 +369,8 @@ export default defineComponent({
     Credito,
     Transferencias,
     Efectivo,
-    Navbarr
+    Navbarr,
+    Navbarr2
   },
   setup() {
     const step = ref(1)

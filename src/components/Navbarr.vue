@@ -3,7 +3,7 @@
     <!-- Diseño para pantallas grandes -->
     <nav class="large-screen-menu">
       <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
           <img src="../assets/img/logo.png" alt="Logo" />
         </a>
         <div class="categorias">
@@ -148,7 +148,6 @@ nav {
 /* Estilos para pantallas grandes */
 .large-screen-menu .container {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   width: 100%;
@@ -158,14 +157,12 @@ nav {
 
 .large-screen-menu .navbar-brand img {
   width: 60px;
-  max-width: 100%;
   height: auto;
 }
 
 .large-screen-menu .categorias {
   display: flex;
   align-items: center;
-  position: relative;
   margin-left: 150px;
 }
 
@@ -186,7 +183,7 @@ nav {
   display: none;
   position: absolute;
   top: 50px;
-  left: 0;
+  right: 0;
   background-color: #fff;
   border: 1px solid #b66141;
   padding: 10px;
@@ -386,6 +383,10 @@ nav {
   .small-screen-menu {
     display: flex;
     padding: 16px;
+  }
+  .categorias-wrapper {
+    width: 100%;
+    margin-top: 10px;
   }
 }
 </style>

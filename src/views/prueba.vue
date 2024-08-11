@@ -27,21 +27,9 @@ export default defineComponent({
 </script>
 
 <template>
-  <ProductCard></ProductCard>
-  <Carousel></Carousel>
-  <WishlistCard></WishlistCard>
-  <ReviewCard></ReviewCard>
+  <h1 class="text-center text-7xl">HOLA MUNDO</h1>
+ 
 
-  <Carousel></Carousel>
-  <Carousel></Carousel>
-  <WishlistCard></WishlistCard>
-  <ReviewCard></ReviewCard>
-
-  <productoindividual></productoindividual>
-
-  <footer></footer>
-
-  <Carousel></Carousel>
   <main>
     <h1 class="text-center tex">preparacion de la App</h1>
     <h2>
