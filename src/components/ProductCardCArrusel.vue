@@ -1,10 +1,13 @@
 <template>
+  
   <div
     class="rounded-lg border-solid border-[3px] p-3 m-2 flex flex-col justify-between h-[350px] w-[250px] border-[#eddaab] font-DMsans">
     <div class="flex justify-between">
       <div class="flex flex-col">
+        <a href="/vistaproducto">
         <p>productName</p>
         <p>$productPrice</p>
+        </a>
       </div>
       <span class="material-symbols-rounded filler text-[#b66141]" @click="wishClick"
         :style="{ fontVariationSettings: `'FILL' ${currentFill}` }">
@@ -17,6 +20,7 @@
       Añadir a Bolsa
     </button>
   </div>
+
 </template>
 <script lang="ts">
 export default {
