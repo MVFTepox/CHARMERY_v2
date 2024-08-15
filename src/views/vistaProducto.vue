@@ -39,7 +39,6 @@ import Carousel from '@/components/Carousel.vue'
 import productoindividual from '@/components/productoindividual.vue'
 import CarruselProductosdeArticulos from '@/components/CarruselProductosdeArticulos.vue'
 import Navbarr2 from '@/components/Navbarr2.vue'
-import { fetchProducts } from '@/Utils/api.ts'
 
 export default defineComponent({
   name: 'pageVistaProducto',

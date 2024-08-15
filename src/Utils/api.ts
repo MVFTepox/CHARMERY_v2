@@ -1,140 +1,80 @@
-// src/utils/api.ts
+const urlApi = 'http://3.134.108.48:3333/api'
 
-const BaseUrl = 'http://18.191.246.79:3333/api'
-
-// Función auxiliar para realizar solicitudes GET
-async function fetchFromApi(endpoint: string) {
+async function apiRequest(endpoint: string, method: string = 'GET', data?: any) {
   try {
-    const response = await fetch(`${BaseUrl}${endpoint}`)
-    if (!response.ok) {
-      const errorText = await response.text()
-      throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorText}`)
-    }
-    return await response.json()
-  } catch (error) {
-    console.error('Error:', error)
-    throw error
-  }
-}
-
-// Función auxiliar para realizar solicitudes POST
-async function postToApi(endpoint: string, data: object) {
-  try {
-    const response = await fetch(`${BaseUrl}${endpoint}`, {
-      method: 'POST',
+    const options: RequestInit = {
+      method,
       headers: {
         'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-    if (!response.ok) {
-      const errorText = await response.text()
-      throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorText}`)
+      }
+    };
+
+    if (data) {
+      options.body = JSON.stringify(data);
     }
-    return await response.json()
+
+    const response = await fetch(`${urlApi}${endpoint}`, options);
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorText}`);
+    }
+
+    return await response.json();
   } catch (error) {
-    console.error('Error:', error)
-    throw error
+    console.error('Error:', error);
+    throw error;
   }
 }
 
-// Funciones para obtener datos
+export function fetchUsers() {
+  return apiRequest('/user');
+}
+
+export function fetchUser(id: string) {
+  return apiRequest(`/user/${id}`);
+}
+
+export function fetchCart() {
+  return apiRequest('/carts');
+}
+
 export function fetchProducts() {
-  return fetchFromApi('/products')
+  return apiRequest('/products');
 }
 
-export function fetchCategories() {
-  return fetchFromApi('/categories')
+export function fetchProduct(id: string) {
+  return apiRequest(`/products/${id}`);
 }
 
-export function fetchFavorites() {
-  return fetchFromApi('/favorites')
+export function fetchWishlist() {
+  return apiRequest('/favorites');
 }
 
-export function fetchUser() {
-  return fetchFromApi('/users')
-}
-
-export function fetchCarts() {
-  return fetchFromApi('/carts')
+export function fetchDetailCart() {
+  return apiRequest('/detail-cart');
 }
 
 export function fetchDeliveryAddress() {
-  return fetchFromApi('/delivery-addresses')
+  return apiRequest('/delivery-address');
 }
 
 export function fetchDefaultAddress() {
-  return fetchFromApi('/default-address')
+  return apiRequest('/default-address');
 }
 
-// Función para obtener un producto específico por ID
-export async function fetchProductById(productId: string) {
-  try {
-    const response = await fetch(`${BaseUrl}/products/${productId}`)
-    if (!response.ok) {
-      const errorText = await response.text()
-      throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorText}`)
-    }
-    return await response.json()
-  } catch (error) {
-    console.error('Error:', error)
-    throw error
-  }
+export function postDeliveryAddress(data: any) {
+  return apiRequest('/delivery-address', 'POST', data);
 }
 
-// Función para obtener los productos por categoría
-export async function fetchProductsByCategory(categoryId: string) {
-  return fetchFromApi(`/products?category=${categoryId}`)
+export function postDefaultAddress(data: any) {
+  return apiRequest('/default-address', 'POST', data);
 }
 
-// Funciones para manejar datos de usuario
-
-// Registro de usuario
-export function registerUser(userData: { nombre: string; correo: string; contraseña: string }) {
-  return postToApi('/users', userData)
+export function postCart(data: any) {
+  return apiRequest('/carts', 'POST', data);
 }
 
-// Inicio de sesión de usuario
-export async function loginUser(correo: string, contraseña: string) {
-  const endpoint = `/users?correo=${encodeURIComponent(correo)}&contraseña=${encodeURIComponent(contraseña)}`
-  try {
-    const users = await fetchFromApi(endpoint)
-    const user = users.find((u: any) => u.contraseña === contraseña)
-    if (user) {
-      return user
-    } else {
-      throw new Error('Credenciales incorrectas')
-    }
-  } catch (error) {
-    console.error('Error:', error)
-    throw error
-  }
-}
-
-// Funciones para enviar datos
-
-// Crear un nuevo favorito
-export function createFavorite(favoriteData: { userId: string; productId: string }) {
-  return postToApi('/favorites', favoriteData)
-}
-
-// Crear un nuevo carrito
-export function createCart(cartData: { userId: string; productoId: string; cantidad: number }) {
-  return postToApi('/carts', cartData)
-}
-
-// Crear una nueva dirección de entrega
-export function createDeliveryAddress(addressData: {
-  userId: string
-  direccion: string
-  ciudad: string
-  estado: string
-  codigoPostal: string
-}) {
-  return postToApi('/delivery-addresses', addressData)
-}
-
-// Crear una nueva dirección por defecto
-export function createDefaultAddress(defaultAddressData: { userId: string; addressId: string }) {
-  return postToApi('/default-address', defaultAddressData)
+export function postUser(data: any) {
+  return apiRequest('/user', 'POST', data);
 }
