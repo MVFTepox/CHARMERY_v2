@@ -79,6 +79,10 @@ export async function fetchProductById(productId: string) {
     throw error
   }
 }
+// Función para obtener los productos por categoría
+export async function fetchProductsByCategory(categoryId: string) {
+    return fetchFromApi(`/products?category=${categoryId}`)
+  }
 
 // Funciones para manejar datos de usuario
 
@@ -137,7 +141,3 @@ export function createDefaultAddress(defaultAddressData: { userId: string; addre
   return postToApi('/default-address', defaultAddressData)
 }
 
-// Función para obtener los productos por categoría
-export async function fetchProductsByCategory(categoryId: string) {
-    return fetchFromApi(`/products?category=${categoryId}`)
-  }
