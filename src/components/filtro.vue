@@ -9,15 +9,11 @@
           <div class="p-4">
             <div class="form-control font-DMsans">
               <label class="label cursor-pointer">
-                <span class="label-text text-base ">Negro</span>
+                <span class="label-text text-base ">Oro</span>
                 <input type="checkbox" class="checkbox border-4 border-[#EDDAAB] bg-[#ffff]" />
               </label>
               <label class="label cursor-pointer">
-                <span class="label-text text-base">Rojo</span>
-                <input type="checkbox" class="checkbox border-4 border-[#EDDAAB] bg-[#ffff]" />
-              </label>
-              <label class="label cursor-pointer">
-                <span class="label-text text-base">Azul</span>
+                <span class="label-text text-base">Plata</span>
                 <input type="checkbox" class="checkbox border-4 border-[#EDDAAB] bg-[#ffff]" />
               </label>
             </div>
@@ -70,12 +66,12 @@
               <input
                 type="range"
                 min="0"
-                max="65"
+                max="55"
                 value="0"
                 step="5"
                 class="w-full mx-4 appearance-none h-3 rounded-full bg-[#5c5031]"
               />
-              <span>$65</span>
+              <span>$55</span>
             </div>
           </div>
         </div>

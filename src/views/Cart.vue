@@ -65,14 +65,12 @@
         </div>
       </div>
     </div>
-    <PageFooter/>
   </template>
   
   <script lang="ts">
   import { defineComponent, ref, computed } from 'vue';
   import CartItem from '../components/cartCard.vue';
   import Navbar from '@/components/Navbarr2.vue';
-  import PageFooter from '@/components/footer.vue'
   
   interface Item {
     id: number;
@@ -87,8 +85,7 @@
   export default defineComponent({
     components: {
       CartItem,
-      Navbar,
-      PageFooter
+      Navbar
     },
     setup() {
       const selectAll = ref(true);
