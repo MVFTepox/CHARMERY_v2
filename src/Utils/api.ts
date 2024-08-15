@@ -106,20 +106,15 @@ export async function loginUser(correo: string, contraseña: string) {
 
 // Funciones para enviar datos
 
-// Crear una nueva categoría
-export function createCategory(categoryData: { nombre: string; descripcion: string }) {
-  return postToApi('/categories', categoryData)
-}
+
 
 // Crear un nuevo favorito
 export function createFavorite(favoriteData: { userId: string; productId: string }) {
   return postToApi('/favorites', favoriteData)
 }
 
-// Crear una nueva imagen
-export function createImage(imageData: { url: string; productoId: string }) {
-  return postToApi('/images', imageData)
-}
+
+
 
 // Crear un nuevo carrito
 export function createCart(cartData: { userId: string; productoId: string; cantidad: number }) {
@@ -141,3 +136,8 @@ export function createDeliveryAddress(addressData: {
 export function createDefaultAddress(defaultAddressData: { userId: string; addressId: string }) {
   return postToApi('/default-address', defaultAddressData)
 }
+
+// Función para obtener los productos por categoría
+export async function fetchProductsByCategory(categoryId: string) {
+    return fetchFromApi(`/products?category=${categoryId}`)
+  }
