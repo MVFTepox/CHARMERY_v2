@@ -63,9 +63,9 @@ export default {
   left: 60%;
   transform: translate(-50%, -50%);
   font-size: 8rem;
-   font-weight: 600; /* Aumenta el peso de la fuente */
+  font-weight: 600;
   text-shadow: 
-    4px 4px 20px rgba(255, 255, 255, 0.8),  /* Aumenta el tamaño del desplazamiento y el desenfoque */
+    4px 4px 20px rgba(255, 255, 255, 0.8), 
     -4px -4px 20px rgba(255, 255, 255, 0.8),
     4px -4px 20px rgba(255, 255, 255, 0.8),
     -4px 4px 20px rgba(255, 255, 255, 0.8),
@@ -82,7 +82,7 @@ export default {
 }
 
 .carousel {
-  width: 100vw; /* Asegura que el carrusel ocupe el 100% del ancho de la ventana */
+  width: 100vw;
   height: 100%;
   display: flex;
   overflow: hidden;
@@ -94,7 +94,6 @@ export default {
   height: 100%;
   transition: all 1s ease;
   cursor: pointer;
-  
 }
 
 .card img {
@@ -113,8 +112,6 @@ export default {
   flex: 3;
 }
 
-
-
 .carousel:hover .card:not(:hover)::after {
   content: '';
   position: absolute;
@@ -124,6 +121,20 @@ export default {
   height: 100%;
   background: linear-gradient(135deg, #f8f2dc 0%, #f7ecc9 100%);
   mix-blend-mode: multiply;
+}
+
+@media (max-width: 768px) {
+  .text-section h1 {
+    font-size: 4rem;
+    top: 35%;
+    left: 50%;
+  }
+
+  .text-section p {
+    font-size: 1.2rem;
+    top: 55%;
+    left: 50%;
+  }
 }
 
 @media (max-width: 300px) {
