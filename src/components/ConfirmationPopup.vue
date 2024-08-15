@@ -1,9 +1,9 @@
 <template>
     <transition @after-enter="afterEnter" @before-leave="beforeLeave">
       <div v-if="isVisible" class="fixed inset-0 flex items-center justify-center">
-        <div class="popup-content bg-white p-6 rounded-lg shadow-lg" style="font-family: 'DM Sans';">
-          <p class="text-xl mb-4 text-[#662f25]" >¿Estás seguro de que deseas eliminar "{{ itemName }}" de tu carrito?</p>
-          <div class="flex justify-center gap-8">
+        <div class="popup-content bg-white p-6 rounded-lg shadow-lg">
+          <p class="text-xl mb-4 text-[#662f25] font-DMsans" >¿Estás seguro de que deseas eliminar "{{ itemName }}" de tu carrito?</p>
+          <div class="flex justify-center gap-8 font-elmessiri">
             <button @click="confirm" class="text-xl rounded-full h-10 w-16 bg-[#b66141] border-solid border-[3px] hover:border-[#eddaab] border-[#b66141] hover:bg-white text-[#eddaab] "
             >Sí</button>
             <button @click="cancel" class="text-xl rounded-full h-10 w-16 bg-[#b66141] border-solid border-[3px] hover:border-[#eddaab] border-[#b66141] hover:bg-white text-[#eddaab]">No</button>
@@ -45,11 +45,9 @@
       }
   
       function afterEnter() {
-        // Callback after enter animation completes
       }
   
       function beforeLeave() {
-        // Callback before leave animation starts
         isVisible.value = false;
       }
   
