@@ -1,22 +1,29 @@
 <template>
-<<<<<<< HEAD
-  <Navbar/>
+  <Navbar />
   <div @click="closeDropdowns">
     <div class="relative zoom-out">
       <img
         src="../assets/img/category.png"
         alt="Phone Charms"
-        class="w-full object-cover h-48 sm:h-64 md:h-80 lg:h-96 "
+        class="w-full object-cover h-48 sm:h-64 md:h-80 lg:h-96"
       />
-      <h1 class="absolute inset-x-0 top-1/2 transform -translate-y-1/2 text-[#fbf8ee] text-3xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl text-center font-bold font-elmessiri">
+      <h1
+        class="absolute inset-x-0 top-1/2 transform -translate-y-1/2 text-[#fbf8ee] text-3xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl text-center font-bold font-elmessiri"
+      >
         Phone Charms
       </h1>
     </div>
     <div class="p-4 sm:p-6 md:p-8">
       <div class="flex sm:flex-row justify-between p-4">
         <div @click.stop>
-          <button @click="toggleFilter" class=" text-[#b66141] bg-transparent border-0 shadow-none hover:bg-transparent btn flex items-center hover:scale-105">
-            <span class="material-symbols-rounded mr-2 lg:text-3xl md:text-2xl sm:text-xl font-bold text-[#662f25]">filter_list</span>
+          <button
+            @click="toggleFilter"
+            class="text-[#b66141] bg-transparent border-0 shadow-none hover:bg-transparent btn flex items-center hover:scale-105"
+          >
+            <span
+              class="material-symbols-rounded mr-2 lg:text-3xl md:text-2xl sm:text-xl font-bold text-[#662f25]"
+              >filter_list</span
+            >
             <p class="lg:text-2xl md:text-xl sm:text-lg font-DMsans text-[#662f25]">Filtro</p>
           </button>
           <div v-if="filterOpen" class="absolute rounded-lg shadow-lg">
@@ -25,103 +32,73 @@
         </div>
 
         <div class="relative" @click.stop>
-          <button @click="toggleSort" class=" text-[#b66141] bg-transparent border-0 shadow-none hover:bg-transparent btn flex items-center hover:scale-105">
-            <span class="material-symbols-rounded mr-2 lg:text-3xl md:text-2xl sm:text-xl font-bold text-[#662f25]">swap_vert</span>
-            <p class="lg:text-2xl md:text-xl sm:text-lg text-[#662f25]  font-DMsans">Ordenar por</p>
+          <button
+            @click="toggleSort"
+            class="text-[#b66141] bg-transparent border-0 shadow-none hover:bg-transparent btn flex items-center hover:scale-105"
+          >
+            <span
+              class="material-symbols-rounded mr-2 lg:text-3xl md:text-2xl sm:text-xl font-bold text-[#662f25]"
+              >swap_vert</span
+            >
+            <p class="lg:text-2xl md:text-xl sm:text-lg text-[#662f25] font-DMsans">Ordenar por</p>
           </button>
-          
-          <ul v-if="sortOpen" class="absolute right-0 mt-2 w-full sm:w-48 bg-[#662F25] rounded-lg shadow-lg text-[#EDDAAB] font-bold font-DMsans">
-            <li class="px-4 py-3  hover:bg-[#b66141] rounded-lg cursor-pointer" @click="sortBy('price')">Precio mayor</li>
-            <li class="px-4 py-3  hover:bg-[#b66141] rounded-lg cursor-pointer" @click="sortBy('name')" >Precio menor</li>
-            <li class="px-4 py-3  hover:bg-[#b66141] rounded-lg cursor-pointer" @click="sortBy('popularity')">Nombre</li>
+
+          <ul
+            v-if="sortOpen"
+            class="absolute right-0 mt-2 w-full sm:w-48 bg-[#662F25] rounded-lg shadow-lg text-[#EDDAAB] font-bold font-DMsans"
+          >
+            <li
+              class="px-4 py-3 hover:bg-[#b66141] rounded-lg cursor-pointer"
+              @click="sortBy('price')"
+            >
+              Precio mayor
+            </li>
+            <li
+              class="px-4 py-3 hover:bg-[#b66141] rounded-lg cursor-pointer"
+              @click="sortBy('name')"
+            >
+              Precio menor
+            </li>
+            <li
+              class="px-4 py-3 hover:bg-[#b66141] rounded-lg cursor-pointer"
+              @click="sortBy('popularity')"
+            >
+              Nombre
+            </li>
           </ul>
-=======
-  <div>
-    <Navbarr2 />
-  </div>
-
-  <div>
-    <div @click="closeDropdowns">
-      <div class="relative zoom-out">
-        <img src="../assets/img/category.png" alt="Phone Charms"
-          class="w-full object-cover h-48 sm:h-64 md:h-80 lg:h-96 " />
-        <h1
-          class="absolute inset-x-0 top-1/2 transform -translate-y-1/2 text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-center font-bold"
-          style="font-family: 'El Messiri';">
-          Phone Charms
-        </h1>
+        </div>
       </div>
-      <div class="p-4 sm:p-6 md:p-8">
-        <div class="flex sm:flex-row justify-between p-4">
-          <div @click.stop>
-            <button @click="toggleFilter" class=" text-[#b66141] flex items-center">
-              <span class="material-symbols-rounded mr-2 text-3xl font-bold">filter_list</span>
-              <p class="text-2xl" style="font-family: 'DM Sans';">Filtro</p>
-            </button>
-            <div v-if="filterOpen" class="absolute rounded-lg shadow-lg">
-              <Filtro />
-            </div>
-          </div>
-
-          <div class="relative" @click.stop>
-            <button @click="toggleSort" class=" text-[#b66141] flex items-center">
-              <span class="material-symbols-rounded mr-2 text-3xl font-bold">swap_vert</span>
-              <p class="text-2xl" style="font-family: 'DM Sans';">Ordenar por</p>
-            </button>
-
-            <ul v-if="sortOpen"
-              class="absolute right-0 mt-2 w-full sm:w-48 bg-[#662F25] rounded-lg shadow-lg text-[#EDDAAB] font-bold"
-              style="font-family: 'DM Sans';">
-              <li class="px-4 py-3  hover:bg-[#b66141] rounded-lg cursor-pointer" @click="sortBy('price')">Precio mayor
-              </li>
-              <li class="px-4 py-3  hover:bg-[#b66141] rounded-lg cursor-pointer" @click="sortBy('name')">Precio menor
-              </li>
-              <li class="px-4 py-3  hover:bg-[#b66141] rounded-lg cursor-pointer" @click="sortBy('popularity')">Nombre
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div
-          class="product-grid grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 p-4">
-          <ProductCard v-for="n in 12" :key="n" />
->>>>>>> d9de99b0eaa749826f6b8e91ea82184e107d5909
-        </div>
+      <div
+        class="product-grid grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 p-4"
+      >
+        <ProductCard v-for="n in 12" :key="n" />
       </div>
     </div>
   </div>
-<<<<<<< HEAD
-  <PageFooter/>
-=======
+  <div>
+    <Navbarr2 />
+  </div>
   <div>
     <footerPage />
   </div>
->>>>>>> d9de99b0eaa749826f6b8e91ea82184e107d5909
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import ProductCard from '../components/ProductCard.vue';
-import Filtro from '../components/filtro.vue';
-<<<<<<< HEAD
-import Navbar from '@/components/Navbarr2.vue';
-import PageFooter from '@/components/footer.vue'
-=======
-import Navbarr2 from '@/components/Navbarr2.vue';
-import footerPage from '@/components/footer.vue';
->>>>>>> d9de99b0eaa749826f6b8e91ea82184e107d5909
+import { defineComponent, ref } from "vue";
+import ProductCard from "../components/ProductCard.vue";
+import Filtro from "../components/filtro.vue";
+import Navbar from "@/components/Navbarr2.vue";
+import Navbarr2 from "@/components/Navbarr2.vue";
+import footerPage from "@/components/footer.vue";
 
 export default defineComponent({
-  name: 'CategoryPage',
+  name: "CategoryPage",
   components: {
     ProductCard,
     Filtro,
-<<<<<<< HEAD
     Navbar,
-    PageFooter
-=======
     footerPage,
     Navbarr2,
->>>>>>> d9de99b0eaa749826f6b8e91ea82184e107d5909
   },
   setup() {
     const filterOpen = ref(false);
