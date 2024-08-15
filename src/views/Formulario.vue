@@ -61,12 +61,7 @@
             </div>
             <div class="mb-4">
               <div>
-                <div class="form-control text-left my-4">
-                  <label class="cursor-pointer flex items-center">
-                    <input type="checkbox" class="checkbox checkbox-warning mr-2" />
-                    <span class="label-text">Rellenar con la información de mi cuenta</span>
-                  </label>
-                </div>
+
               </div>
               <p class="text-2xl py-0.5 font-MDsans my-2">Teléfono</p>
               <label class="flex items-center gap-2 border-none focus:aparece-none w-2/5">
@@ -147,12 +142,7 @@
               </div>
             </div>
             <div>
-              <div class="form-control text-left my-4">
-                <label class="cursor-pointer flex items-center">
-                  <input type="checkbox" class="checkbox checkbox-warning mr-2" />
-                  <span class="label-text">Guardar como dirección predeterminada</span>
-                </label>
-              </div>
+              
             </div>
             <button @click="nextStep3" id="btn2" :class="{ 'hidden': !isFormValid2, 'block': isFormValid2 }"
               class="btn bg-[#B66141] text-[#EDDAAB] relative right-12 lg:right-16 w-2/5 lg:w-1/4 rounded-full hover:text-black">
@@ -182,7 +172,8 @@
             </div>
             <div>
               <transferencias v-if="componenteActual === 'transferencias'" />
-              <credito v-if="componenteActual === 'credito'" />
+              <Credito v-if="componenteActual === 'credito'" :creditoData="creditoData"
+                @update:creditoData="updateCreditoData" />
               <efectivo v-if="componenteActual === 'efectivo'" />
             </div>
             <button type="button" @click="nextStep4"
@@ -194,10 +185,51 @@
       </div>
     </div>
 
-    <div class="md:col-span-4 sticky left-0 right-0 top-0">
-      <p class="text-3xl mb-4">Productos</p>
-      <div class="border-2 rounded-lg border-[#EDDAAB]">
-        <!-- Aquí van los productos -->
+    <div class="md:col-span-4 sm:order-first md:order-last sticky left-0 right-0 top-0">
+      <div id="carrito"> <!-- agarrrar para la creacion del componente carrito -->
+        <div class="p-4 border-2 rounded-lg border-[#EDDAAB]">
+          <p class="text-3xl font-elmessiri">Resmuen de compra</p>
+          <div class="my-4 ">
+            <!-- cambiar a variable -->
+            <div class="grid grid-cols-4 gap-4">
+              <div class="p-2 ">
+                <img src="../assets/img/collar corazon realista editado.png" class="rounded-lg size-auto" alt="corazon">
+              </div>
+              <div class="col-span-2  py-3  text-center">
+                <p class=" text-2xl font-DMSans">Corazón</p>
+                <!-- cantidad -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 text-center gap-1 md:gap-2 lg:gap-4">
+                  <div>
+                    <p class="text-2xl font-DMSans">Cantidad: </p>
+                  </div>
+                  <div>
+                    <p class="text-2xl font-DMSans">1</p>
+                  </div>
+                </div>
+              </div>
+              <div class=" text-center flex items-center justify-center">
+                <p class="text-2xl font-elmessiri text-[#662F25]">$ 15.00</p>
+              </div>
+            </div>
+            <hr>
+            <div class="my-4">
+              <p class="text-2xl font-elmessiri text-[#662F25]">Entrega en persona</p>
+              <p class="text-2xl font-elmessiri text-[#662F25]">$ 0.00</p>
+            </div>
+            <div class="flex justify-between my-4">
+              <p class="text-2xl font-elmessiri text-[#662F25]">Total</p>
+              <p class="text-2xl font-elmessiri text-[#662F25]">$ 15.00</p>
+            </div>
+          </div>
+          <div class="text-center">
+            <a :href="PagarMEtodo == 2 || PagarMEtodo == 3 ? '/pedidoConfirm' : '/'">
+              <button class="btn bg-[#B66141] text-[#EDDAAB] rounded-full w-3/4 hover:text-black">
+                <span class="material-symbols-rounded">shopping_cart</span>Pagar
+              </button>
+            </a>
+            
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -211,6 +243,7 @@ import Efectivo from '@/components/efectivo.vue'
 import Navbarr2 from '@/components/Navbarr2.vue'
 import { validateEmail, validateNombre, validateApellido, validateCP, validateCalleNum, validateCiudad, validateColonia, validatePais, validatePhoneNumber, validateEstado } from '@/Utils/validacionForm'
 
+
 export default defineComponent({
   name: 'pageFormulario',
   components: {
@@ -220,6 +253,20 @@ export default defineComponent({
     Navbarr2
   },
   setup() {
+
+    const creditoData = ref({
+      name: '',
+      numerotarjeta: '',
+      expiracion: '',
+      cvv: '',
+    });
+
+    const efectivoData = ref({
+      address: '',
+      time: '',
+      meridian: '',
+    });
+
     const step = ref(1)
     const componenteActual = ref<'transferencias' | 'credito' | 'efectivo'>('transferencias')
     const valordelospago1 = ref('Metodo uno')
@@ -251,29 +298,102 @@ export default defineComponent({
     const isFormValid1 = computed(() => isNameValid.value && isEmailValid.value && isapellidoValid.value && isPhoneNumberValid.value)
     const isFormValid2 = computed(() => isCPValid.value && isCalleNumValid.value && isColoniaValid.value && isCiudadValid.value && isPaisValid.value)
 
+    const updateCreditoData = (data: any) => {
+      creditoData.value = data;
+    };
+
+   const updateEfectivoData = (data: any) => {
+      efectivoData.value = data;
+    };
+
+    const PagarMEtodo = ref(0)
 
     const nextStep4 = () => {
+
       const div = document.getElementById('metodo') as HTMLDivElement
       const div2 = document.createElement('div')
+      if (componenteActual.value === 'transferencias') {
+        div.classList.add('border-2', 'rounded-lg', 'p-4', 'my-4', 'border-[#EDDAAB]', 'hover:cursor-pointer', 'hover:scale-95', 'hover:shadow-md')
 
-      div.classList.add('border-2', 'rounded-lg', 'p-4', 'my-4', 'border-[#EDDAAB]', 'hover:cursor-pointer', 'hover:scale-95', 'hover:shadow-md')
-
-      div2.innerHTML = `
+        div2.innerHTML = `
   <div class="form-control">
     <label class="label cursor-pointer">
-      <span class="label-text">Metodo uno</span>
-      <input type="radio" name="radio-10" class="radio checked:bg-[#B66141]" />
+      <span class="label-text">${componenteActual.value}</span>
+      <input type="radio" value="1" v-model="PagarMEtodo" name="radio-10" class="radio checked:bg-[#B66141]" />
     </label>
   </div>
-  <p>${nombre.value}</p>
+  
+
   `
-      div.appendChild(div2)
+        div.appendChild(div2)
 
+        
+      } else if (componenteActual.value === 'credito') {
+        div.classList.add('border-2', 'rounded-lg', 'p-4', 'my-4', 'border-[#EDDAAB]', 'hover:cursor-pointer', 'hover:scale-95', 'hover:shadow-md')
 
+        div2.innerHTML = `
+  <div class="form-control">
+    <label class="label cursor-pointer">
+      <span class="label-text">${componenteActual.value}</span>
+      <input type="radio" name="radio-10" value="2" v-model="PagarMEtodo" class="radio checked:bg-[#B66141]" />
+    </label>
+  </div>
+          <h1 class="text-lg font-elmessiri">${creditoData.value.name}</h1>
+          <h1 class="text-lg font-elmessiri">${creditoData.value.numerotarjeta}</h1>
+          <h1 class="text-lg font-elmessiri">${creditoData.value.expiracion}</h1>
+          <h1 class="text-lg font-elmessiri">${creditoData.value.cvv}</h1>
+  `
+        div.appendChild(div2)
+
+        
+      } else if (componenteActual.value === 'efectivo') {
+
+        div.classList.add('border-2', 'rounded-lg', 'p-4', 'my-4', 'border-[#EDDAAB]', 'hover:cursor-pointer', 'hover:scale-95', 'hover:shadow-md')
+
+        div2.innerHTML = `
+  <div class="form-control">
+    <label class="label cursor-pointer">
+      <span class="label-text">${componenteActual.value}</span>
+      <input type="radio" name="radio-10" value="3" v-model="PagarMEtodo" class="radio checked:bg-[#B66141]" />
+    </label>
+  </div>
+  <p>${efectivoData.value.address}</p><p>${efectivoData.value.time}</p><p>${efectivoData.value.meridian}</p>
+  `
+        div.appendChild(div2)
+
+        
+      }
+      resetForm()
     }
 
 
-
+    const resetForm = () => {
+      nombre.value = ''
+      apellido.value = ''
+      correo.value = ''
+      calleNumero.value = ''
+      colonia.value = ''
+      cp.value = 0
+      estado.value = ''
+      ciudad.value = ''
+      pais.value = ''
+      telefono.value = 0
+      confirmacion.value = false
+      creditoData.value = {
+        name: '',
+        numerotarjeta: '',
+        expiracion: '',
+        cvv: '',
+      }
+      efectivoData.value = {
+        address: '',
+        time: '',
+        meridian: '',
+      }
+      
+      componenteActual.value = 'transferencias'
+      step.value = 1
+    }
 
     const nextStep = () => {
       confirmacion.value = true
@@ -296,6 +416,12 @@ export default defineComponent({
     const mostrarComponente = (componente: 'transferencias' | 'credito' | 'efectivo') => {
       componenteActual.value = componente
     }
+
+    // data.data.forEach((element: any) => {
+
+    //   //aqui va estar lo de la api
+    // })
+
 
     return {
       step,
@@ -342,9 +468,17 @@ export default defineComponent({
       isFormValid1,
       isFormValid2,
 
-      confirmacion
+      confirmacion,
 
+      creditoData,
+      updateCreditoData,
 
+      efectivoData,
+      updateEfectivoData,
+
+      PagarMEtodo,
+
+      
 
     }
   }
