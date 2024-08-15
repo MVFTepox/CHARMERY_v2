@@ -1,88 +1,24 @@
 const BaseUrl = 'http://18.191.246.79:3333/api'
 
-export async function fetchProducts() {
+// Función auxiliar para realizar solicitudes GET
+async function fetchFromApi(endpoint: string) {
   try {
-    const response = await fetch(`${BaseUrl}/products`)
-    const data = await response.json()
-    return data
+    const response = await fetch(`${BaseUrl}${endpoint}`)
+    if (!response.ok) {
+      const errorText = await response.text()
+      throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorText}`)
+    }
+    return await response.json()
   } catch (error) {
-    console.log(error)
+    console.error('Error:', error)
+    throw error
   }
 }
 
-export async function fetchCategories() {
+// Función auxiliar para realizar solicitudes POST
+async function postToApi(endpoint: string, data: object) {
   try {
-    const response = await fetch(`${BaseUrl}/categories`)
-    const data = await response.json()
-    return data
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-export async function fetchFavorites() {
-  try {
-    const response = await fetch(`${BaseUrl}/favorites`)
-    const data = await response.json()
-    return data
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-export async function fetchImages() {
-  try {
-    const response = await fetch(`${BaseUrl}/images`)
-    const data = await response.json()
-    return data
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-export async function fetchUser() {
-  try {
-    const response = await fetch(`${BaseUrl}/users`)
-    const data = await response.json()
-    return data
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-export async function fetchCarts() {
-  try {
-    const response = await fetch(`${BaseUrl}/carts`)
-    const data = await response.json()
-    return data
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-export async function fetchDeliveryAddress() {
-  try {
-    const response = await fetch(`${BaseUrl}/delivery-addresses`)
-    const data = await response.json()
-    return data
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-export async function fetchDefaultAddress() {
-  try {
-    const response = await fetch(`${BaseUrl}/default-address`)
-    const data = await response.json()
-    return data
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-export async function postDataUser(url: string, data: object) {
-  try {
-    const response = await fetch(url, {
+    const response = await fetch(`${BaseUrl}${endpoint}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -95,92 +31,113 @@ export async function postDataUser(url: string, data: object) {
     }
     return await response.json()
   } catch (error) {
-    // Manejo de errores
     console.error('Error:', error)
-    throw error // Re-lanzar el error para que pueda ser manejado por el llamador
+    throw error
   }
 }
 
-export async function postDatadeliveryAddress(url: string, data: object) {
+// Funciones para obtener datos
+export function fetchProducts() {
+  return fetchFromApi('/products')
+}
+
+export function fetchCategories() {
+  return fetchFromApi('/categories')
+}
+
+export function fetchFavorites() {
+  return fetchFromApi('/favorites')
+}
+
+export function fetchUser() {
+  return fetchFromApi('/users')
+}
+
+export function fetchCarts() {
+  return fetchFromApi('/carts')
+}
+
+export function fetchDeliveryAddress() {
+  return fetchFromApi('/delivery-addresses')
+}
+
+export function fetchDefaultAddress() {
+  return fetchFromApi('/default-address')
+}
+
+// Función para obtener un producto específico por ID
+export async function fetchProductById(productId: string) {
   try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
+    const response = await fetch(`${BaseUrl}/products/${productId}`)
     if (!response.ok) {
       const errorText = await response.text()
       throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorText}`)
     }
     return await response.json()
   } catch (error) {
-    // Manejo de errores
     console.error('Error:', error)
-    throw error // Re-lanzar el error para que pueda ser manejado por el llamador
+    throw error
   }
 }
 
-export async function postDataDefaultAddress(url: string, data: object) {
+// Funciones para manejar datos de usuario
+
+// Registro de usuario
+export function registerUser(userData: { nombre: string; correo: string; contraseña: string }) {
+  return postToApi('/users', userData)
+}
+
+// Inicio de sesión de usuario
+export async function loginUser(correo: string, contraseña: string) {
+  const endpoint = `/users?correo=${encodeURIComponent(correo)}&contraseña=${encodeURIComponent(contraseña)}`
   try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-    if (!response.ok) {
-      const errorText = await response.text()
-      throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorText}`)
+    const users = await fetchFromApi(endpoint)
+    const user = users.find((u: any) => u.contraseña === contraseña)
+    if (user) {
+      return user
+    } else {
+      throw new Error('Credenciales incorrectas')
     }
-    return await response.json()
   } catch (error) {
-    // Manejo de errores
     console.error('Error:', error)
-    throw error // Re-lanzar el error para que pueda ser manejado por el llamador
+    throw error
   }
 }
 
-export async function postDataCarts(url: string, data: object) {
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-    if (!response.ok) {
-      const errorText = await response.text()
-      throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorText}`)
-    }
-    return await response.json()
-  } catch (error) {
-    // Manejo de errores
-    console.error('Error:', error)
-    throw error // Re-lanzar el error para que pueda ser manejado por el llamador
-  }
+// Funciones para enviar datos
+
+// Crear una nueva categoría
+export function createCategory(categoryData: { nombre: string; descripcion: string }) {
+  return postToApi('/categories', categoryData)
 }
 
-export async function postDataFavorites(url: string, data: object) {
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-    if (!response.ok) {
-      const errorText = await response.text()
-      throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorText}`)
-    }
-    return await response.json()
-  } catch (error) {
-    // Manejo de errores
-    console.error('Error:', error)
-    throw error // Re-lanzar el error para que pueda ser manejado por el llamador
-  }
+// Crear un nuevo favorito
+export function createFavorite(favoriteData: { userId: string; productId: string }) {
+  return postToApi('/favorites', favoriteData)
+}
+
+// Crear una nueva imagen
+export function createImage(imageData: { url: string; productoId: string }) {
+  return postToApi('/images', imageData)
+}
+
+// Crear un nuevo carrito
+export function createCart(cartData: { userId: string; productoId: string; cantidad: number }) {
+  return postToApi('/carts', cartData)
+}
+
+// Crear una nueva dirección de entrega
+export function createDeliveryAddress(addressData: {
+  userId: string
+  direccion: string
+  ciudad: string
+  estado: string
+  codigoPostal: string
+}) {
+  return postToApi('/delivery-addresses', addressData)
+}
+
+// Crear una nueva dirección por defecto
+export function createDefaultAddress(defaultAddressData: { userId: string; addressId: string }) {
+  return postToApi('/default-address', defaultAddressData)
 }
