@@ -10,11 +10,11 @@
             <div class="form-control font-DMsans">
               <label class="label cursor-pointer">
                 <span class="label-text text-base ">Oro</span>
-                <input type="checkbox" class="checkbox border-4 border-[#EDDAAB] bg-[#ffff]" />
+                <input type="checkbox" class="checkbox border-4 border-[#EDDAAB] [--chkfg:#662F25] [--chkbg:#EDDAAB] bg-[#ffff] " />
               </label>
               <label class="label cursor-pointer">
                 <span class="label-text text-base">Plata</span>
-                <input type="checkbox" class="checkbox border-4 border-[#EDDAAB] bg-[#ffff]" />
+                <input type="checkbox" class="checkbox border-4 border-[#EDDAAB] bg-[#ffff] [--chkfg:#662F25] [--chkbg:#EDDAAB]" />
               </label>
             </div>
           </div>
@@ -22,7 +22,7 @@
       </div>
       <div class="collapse collapse-arrow my-0 rounded-none bg-base-200">
         <input type="radio" name="my-accordion-2" />
-        <div class="collapse-title text-xl font-medium border-0 bg-[#662F25] text-[#EDDAAB]">
+        <div class="collapse-title text-xl font-medium border-0 bg-[#662F25] text-[#EDDAAB] ">
           Estilo
         </div>
         <div class="collapse-content text-black bg-white">
@@ -30,27 +30,27 @@
             <div class="form-control text-6xl">
               <label class="label cursor-pointer">
                 <span class="label-text text-base text-[#662F25]">Coquette</span>
-                <input type="checkbox" class="checkbox border-4 border-[#EDDAAB] bg-[#ffff]" />
+                <input type="checkbox" class="checkbox border-4 border-[#EDDAAB] bg-[#ffff] [--chkfg:#662F25] [--chkbg:#EDDAAB]" />
               </label>
               <label class="label cursor-pointer">
                 <span class="label-text text-base text-[#662F25]">Grunge</span>
-                <input type="checkbox" class="checkbox border-4 border-[#EDDAAB] bg-[#ffff]" />
+                <input type="checkbox" class="checkbox border-4 border-[#EDDAAB] bg-[#ffff] [--chkfg:#662F25] [--chkbg:#EDDAAB]" />
               </label>
               <label class="label cursor-pointer">
                 <span class="label-text text-base text-[#662F25]">Y2K</span>
-                <input type="checkbox" class="checkbox border-4 border-[#EDDAAB] bg-[#ffff]" />
+                <input type="checkbox" class="checkbox border-4 border-[#EDDAAB] bg-[#ffff] [--chkfg:#662F25] [--chkbg:#EDDAAB]" />
               </label>
               <label class="label cursor-pointer">
                 <span class="label-text text-base text-[#662F25]">Minimalista</span>
-                <input type="checkbox" class="checkbox border-4 border-[#EDDAAB] bg-[#ffff]" />
+                <input type="checkbox" class="checkbox border-4 border-[#EDDAAB] bg-[#ffff] [--chkfg:#662F25] [--chkbg:#EDDAAB]" />
               </label>
               <label class="label cursor-pointer">
                 <span class="label-text text-base text-[#662F25]">Inspirado en películas</span>
-                <input type="checkbox" class="checkbox border-4 border-[#EDDAAB] bg-[#ffff]" />
+                <input type="checkbox" class="checkbox border-4 border-[#EDDAAB] bg-[#ffff] [--chkfg:#662F25] [--chkbg:#EDDAAB]" />
               </label>
               <label class="label cursor-pointer">
                 <span class="label-text text-base text-[#662F25]">Acubi</span>
-                <input type="checkbox" class="checkbox border-4 border-[#EDDAAB] bg-[#ffff]" />
+                <input type="checkbox" class="checkbox border-4 border-[#EDDAAB] bg-[#ffff] [--chkfg:#662F25] [--chkbg:#EDDAAB]" />
               </label>
             </div>
           </div>
