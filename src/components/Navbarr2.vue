@@ -16,7 +16,7 @@
             <a href="#">Aretes</a>
             <a href="#">Collares</a>
             <a href="#">Pulseras</a>
-            <a href="#">Phone Charms</a>
+            <a href="/categoria">Phone Charms</a>
           </div>
         </div>
         <form class="search" role="search">
@@ -63,7 +63,7 @@
             <a href="#">Aretes</a>
             <a href="#">Collares</a>
             <a href="#">Pulseras</a>
-            <a href="#">Phone Charms</a>
+            <a href="/categoria">Phone Charms</a>
           </div>
           <a href="#">Favoritos</a>
           <a href="#" @click="toggleOffcanvasAccountMenu">Cuenta</a>
