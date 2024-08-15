@@ -1,3 +1,5 @@
+// src/utils/api.ts
+
 const BaseUrl = 'http://18.191.246.79:3333/api'
 
 // Función auxiliar para realizar solicitudes GET
@@ -79,10 +81,11 @@ export async function fetchProductById(productId: string) {
     throw error
   }
 }
+
 // Función para obtener los productos por categoría
 export async function fetchProductsByCategory(categoryId: string) {
-    return fetchFromApi(`/products?category=${categoryId}`)
-  }
+  return fetchFromApi(`/products?category=${categoryId}`)
+}
 
 // Funciones para manejar datos de usuario
 
@@ -110,15 +113,10 @@ export async function loginUser(correo: string, contraseña: string) {
 
 // Funciones para enviar datos
 
-
-
 // Crear un nuevo favorito
 export function createFavorite(favoriteData: { userId: string; productId: string }) {
   return postToApi('/favorites', favoriteData)
 }
-
-
-
 
 // Crear un nuevo carrito
 export function createCart(cartData: { userId: string; productoId: string; cantidad: number }) {
@@ -140,4 +138,3 @@ export function createDeliveryAddress(addressData: {
 export function createDefaultAddress(defaultAddressData: { userId: string; addressId: string }) {
   return postToApi('/default-address', defaultAddressData)
 }
-
