@@ -2,8 +2,7 @@
     <div>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 rounded-3xl px-10">
             <div class="flex justify-center items-center">
-                
-                <CarouselProducto :images="images" />
+                <CarouselProduct :images="images" />
             </div>
 
             <div class="font-DMsans flex flex-col justify-center">
@@ -11,13 +10,15 @@
                     <p class="text-7xl font-elmessiri text-[#CB8844] text-center">{{ nombreDelArticulo }}</p>
                 </div>
                 <div class="justify-center flex">
-                    <div class="grid grid-cols-1 my-4 ">
-                        <p class="text-3xl text-center font-elmessiri text-[#B66141]">{{ Categoría }}</p>
-                        <p class="text-3xl text-center font-elmessiri text-[#B66141]">{{ Estilo }}</p>
+                    <div class="grid grid-cols-2 my-4 gap-32 md:gap-44 lg:gap-56">
+                        <p class="text-3xl text-center text-[#B66141]">{{ Categoría }}</p>
+                        <p class="text-3xl text-center text-[#B66141]">{{ Estilo }}</p>
                     </div>
                 </div>
                 <div>
-                
+                    <p class="text-4xl text-[#662F25]">
+                        {{ description }}
+                    </p>
                     <p class="text-7xl font-elmessiri my-4 text-[#CB8844]">{{ precioDelArticulo }}</p>
                 </div>
                 <div class="my-4">
@@ -36,14 +37,14 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { PropType } from 'vue';
-import CarouselProducto from '@/components/CarruselProducto.vue';
+import CarouselProduct from '@/components/CarruselProducto.vue';
 import QuantitySelector from '@/components/Cantidad.vue';
 
 export default defineComponent({
     name: 'productoindividual',
 
     components: {
-        CarouselProducto,
+        CarouselProduct,
         QuantitySelector
     },
 

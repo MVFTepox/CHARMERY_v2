@@ -14,10 +14,10 @@
             <p class="py-2 divider text-5xl font-elmessiri text-center text-[#B66141]">Y2K</p>
         </div>
     </div>
-    <div class="px-10 my-6">
-        <div class="flex  justify-center px-10 my-5">
-            <p class="text-5xl font-elmessiri text-[#B66141] ">Mira Nuestros Articulos</p>
-            
+    <div class="px-10 my-4">
+        <div class="flex  justify-between px-10 my-5">
+            <p class="text-5xl font-elmessiri text-[#B66141] ">Aretes</p>
+            <input type="button" value="Ver mas" class="btn bg-[#B66141] text-[#EDDAAB] rounded-2xl w-1/3 md:w-1/6 lg:w-2/12 hover:text-black">
         </div>
         <hr style="border-color: #eddaab ;border-width: 2px">
 
@@ -27,9 +27,10 @@
             <CarruselProductosdeArticulos />
         </div>
     </div>
-    <div class="px-10 my-6">
-        <div class="flex  justify-center px-10 my-5">
-            <p class="text-5xl font-elmessiri text-[#B66141] ">Te Pueden Interesar</p>
+    <div class="px-10 my-4">
+        <div class="flex  justify-between px-10 my-5">
+            <p class="text-5xl font-elmessiri text-[#B66141] ">Collares</p>
+            <input type="button" value="Ver mas" class="btn bg-[#B66141] text-[#EDDAAB] rounded-2xl w-1/3 md:w-1/6 lg:w-2/12 hover:text-black">
         </div>
         <hr style="border-color: #eddaab ;border-width: 2px">
 

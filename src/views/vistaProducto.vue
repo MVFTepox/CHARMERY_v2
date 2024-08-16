@@ -2,7 +2,7 @@
   <div>
     <Navbarr2 />
     <productoindividual :images="images" :nombreDelArticulo="nombreDelArticulo" :precioDelArticulo="precioDelArticulo"
-      :description="description" :Categoría="Categoría.toUpperCase()" :Estilo="Estilo" class="my-5" />
+      :description="description" :Categoría="Categoría" :Estilo="Estilo" class="my-5" />
     <div class="mx-10 my-10">
       <CommentSection />
     </div>
@@ -36,9 +36,8 @@ import PageFooter from '@/components/footer.vue';
 import CommentSection from '@/components/CommentSection.vue';
 import productoindividual from '@/components/productoindividual.vue';
 import CarruselProductosdeArticulos from '@/components/CarruselProductosdeArticulos.vue';
-import { fetchProduct, fetchImage } from '@/Utils/api';
-import img1 from '@/assets/img/8d9a208672fc6c6c5565daff623b1ad9.jpg'
-import img2 from '@/assets/img/dd26b835117abe2cbda20e2af9380cd1.jpg'
+import { fetchProduct, fetchImageById } from '@/Utils/api';
+import { idText } from 'typescript';
 
 export default defineComponent({
   name: 'pageVistaProducto',
@@ -51,15 +50,6 @@ export default defineComponent({
     CarruselProductosdeArticulos
   },
 
-  data() {
-    return {
-      images: [
-        img1, img2
-      ],
-      productQuantity: 1,
-      currentFill: 1
-    };
-  },
   setup() {
     const route = useRoute();
     const productId = route.params.id as string;
@@ -70,8 +60,6 @@ export default defineComponent({
     const description = ref('');
     const Categoría = ref('');
     const Estilo = ref('');
-    const img1src = ref(img1)
-    const img2src = ref(img2)
 
     onMounted(async () => {
       try {
@@ -92,24 +80,25 @@ export default defineComponent({
         Categoría.value = product.category.category_name;
         Estilo.value = product.style.style_name;
 
+        // Fetch images associated with the product
+        const imagesResponse = await fetchImageById(productId);
+        images.value = imagesResponse.map((image: any) => image.image_url);
+
+        console.log('Image data:', imagesResponse);
+
       } catch (error) {
-        console.error('Error fetching product:', error);
+        console.error('Error fetching product or image details:', error);
       }
-
-
     });
 
 
-
     return {
-      img1src,
-      img2src,
-        nombreDelArticulo,
+      images,
+      nombreDelArticulo,
       precioDelArticulo,
       description,
       Categoría,
       Estilo
-
     };
   }
 });
