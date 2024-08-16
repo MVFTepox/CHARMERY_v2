@@ -4,13 +4,13 @@
     <div class="relative zoom-out">
       <img
         src="../assets/img/category.png"
-        alt="Phone Charms"
+        :alt="currentCategoryName"
         class="w-full object-cover h-48 sm:h-64 md:h-80 lg:h-96"
       />
       <h1
         class="absolute inset-x-0 top-1/2 transform -translate-y-1/2 text-[#fbf8ee] text-3xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl text-center font-bold font-elmessiri"
       >
-        Phone Charms
+        {{ currentCategoryName.charAt(0).toUpperCase() + currentCategoryName.slice(1).toLowerCase() }}
       </h1>
     </div>
     <div class="p-4 sm:p-6 md:p-8">
@@ -71,7 +71,7 @@
       <div
         class="product-grid grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 p-4"
       >
-        <ProductCard v-for="n in 12" :key="n" />
+        <ProductCard v-for="product in products" :key="product.id" :product="product" />
       </div>
     </div>
   </div>
@@ -81,8 +81,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import { fetchCategory } from '@/Utils/api';
+import { defineComponent, ref, onMounted } from "vue";
 import ProductCard from "../components/ProductCard.vue";
 import Filtro from "../components/filtro.vue";
 import Navbar from "@/components/Navbarr2.vue";
@@ -97,21 +96,27 @@ export default defineComponent({
     footerPage
   },
   setup() {
-
-    async function Category(id:number) {
-      try{
-        const response = await fetch(`https://randomuser.me/api/`);
-            const data = await response.json();
-            let user = data.results[0];
-            
-      }
-      catch (error) {
-            console.error('Error fetching random user data:', error);
-        }
-    }
-
+    const currentCategoryName = ref("Phone Charms");
+    const products = ref([]);
     const filterOpen = ref(false);
     const sortOpen = ref(false);
+
+    const fetchCategoryData = async (categoryId: number) => {
+      try {
+        const response = await fetch(`http://3.134.108.48:3333/api/categories`);
+        const data = await response.json();
+        const category = data.find((cat: any) => cat.id === categoryId);
+        currentCategoryName.value = category.category_name || "Phone Charms";
+        products.value = category.products || [];
+      } catch (error) {
+        console.error("Error fetching category data:", error);
+      }
+    };
+
+    onMounted(() => {
+      const categoryId = 3; // example for 'phoneCharms'
+      fetchCategoryData(categoryId);
+    });
 
     const toggleFilter = () => {
       filterOpen.value = !filterOpen.value;
@@ -134,6 +139,8 @@ export default defineComponent({
     };
 
     return {
+      currentCategoryName,
+      products,
       filterOpen,
       sortOpen,
       toggleFilter,
@@ -141,10 +148,7 @@ export default defineComponent({
       closeDropdowns,
       sortBy,
     };
-
-
   },
-
 });
 </script>
 
