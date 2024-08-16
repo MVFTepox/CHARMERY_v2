@@ -12,3 +12,17 @@ export const useAuthStore = defineStore('auth', {
     // Puedes añadir más acciones aquí si necesitas
   }
 })
+
+export const useUserStore = defineStore('user', {
+  state: () => ({
+    userId: null as number | null,
+  }),
+  actions: {
+    setUserId(id:number){
+      this.userId = id;
+    },
+    clearUserId(){
+      this.userId = null;
+    },
+  },
+});
