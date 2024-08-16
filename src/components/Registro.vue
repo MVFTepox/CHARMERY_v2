@@ -10,12 +10,12 @@
         </div>
         <div class="form-group">
           <label for="email">Correo electrónico</label>
-          <input type="email" id="email" v-model="email" class="rounded-full" >
+          <input type="email" id="email" v-model="email" class="rounded-full">
           <span v-if="errors.email" class="error-message">{{ errors.email }}</span>
         </div>
         <div class="form-group">
           <label for="password">Contraseña</label>
-          <input type="password" id="password" v-model="password" class="rounded-full" >
+          <input type="password" id="password" v-model="password" class="rounded-full">
           <span v-if="errors.password" class="error-message">{{ errors.password }}</span>
         </div>
         <div class="form-group">
@@ -24,7 +24,7 @@
           <span v-if="errors.confirmPassword" class="error-message">{{ errors.confirmPassword }}</span>
         </div>
         <div class="checkbox-group">
-          <input type="checkbox" id="terms" v-model="termsAccepted" >
+          <input type="checkbox" id="terms" v-model="termsAccepted">
           <label for="terms">Acepto los términos y condiciones</label>
           <span v-if="errors.termsAccepted" class="error-message">{{ errors.termsAccepted }}</span>
         </div>
@@ -44,6 +44,91 @@
     </div>
   </div>
 </template>
+
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
+import { postUser } from '@/Utils/api';
+
+export default defineComponent({
+  name: 'Registro',
+  setup() {
+    const name = ref<string>('');
+    const email = ref<string>('');
+    const password = ref<string>('');
+    const confirmPassword = ref<string>('');
+    const termsAccepted = ref<boolean>(false);
+    const promotionsAccepted = ref<boolean>(false);
+    const errors = ref<Record<string, string>>({});
+
+    const register = async () => {
+      errors.value = {};
+
+      if (!name.value) {
+        errors.value.name = "🔴 El nombre es obligatorio.";
+      }
+
+      if (!email.value) {
+        errors.value.email = "🔴 El correo electrónico es obligatorio.";
+      } else if (!validateEmail(email.value)) {
+        errors.value.email = "🔴 El correo electrónico no es válido.";
+      }
+
+      if (!password.value) {
+        errors.value.password = "🔴 La contraseña es obligatoria.";
+      }
+
+      if (!confirmPassword.value) {
+        errors.value.confirmPassword = "🔴 Debe confirmar su contraseña.";
+      } else if (password.value !== confirmPassword.value) {
+        errors.value.confirmPassword = "🔴 Las contraseñas no coinciden.";
+      }
+
+      if (!termsAccepted.value) {
+        errors.value.termsAccepted = "🔴 Debe aceptar los términos y condiciones.";
+      }
+
+      if (Object.keys(errors.value).length === 0) {
+        try {
+          const userData = {
+            user_name: name.value.split(" ")[0],  
+            user_lastname: name.value.split(" ")[1] || "",
+            email: email.value,
+            passsword: password.value.trim(),
+            promotionsAccepted: promotionsAccepted.value,
+          };
+
+          // Llamada a la API para registrar el usuario
+          const response = await postUser(userData);
+
+          console.log("Registro exitoso:", response);
+          // Aquí puedes redirigir al usuario a otra página o mostrar un mensaje de éxito
+        } catch (error) {
+          console.error("Error en el registro:", error);
+          errors.value.general = "🔴 Hubo un problema con el registro. Por favor, intenta de nuevo.";
+        }
+      } else {
+        console.log("Errores:", errors.value);
+      }
+    };
+
+    const validateEmail = (email: string) => {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email);
+    };
+
+    return {
+      name,
+      email,
+      password,
+      confirmPassword,
+      termsAccepted,
+      promotionsAccepted,
+      errors,
+      register,
+    };
+  },
+});
+</script>
 
 <style scoped>
 .body {
@@ -294,74 +379,4 @@
   }
 }
 </style>
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
 
-export default defineComponent({
-  name: 'Registro',
-  setup() {
-    const name = ref<string>('');
-    const email = ref<string>('');
-    const password = ref<string>('');
-    const confirmPassword = ref<string>('');
-    const termsAccepted = ref<boolean>(false);
-    const promotionsAccepted = ref<boolean>(false);
-    const errors = ref<Record<string, string>>({});
-
-    const register = () => {
-      errors.value = {};
-
-      if (!name.value) {
-        errors.value.name = "🔴  El nombre es obligatorio.";
-      }
-
-      if (!email.value) {
-        errors.value.email = "🔴 El correo electrónico es obligatorio.";
-      } else if (!validateEmail(email.value)) {
-        errors.value.email = "🔴 El correo electrónico no es válido.";
-      }
-
-      if (!password.value) {
-        errors.value.password = "🔴 La contraseña es obligatoria.";
-      }
-
-      if (!confirmPassword.value) {
-        errors.value.confirmPassword = "🔴 Debe confirmar su contraseña.";
-      } else if (password.value !== confirmPassword.value) {
-        errors.value.confirmPassword = "🔴 Las contraseñas no coinciden.";
-      }
-
-      if (!termsAccepted.value) {
-        errors.value.termsAccepted = "🔴 Debe aceptar los términos y condiciones.";
-      }
-
-      if (Object.keys(errors.value).length === 0) {
-        console.log("Registro exitoso:", {
-          name: name.value,
-          email: email.value,
-          password: password.value,
-          promotionsAccepted: promotionsAccepted.value,
-        });
-      } else {
-        console.log("Errores:", errors.value);
-      }
-    };
-
-    const validateEmail = (email: string) => {
-      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return re.test(email);
-    };
-
-    return {
-      name,
-      email,
-      password,
-      confirmPassword,
-      termsAccepted,
-      promotionsAccepted,
-      errors,
-      register
-    };
-  }
-});
-</script>
