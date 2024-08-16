@@ -1,15 +1,21 @@
 <template>
+  
   <div
     class="rounded-lg border-solid border-[3px] p-3 m-2 flex flex-col justify-between h-[350px] w-[250px] border-[#eddaab] font-DMsans">
     <div class="flex justify-between">
       <div class="flex flex-col">
+        <a href="/vistaproducto">
         <p>productName</p>
         <p>$productPrice</p>
+        </a>
       </div>
       <span class="material-symbols-rounded filler text-[#b66141]" @click="wishClick"
-        :style="{ fontVariationSettings: `'FILL' ${currentFill}` }">
+        :style="{fontVariationSettings: `'FILL' ${currentFill}`}">
         favorite
       </span>
+    </div>
+    <div class="flex justify-center">
+      <img :src="productImage" class="w-[200px] h-[200px] rounded-lg">
     </div>
     <button
       class="flex rounded-full justify-center h-[30px] bg-[#b66141] border-solid border-[3px] hover:border-[#eddaab] border-[#b66141] hover:bg-white text-[#eddaab] ">
@@ -17,6 +23,7 @@
       Añadir a Bolsa
     </button>
   </div>
+
 </template>
 <script lang="ts">
 export default {
