@@ -9,7 +9,9 @@
         <img src="@/assets/img/listo.png" alt="Confirmación">
       </div>
       <p >Gracias  por tu orden!</p>
+      <a href="/">
       <input type="button" class="font-DMsans" value="Terminar" />
+    </a>
     </div>
   </div>
   <div>

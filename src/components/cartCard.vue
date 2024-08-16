@@ -8,25 +8,25 @@
             <img :src="item.photo" alt="producto" class="min-w-20 max-w-20 rounded-xl border-2" style="border-color: #cb8844;">
           </div>
         </div>
-        <div class="ml-4">
-          <p class="text-brown sm:text-base lg:text-lg" style="font-family: 'DM Sans';">{{ item.name }}</p>
-          <p class="text-brown sm:text-lg lg:text-xl" style="font-family: 'DM Sans';">${{ item.price }}</p>
+        <div class="ml-4 font-DMsans">
+          <p class="text-brown sm:text-base lg:text-lg ">{{ item.name }}</p>
+          <p class="text-brown sm:text-lg lg:text-xl">${{ item.price }}</p>
         </div>
       </div>
       <div class="flex items-center w-1/3 justify-center h-10">
         <div class="rounded-3xl h-full flex items-center justify-items-center w-auto" style="background-color: #eddaab;">
           <button @click="decrement" class="pe-1 ps-3 border-0 text-2xl pb-1 font-semibold" style="color: #b66141;">-</button>
-          <span class="mx-2 text-2xl" style="font-family: 'DM Sans';">
-            <input type="number" v-model.number="item.quantity" @input="validateQuantity" class="w-8 text-2xl max-w-xs text-center outline-none bg-transparent no-spinner" style="font-family: 'DM Sans';" />
+          <span class="mx-2 text-2xl">
+            <input type="number" v-model.number="item.quantity" @input="validateQuantity" class="w-8 text-2xl max-w-xs text-center outline-none bg-transparent no-spinner font-DMsans" />
           </span>
           <button @click="increment" class="ps-1 pe-3 border-0 text-2xl pb-1 font-semibold" style="color: #b66141;">+</button>
         </div>
       </div>
       <div class="w-1/3 text-center">
-        <p class="text-brown text-3xl" style="font-family: 'El Messiri';">${{ item.total }}</p>
+        <p class="text-brown text-3xl font-elmessiri">${{ item.total }}</p>
       </div>
       <div>
-        <button @click="showConfirmPopup = true" class="hover:scale-90 transition-all btn-sm rounded-2xl bg-[#662f25] text-[#eddaab]" style="font-family: 'DM Sans';">Eliminar</button>
+        <button @click="showConfirmPopup = true" class="hover:scale-90 transition-all btn-sm rounded-2xl bg-[#662f25] text-[#eddaab] font-DMsans">Eliminar</button>
       </div>
   
       <ConfirmationPopup

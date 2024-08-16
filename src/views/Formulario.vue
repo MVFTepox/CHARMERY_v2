@@ -1,9 +1,9 @@
 <template>
   <Navbarr2 />
   <div class="px-10 lg:px-20 gap-5 grid grid-cols-1 md:grid-cols-12 my-4 font-DMsans">
-    <div class="md:col-span-8 mb-4">
-      <div class="border-2 rounded-lg p-4 grid grid-cols-1 border-[#EDDAAB]">
-        <p class="text-3xl mb-4 font-elmessiri">Escoje tu metodo de pago</p>
+    <div class="md:col-span-8">
+      <div class="border-2 rounded-lg p-4 grid grid-cols-1 border-[#EDDAAB] mb-4">
+        <p class="text-3xl mb-4 font-elmessiri">Elige tu método de pago</p>
         <div id="metodo">
 
         </div>
@@ -14,18 +14,18 @@
               <span class="material-symbols-rounded text-5xl border-4 rounded-full border-[#B66141]">
                 add
               </span>
-              <p class="text-3xl  font-elmessiri">Crear un nuevo metodo de Pago</p>
+              <p class="text-3xl font-elmessiri text-[#CB8844]">Crear un nuevo método de pago</p>
             </div>
           </div>
         </button>
       </div>
       <div :class="{ 'slide-down': step >= 2 }" v-if="step >= 2">
-        <p class="text-3xl mb-4 mt-5">Pago</p>
+        
         <div class="border-2 rounded-lg p-4 border-[#EDDAAB] py-8">
           <!-- PRIMER PASO -->
           <div>
             <ul class="steps steps-vertical">
-              <li class="step">Primer paso de pago</li>
+              <li class="step font-elmessiri text-3xl " >Información de contacto</li>
             </ul>
             <div class="grid grid-cols-1 lg:grid-cols-2 mb-4">
               <!-- Nombre -->
@@ -34,7 +34,7 @@
                 <input v-model="nombre"
                   class="form-control border-2 rounded-3xl px-4 pt-0.5 border-[#B66141] w-full lg:w-10/12" type="text"
                   aria-describedby="nombreError" />
-                <p v-if="!isNameValid && !confirmacion" id="nombreError" class="text-red-500">
+                <p v-if="!isNameValid" id="nombreError" class="text-red-500">
                   El campo de nombre no puede estar vacío.
                 </p>
               </div>
@@ -61,12 +61,7 @@
             </div>
             <div class="mb-4">
               <div>
-                <div class="form-control text-left my-4">
-                  <label class="cursor-pointer flex items-center">
-                    <input type="checkbox" class="checkbox checkbox-warning mr-2" />
-                    <span class="label-text">Rellenar con la información de mi cuenta</span>
-                  </label>
-                </div>
+
               </div>
               <p class="text-2xl py-0.5 font-MDsans my-2">Teléfono</p>
               <label class="flex items-center gap-2 border-none focus:aparece-none w-2/5">
@@ -75,12 +70,12 @@
                   aria-describedby="telefonoError" />
               </label>
               <p v-if="!isPhoneNumberValid" id="telefonoError" class="text-red-500">
-                El campo no puede estar vacío y debe tener minimo 10 digitos
+                El campo no puede estar vacío y debe tener mínimo 10 dígitos
               </p>
             </div>
           </div>
           <button @click="nextStep2" id="btn1" :class="{ 'hidden': !isFormValid1, 'block': isFormValid1 }"
-            class="btn bg-[#B66141] text-[#EDDAAB] relative right-12 lg:right-16 w-2/5 lg:w-1/4 rounded-full hover:text-black">
+            class="py-2 bg-[#B66141] text-[#EDDAAB] relative right-12 lg:right-16 w-2/5 lg:w-1/4 rounded-full hover:text-black hover:bg-white hover:border hover:border-[#B66141]">
             Siguiente
           </button>
 
@@ -88,7 +83,7 @@
           <div :class="{ 'slide-down': step >= 2 }" v-if="step >= 3">
             <div>
               <ul class="steps steps-vertical">
-                <li class="step" data-content="2">Segundo paso de pago</li>
+                <li class="step font-elmessiri text-3xl" data-content="2">Dirección de envío</li>
               </ul>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 mb-4">
@@ -147,15 +142,10 @@
               </div>
             </div>
             <div>
-              <div class="form-control text-left my-4">
-                <label class="cursor-pointer flex items-center">
-                  <input type="checkbox" class="checkbox checkbox-warning mr-2" />
-                  <span class="label-text">Guardar como dirección predeterminada</span>
-                </label>
-              </div>
+              
             </div>
             <button @click="nextStep3" id="btn2" :class="{ 'hidden': !isFormValid2, 'block': isFormValid2 }"
-              class="btn bg-[#B66141] text-[#EDDAAB] relative right-12 lg:right-16 w-2/5 lg:w-1/4 rounded-full hover:text-black">
+              class="py-2  bg-[#B66141] text-[#EDDAAB] relative right-12 lg:right-16 w-2/5 lg:w-1/4 rounded-full hover:text-black hover:bg-white hover:border hover:border-[#B66141]">
               Siguiente
             </button>
           </div>
@@ -163,8 +153,9 @@
           <!-- Tercer paso -->
           <div :class="{ 'slide-down': step >= 3 }" v-if="step >= 4">
             <ul class="steps steps-vertical">
-              <li class="step" data-content="3">Tercer paso de pago</li>
+              <li class="step font-elmessiri text-3xl" data-content="3">Método de pago</li>
             </ul>
+            <p class="text-3xl font-elmessiri text-red-600">Esto es una simulación de la forma de pago. No se guardan datos.</p>
             <!-- Muestra los componentes de los tipos de pago -->
             <div class="grid grid-cols-3 gap-4 my">
               <button class="btn rounded-2xl custom-border text-lg lg:text-3xl text-[#662F25] py-1"
@@ -182,7 +173,8 @@
             </div>
             <div>
               <transferencias v-if="componenteActual === 'transferencias'" />
-              <credito v-if="componenteActual === 'credito'" />
+              <Credito v-if="componenteActual === 'credito'" :creditoData="creditoData"
+                @update:creditoData="updateCreditoData" />
               <efectivo v-if="componenteActual === 'efectivo'" />
             </div>
             <button type="button" @click="nextStep4"
@@ -194,10 +186,51 @@
       </div>
     </div>
 
-    <div class="md:col-span-4 sticky left-0 right-0 top-0">
-      <p class="text-3xl mb-4">Productos</p>
-      <div class="border-2 rounded-lg border-[#EDDAAB]">
-        <!-- Aquí van los productos -->
+    <div class="md:col-span-4 sm:order-first md:order-last ">
+      <div id="carrito"> <!-- agarrrar para la creación del componente carrito -->
+        <div class="p-4 border-2 rounded-lg border-[#EDDAAB] pb-5">
+          <p class="text-3xl font-elmessiri">Resumen de compra</p>
+          <div class="my-4 ">
+            <!-- cambiar a variable -->
+            <div class="grid grid-cols-4 gap-4">
+              <div class="p-2 ">
+                <img src="../assets/img/collar corazon realista editado.png" class="rounded-lg size-auto" alt="corazón">
+              </div>
+              <div class="col-span-2 py-3 text-center">
+                <p class="text-2xl font-DMSans"> $ {{ nombreProducto }}</p>
+                <!-- cantidad -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 text-center gap-1 md:gap-2 lg:gap-4">
+                  <div>
+                    <p class="text-2xl font-DMSans">Cantidad: </p>
+                  </div>
+                  <div>
+                    <p class="text-2xl font-DMSans">{{ cantidad }}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="text-center flex items-center justify-center">
+                <p class="text-2xl font-elmessiri text-[#662F25]">$ {{ precio}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="my-4">
+              <p class="text-2xl font-elmessiri text-[#662F25]">Entrega en persona</p>
+              <p class="text-2xl font-elmessiri text-[#662F25]">$ 0.00</p>
+            </div>
+            <div class="flex justify-between my-4">
+              <p class="text-2xl font-elmessiri text-[#662F25]">Total</p>
+              <p class="text-2xl font-elmessiri text-[#662F25]">$ {{total}}</p>
+            </div>
+          </div>
+          <div class="text-center">
+            <a href="/pedidoConfirm">
+              <button
+                class=" bg-[#B66141] text-[#EDDAAB] rounded-full py-2 w-2/4 relative top-1 hover:text-black hover:bg-white hover:border hover:border-[#B66141] ">
+                Finalizar
+              </button>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -211,6 +244,7 @@ import Efectivo from '@/components/efectivo.vue'
 import Navbarr2 from '@/components/Navbarr2.vue'
 import { validateEmail, validateNombre, validateApellido, validateCP, validateCalleNum, validateCiudad, validateColonia, validatePais, validatePhoneNumber, validateEstado } from '@/Utils/validacionForm'
 
+
 export default defineComponent({
   name: 'pageFormulario',
   components: {
@@ -220,6 +254,20 @@ export default defineComponent({
     Navbarr2
   },
   setup() {
+
+    const creditoData = ref({
+      name: '',
+      numerotarjeta: '',
+      expiracion: '',
+      cvv: '',
+    });
+
+    const efectivoData = ref({
+      address: '',
+      time: '',
+      meridian: '',
+    });
+
     const step = ref(1)
     const componenteActual = ref<'transferencias' | 'credito' | 'efectivo'>('transferencias')
     const valordelospago1 = ref('Metodo uno')
@@ -251,29 +299,102 @@ export default defineComponent({
     const isFormValid1 = computed(() => isNameValid.value && isEmailValid.value && isapellidoValid.value && isPhoneNumberValid.value)
     const isFormValid2 = computed(() => isCPValid.value && isCalleNumValid.value && isColoniaValid.value && isCiudadValid.value && isPaisValid.value)
 
+    const updateCreditoData = (data: any) => {
+      creditoData.value = data;
+    };
+
+   const updateEfectivoData = (data: any) => {
+      efectivoData.value = data;
+    };
+
+    const PagarMEtodo = ref(0)
 
     const nextStep4 = () => {
+
       const div = document.getElementById('metodo') as HTMLDivElement
       const div2 = document.createElement('div')
+      if (componenteActual.value === 'transferencias') {
+        div.classList.add('border-2', 'rounded-lg', 'p-4', 'my-4', 'border-[#EDDAAB]', 'hover:cursor-pointer', 'hover:scale-95', 'hover:shadow-md')
 
-      div.classList.add('border-2', 'rounded-lg', 'p-4', 'my-4', 'border-[#EDDAAB]', 'hover:cursor-pointer', 'hover:scale-95', 'hover:shadow-md')
-
-      div2.innerHTML = `
+        div2.innerHTML = `
   <div class="form-control">
     <label class="label cursor-pointer">
-      <span class="label-text">Metodo uno</span>
-      <input type="radio" name="radio-10" class="radio checked:bg-[#B66141]" />
+      <span class="label-text">${componenteActual.value}</span>
+      <input type="radio" value="1" v-model="PagarMEtodo" name="radio-10" class="radio checked:bg-[#B66141]" />
     </label>
   </div>
-  <p>${nombre.value}</p>
+  
+
   `
-      div.appendChild(div2)
+        div.appendChild(div2)
 
+        
+      } else if (componenteActual.value === 'credito') {
+        div.classList.add('border-2', 'rounded-lg', 'p-4', 'my-4', 'border-[#EDDAAB]', 'hover:cursor-pointer', 'hover:scale-95', 'hover:shadow-md')
 
+        div2.innerHTML = `
+  <div class="form-control">
+    <label class="label cursor-pointer">
+      <span class="label-text">${componenteActual.value}</span>
+      <input type="radio" name="radio-10" value="2" v-model="PagarMEtodo" class="radio checked:bg-[#B66141]" />
+    </label>
+  </div>
+          <h1 class="text-lg font-elmessiri">${creditoData.value.name}</h1>
+          <h1 class="text-lg font-elmessiri">${creditoData.value.numerotarjeta}</h1>
+          <h1 class="text-lg font-elmessiri">${creditoData.value.expiracion}</h1>
+          <h1 class="text-lg font-elmessiri">${creditoData.value.cvv}</h1>
+  `
+        div.appendChild(div2)
+
+        
+      } else if (componenteActual.value === 'efectivo') {
+
+        div.classList.add('border-2', 'rounded-lg', 'p-4', 'my-4', 'border-[#EDDAAB]', 'hover:cursor-pointer', 'hover:scale-95', 'hover:shadow-md')
+
+        div2.innerHTML = `
+  <div class="form-control">
+    <label class="label cursor-pointer">
+      <span class="label-text">${componenteActual.value}</span>
+      <input type="radio" name="radio-10" value="3" v-model="PagarMEtodo" class="radio checked:bg-[#B66141]" />
+    </label>
+  </div>
+  <p>${efectivoData.value.address}</p><p>${efectivoData.value.time}</p><p>${efectivoData.value.meridian}</p>
+  `
+        div.appendChild(div2)
+
+        
+      }
+      resetForm()
     }
 
 
-
+    const resetForm = () => {
+      nombre.value = ''
+      apellido.value = ''
+      correo.value = ''
+      calleNumero.value = ''
+      colonia.value = ''
+      cp.value = 0
+      estado.value = ''
+      ciudad.value = ''
+      pais.value = ''
+      telefono.value = 0
+      confirmacion.value = false
+      creditoData.value = {
+        name: '',
+        numerotarjeta: '',
+        expiracion: '',
+        cvv: '',
+      }
+      efectivoData.value = {
+        address: '',
+        time: '',
+        meridian: '',
+      }
+      
+      componenteActual.value = 'transferencias'
+      step.value = 1
+    }
 
     const nextStep = () => {
       confirmacion.value = true
@@ -296,6 +417,12 @@ export default defineComponent({
     const mostrarComponente = (componente: 'transferencias' | 'credito' | 'efectivo') => {
       componenteActual.value = componente
     }
+
+    // data.data.forEach((element: any) => {
+
+    //   //aqui va estar lo de la api
+    // })
+
 
     return {
       step,
@@ -342,9 +469,17 @@ export default defineComponent({
       isFormValid1,
       isFormValid2,
 
-      confirmacion
+      confirmacion,
 
+      creditoData,
+      updateCreditoData,
 
+      efectivoData,
+      updateEfectivoData,
+
+      PagarMEtodo,
+
+      
 
     }
   }
@@ -361,6 +496,17 @@ input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+.steps-vertical .step {
+  color:#cb8844;
+}
+.steps .step:after {
+  background-color: #cb8844;
+  border-radius: 40px;
+  border: 1px solid black;
+  font-size: 20px;
+  color: white;
+  
 }
 
 .custom-border {

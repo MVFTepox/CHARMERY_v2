@@ -1,6 +1,7 @@
 <template>
-    <div class="container mx-auto sm:px-4 lg:px-16 pt-16 px-4">
-      <h1 class="text-6xl text-orange mb-6" style="font-family: 'El Messiri';">Bolsa de compras</h1>
+  <Navbar/>
+    <div class="container mx-auto sm:px-4 lg:px-16 pt-16 px-4 mb-32">
+      <h1 class="text-6xl text-orange mb-6 font-elmessiri">Bolsa de compras</h1>
       <div class="flex flex-col lg:flex-row gap-6">
         <div class="w-full lg:w-2/3">
           <div class="border-2 rounded-3xl p-4" style="border-color: #eddaab;">
@@ -9,10 +10,10 @@
                 <input type="checkbox" v-model="selectAll" @change="toggleSelectAll" id="all"
                 class="transition-all hover:scale-105 me-3 border-2 rounded-3xl checkbox border-[#b66141] [--chkbg:#b66141] [--chkfg:#eddaab] checked:border-[#b66141]" />
               </div>
-              <div class="flex w-full justify-between">
-                <span class="w-1/3 text-left text-orange text-lg" style="font-family: 'DM Sans';">Seleccionar todo</span>
-                <span class="w-1/3 text-center text-orange text-lg" style="font-family: 'DM Sans';">Cantidad</span>
-                <span class="w-1/3 text-center text-orange text-lg" style="font-family: 'DM Sans';">Total</span>
+              <div class="flex w-full justify-between font-DMsans">
+                <span class="w-1/3 text-left text-orange text-lg">Seleccionar todo</span>
+                <span class="w-1/3 text-center text-orange text-lg">Cantidad</span>
+                <span class="w-1/3 text-center text-orange text-lg">Total</span>
               </div>
             </div>
             <CartItem v-for="item in items" :key="item.id" :item="item" :update-totals="updateTotals" :remove-item-from-cart="removeItem" />
@@ -21,44 +22,45 @@
   
         <div class="w-full lg:w-1/3" style="font-family: 'El Messiri';">
           <div class="border-2 rounded-3xl p-4" style="border-color: #cb8844;">
-            <div class="mb-4 flex justify-between items-end">
+            <div class="mb-4 flex justify-between items-end font-elmessiri">
               <p class="text-orange text-3xl">Subtotal</p>
               <p class="text-brown text-4xl">${{ subtotal }}</p>
             </div>
-            <div class="mb-4 flex justify-between items-end">
+            <div class="mb-4 flex justify-between items-end font-elmessiri">
               <p class="text-orange text-3xl">IVA</p>
               <p class="text-brown text-4xl">${{ iva }}</p>
             </div>
   
             <div class="mb-4 flex flex-col justify-between h-full">
-              <p class="text-orange text-3xl">Envío</p>
+              <p class="text-orange text-3xl font-elmessiri">Envío</p>
               <div>
                 <div class="flex mt-4">
                   <button :class="{'active-button': shipping === 'standard'}" class="ps-0 btn w-full justify-between hover:border-2 hover:bg-[#eddaab] bg-transparent" name="shipping" value="standard" @click="updateShipping('standard')" style="border-color: #cb8844;">
                     <img src="../assets/img/deliver.png" alt="" class="max-h-10 min-h-8 w-auto">
-                    <p class="text-orange text-base xl:text-xl md:text-2xl sm:text-2xl lg:text-base">Envío estandar</p>
-                    <p class="text-brown text-2xl">$30</p>
+                    <p class="text-midbrown text-base xl:text-2xl font-light md:text-2xl sm:text-2xl lg:text-base">Envío estándar</p>
+                    <p class="text-brown text-2xl font-normal font-elmessiri">$30</p>
                   </button>
                 </div>
                 <div class="flex mt-4">
                   <button :class="{'active-button': shipping === 'personal'}" class="btn w-full justify-between hover:border-2 hover:bg-[#eddaab] bg-transparent" name="shipping" value="personal" @click="updateShipping('personal')" style="border-color: #cb8844;">
                     <img src="../assets/img/volunteer.png" alt="" class="max-h-10 min-h-8">
-                    <p class="text-orange text-base xl:text-xl md:text-2xl sm:text-2xl lg:text-base">Entrega en persona</p>
-                    <p class="text-brown text-2xl">$0</p>
+                    <p class="text-midbrown text-base xl:text-2xl font-light md:text-2xl sm:text-2xl lg:text-base">Entrega en persona</p>
+                    <p class="text-brown text-2xl font-normal font-elmessiri">$0</p>
                   </button>
                 </div>
               </div>
             </div>
   
             <div class="w-full flex justify-center">
-              <div class="pt-2 flex justify-between items-end w-4/6">
+              <div class="pt-2 flex justify-between items-end w-4/6 font-elmessiri">
                 <p class="text-brown text-3xl">Total</p>
                 <p class="text-brown text-4xl">${{ total }}</p>
               </div>
             </div>
   
             <div class="flex justify-center">
-              <button class="btn btn-wide mt-4 rounded-3xl text-xl font-medium tracking-wide hover:scale-105" style="background-color: #b66141; color: #eddaab; font-family: 'DM Sans';">Pagar</button>
+              <button class="btn btn-wide mt-4 rounded-3xl text-xl font-medium tracking-wide hover:scale-105 font-DMsans" style="background-color: #b66141; color: #eddaab;">
+                <a href="/pedidoConfirmado">Pagar</a></button>
             </div>
           </div>
         </div>
@@ -69,6 +71,10 @@
   <script lang="ts">
   import { defineComponent, ref, computed } from 'vue';
   import CartItem from '../components/cartCard.vue';
+  import Navbar from '@/components/Navbarr2.vue';
+  import {fetchDetailCart} from '@/Utils/api';
+  import {fetchCart} from '@/Utils/api';
+
   
   interface Item {
     id: number;
@@ -82,7 +88,8 @@
   
   export default defineComponent({
     components: {
-      CartItem
+      CartItem,
+      Navbar
     },
     setup() {
       const selectAll = ref(true);
@@ -97,7 +104,6 @@
       const total = computed(() => (parseFloat(subtotal.value) + parseFloat(iva.value) + (shipping.value === 'standard' ? 30 : 0)).toFixed(2));
   
       function updateTotals() {
-        // Trigger recomputation of totals
         subtotal.value;
         iva.value;
         total.value;
@@ -144,6 +150,10 @@
   </script>
   
   <style>
+.text-midbrown{
+  color: #b66141;
+}
+
   .text-orange {
     color: #cb8844;
   }

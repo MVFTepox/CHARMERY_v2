@@ -10,7 +10,7 @@ import account from '@/views/account.vue'
 import confirmationPage from '@/views/pedidoConfirmado.vue'
 import footerpage from '@/components/footer.vue'
 import listaDeDeseos from '@/views/listaDeDeseos.vue'
-import carrito from '@/views/Cart.vue'
+import carrito from '@/views/CarritoVista.vue'
 import categoria from '@/views/categorias.vue'
 
 const router = createRouter({
@@ -50,9 +50,10 @@ const router = createRouter({
       component: SobreNosotros
     },
     {
-      path: '/vistaproducto',
+      path: '/vistaproducto/:id',
       name: 'vistaproducto',
-      component: vistaProducto
+      component: vistaProducto,
+      props: true
     },
     {
       path: '/login',
