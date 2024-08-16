@@ -70,6 +70,10 @@ export function fetchDeliveryAddress() {
   return apiRequest('/delivery-address');
 }
 
+export function fetchImage() {
+  return apiRequest('/images');
+}
+
 export function fetchImageById(id: string) {
   return apiRequest(`/images/${id}`);
 }
