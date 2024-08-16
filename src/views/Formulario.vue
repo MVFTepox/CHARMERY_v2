@@ -155,6 +155,7 @@
             <ul class="steps steps-vertical">
               <li class="step font-elmessiri text-3xl" data-content="3">Método de pago</li>
             </ul>
+            <p class="text-3xl font-elmessiri text-red-600">Esto es una simulación de la forma de pago. No se guardan datos.</p>
             <!-- Muestra los componentes de los tipos de pago -->
             <div class="grid grid-cols-3 gap-4 my">
               <button class="btn rounded-2xl custom-border text-lg lg:text-3xl text-[#662F25] py-1"

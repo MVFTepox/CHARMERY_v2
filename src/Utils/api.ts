@@ -1,4 +1,4 @@
-import type { NumericLiteral } from "typescript";
+
 
 const urlApi = 'http://3.134.108.48:3333/api'
 
@@ -37,7 +37,7 @@ export function fetchCategory(id: number) {
   return apiRequest(`/categories/${id}`);
 }
 
-export function fetchUser(id: string) {
+export function fetchUser(id: number) {
   return apiRequest(`/user/${id}`);
 }
 
@@ -49,7 +49,7 @@ export function fetchProducts() {
   return apiRequest('/products');
 }
 
-export function fetchProduct(id: number) {
+export function fetchProduct(id: string) {
   return apiRequest(`/products/${id}`);
 }
 
@@ -61,11 +61,19 @@ export function fetchDetailCart() {
   return apiRequest('/detail-cart');
 }
 
-export function fetchDeliveryAddress(id: number) {
+
+export function fetchProductsByCategory(id:number) {
+  return apiRequest(`/products/category/${id}`);
+}
+
+export function fetchDeliveryAddress() {
   return apiRequest('/delivery-address');
 }
 
-export function fetchDefaultAddress(id: number) {
+export function fetchImageById(id: string) {
+  return apiRequest(`/images/${id}`);
+}
+export function fetchDefaultAddress() {
   return apiRequest('/default-address');
 }
 
