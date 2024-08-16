@@ -1,130 +1,392 @@
 <template>
-  <nav class="bg-[#eddaab] flex">
-    <div class="container mx-auto flex flex-wrap items-center justify-between p-4">
+  <div>
+    <!-- Diseño para pantallas grandes -->
+    <nav class="large-screen-menu">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="../assets/img/logo.png" alt="Logo" />
+        </a>
+        <div class="categorias">
+          <p><b>Categorías</b></p>
+          <a href="#" @click="toggleCategorias">
+            <img src="../assets/img/down.png" alt="Cuenta">
+          </a>
+          <div :class="{'categorias-menu': true, 'show': isCategorias}" @click.stop>
+            <a href="#">Anillos</a>
+            <a href="#">Aretes</a>
+            <a href="#">Collares</a>
+            <a href="#">Pulseras</a>
+            <a href="#">Phone Charms</a>
+          </div>
+        </div>
+        <form class="search" role="search">
+          <input type="search" placeholder="Buscar..." class="placeholder:text-[#662f25]" />
+          <button type="submit">
+            <img src="../assets/img/search.png" alt="Search">
+          </button>
+        </form>
+        <div class="icons">
+          <a href="#"><img src="../assets/img/fav.png" alt="Favorite"></a>
+          <a href="#" @click="toggleAccountMenu">
+            <img src="../assets/img/perf.png" alt="Cuenta">
+          </a>
+          <div :class="{'account-menu': true, 'show': isAccountMenuVisible}" @click.stop>
+            <p><b>¡Bienvenido usuario!</b></p>
+            <a href="#">Mi perfil</a>
+            <a href="#">Mis pedidos</a>
+            <a href="#">Cerrar sesión</a>
+          </div>
+          <a href="#"><img src="../assets/img/bag.png" alt="Bolsa"></a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Offcanvas para pantallas pequeñas -->
+    <nav class="small-screen-menu">
+      <div class="offcanvas-toggle" @click="toggleOffcanvas">
+        <img src="../assets/img/menu.png" alt="Menu">
+      </div>
       <a class="navbar-brand" href="#">
-        <img src="../assets/img/logo.png" alt="Logo" class="w-[80px]" />
+        <img src="../assets/img/logo.png" alt="Logo" />
       </a>
-      <div class="categorias flex items-center relative">
-        <p class="mb-0"><b>Categorías</b></p>
-        <a href="#" id="dropdown-toggle" @click="toggleDropdown">
-          <img src="../assets/img/down.png" alt="Dropdown Icon" class="w-[25px]" />
-        </a>
-        <div class="dropdown-menu" v-if="showDropdown">
-          <a href="#">Anillos</a>
-          <a href="#">Aretes</a>
-          <a href="#">Collares</a>
-          <a href="#">Pulseras</a>
-          <a href="#">Phone Charms</a>
+      <div class="search-icon" @click="toggleOffcanvas">
+        <img src="../assets/img/search.png" alt="Search">
+      </div>
+      <div :class="{'offcanvas-menu': true, 'show': isOffcanvasVisible}">
+        <div class="offcanvas-header">
+          <button class="offcanvas-close" @click="toggleOffcanvas">
+            <img src="../assets/img/close.png" alt="Close">
+          </button>
+        </div>
+        <div class="offcanvas-content">
+          <a href="#" @click="toggleOffcanvasCategorias">Categorías</a>
+          <div :class="{'categorias-menu': true, 'show': isOffcanvasCategorias}">
+            <a href="#">Anillos</a>
+            <a href="#">Aretes</a>
+            <a href="#">Collares</a>
+            <a href="#">Pulseras</a>
+            <a href="#">Phone Charms</a>
+          </div>
+          <a href="#">Favoritos</a>
+          <a href="#" @click="toggleOffcanvasAccountMenu">Cuenta</a>
+          <div :class="{'account-menu': true, 'show': isOffcanvasAccountMenu}">
+            <a href="#">Mi perfil</a>
+            <a href="#">Mis pedidos</a>
+            <a href="#">Cerrar sesión</a>
+          </div>
+          <a href="#">Bolsa</a>
+          <form class="search-icon2" role="search">
+          <input type="search" placeholder="Buscar..." class="placeholder:text-[#662f25]" />
+          <button type="submit">
+            <img src="../assets/img/search.png" alt="Search">
+          </button>
+        </form>
         </div>
       </div>
-      <form class="search flex items-center my-2 sm:my-0" role="search">
-        <input
-          class="form-control border border-[#b66141] rounded-full px-4 py-2 w-full sm:w-[300px]"
-          type="search"
-          placeholder="Buscar..."
-        />
-        <button type="submit">
-          <img src="../assets/img/search.png" alt="Buscar" class="w-[30px]" />
-        </button>
-      </form>
-      <div class="icons flex items-center space-x-5 relative">
-        <a href="#" id="account-toggle" @click="toggleAccountMenu">
-          <img src="../assets/img/perf.png" alt="Cuenta" class="w-[30px]" />
-        </a>
-        <div class="account-menu" v-if="showAccountMenu">
-          <p><b>¡Bienvenido usuario!</b></p>
-          <a href="#">Mi perfil</a>
-          <a href="#">Mis pedidos</a>
-          <a href="#">Cerrar sesion</a>
-        </div>
-        <a href="#"><img src="../assets/img/fav.png" alt="Favoritos" class="w-[30px]" /></a>
-        <a href="#"><img src="../assets/img/bag.png" alt="Carrito" class="w-[30px]" /></a>
-      </div>
-    </div>
-  </nav>
+    </nav>
+  </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      showDropdown: false,
-      showAccountMenu: false
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
+
+export default defineComponent({
+  setup() {
+    const isCategorias = ref(false);
+    const isAccountMenuVisible = ref(false);
+    const isOffcanvasVisible = ref(false);
+    const isOffcanvasCategorias = ref(false);
+    const isOffcanvasAccountMenu = ref(false);
+
+    const toggleCategorias = () => {
+      isCategorias.value = !isCategorias.value;
     };
-  },
-  methods: {
-    toggleDropdown(event) {
-      event.preventDefault();
-      this.showDropdown = !this.showDropdown;
-    },
-    toggleAccountMenu(event) {
-      event.preventDefault();
-      this.showAccountMenu = !this.showAccountMenu;
-    },
-    closeMenus(event) {
-      if (!event.target.closest('#dropdown-toggle')) {
-        this.showDropdown = false;
-      }
-      if (!event.target.closest('#account-toggle')) {
-        this.showAccountMenu = false;
-      }
-    }
-  },
-  mounted() {
-    window.addEventListener('click', this.closeMenus);
-  },
-  beforeDestroy() {
-    window.removeEventListener('click', this.closeMenus);
+
+    const toggleAccountMenu = () => {
+      isAccountMenuVisible.value = !isAccountMenuVisible.value;
+    };
+
+    const toggleOffcanvas = () => {
+      isOffcanvasVisible.value = !isOffcanvasVisible.value;
+    };
+
+    const toggleOffcanvasCategorias = () => {
+      isOffcanvasCategorias.value = !isOffcanvasCategorias.value;
+    };
+
+    const toggleOffcanvasAccountMenu = () => {
+      isOffcanvasAccountMenu.value = !isOffcanvasAccountMenu.value;
+    };
+
+    return {
+      isCategorias,
+      isAccountMenuVisible,
+      isOffcanvasVisible,
+      isOffcanvasCategorias,
+      isOffcanvasAccountMenu,
+      toggleCategorias,
+      toggleAccountMenu,
+      toggleOffcanvas,
+      toggleOffcanvasCategorias,
+      toggleOffcanvasAccountMenu,
+    };
   }
-};
+});
 </script>
 
 <style scoped>
-.categorias p {
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+nav {
+  background-color: #fbf8ee;
+  padding: 16px;
+}
+
+/* Estilos para pantallas grandes */
+.large-screen-menu .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.large-screen-menu .navbar-brand img {
+  width: 60px;
+  height: auto;
+}
+
+.large-screen-menu .categorias {
+  display: flex;
+  align-items: center;
+  margin-left: 150px;
+}
+
+.large-screen-menu .categorias p {
+  margin: 0;
   font-size: 1.1rem;
   color: #b66141;
 }
-.search input {
-  background: transparent;
-  border-radius: 20px;
-  border-color: #b66141;
+
+.large-screen-menu .search img,
+.large-screen-menu .icons img,
+.large-screen-menu .categorias img {
+  width: 40px;
 }
-.search button {
-  background: transparent;
-  border: none;
-}
-.dropdown-menu, .account-menu {
+
+.large-screen-menu .account-menu,
+.large-screen-menu .categorias-menu {
   display: none;
   position: absolute;
   top: 50px;
-  left: 0;
+  right: 0;
   background-color: #fff;
   border: 1px solid #b66141;
   padding: 10px;
   z-index: 1000;
-  width: 150px;
+  width: 200px;
   border-radius: 15px;
 }
-.dropdown-menu a, .account-menu a {
+
+.large-screen-menu .account-menu p {
+  color: #662f25;
+  margin: 0;
+  padding-bottom: 5px;
+}
+
+.large-screen-menu .account-menu a,
+.large-screen-menu .categorias-menu a {
+  text-decoration: none;
+  color: #662f25;
+  display: block;
+  padding: 5px 0;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s ease;
+}
+
+.large-screen-menu .account-menu a::after,
+.large-screen-menu .categorias-menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 5px;
+  border-radius: 5px;
+  background-color: #b66141;
+  transition: width 0.3s ease;
+}
+
+.large-screen-menu .account-menu a:hover::after,
+.large-screen-menu .categorias-menu a:hover::after {
+  width: 100%;
+}
+
+.large-screen-menu .account-menu.show,
+.large-screen-menu .categorias-menu.show {
+  display: block;
+}
+
+.large-screen-menu .search {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  flex: 1;
+  justify-content: center;
+}
+
+.large-screen-menu .search input {
+  background: transparent;
+  border-radius: 20px;
+  border: 1px solid #b66141;
+  padding: 8px 16px;
+  outline: none;
+  width: 100%;
+  max-width: 300px;
+}
+
+.large-screen-menu .search button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.large-screen-menu .icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+}
+
+/* Estilos para pantallas pequeñas */
+.small-screen-menu {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.small-screen-menu .offcanvas-toggle img,
+.small-screen-menu .search-icon img,
+.small-screen-menu .navbar-brand img {
+  width: 40px;
+  cursor: pointer;
+}
+
+.search-icon, .search-icon2 {
+  display: flex;
+}
+
+.search-icon2 input {
+  background: transparent;
+  border-radius: 20px;
+  border: 1px solid #b66141;
+  outline: none;
+}
+
+.small-screen-menu .navbar-brand {
+  margin: 0 auto;
+}
+
+.offcanvas-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #fbf8ee;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  z-index: 2000;
+  overflow-y: auto;
+}
+
+.offcanvas-menu.show {
+  display: block;
+}
+
+.offcanvas-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.offcanvas-content .account-menu,
+.offcanvas-content .categorias-menu {
+  display: none;
+  background-color: #fff;
+  border: 1px solid #b66141;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.offcanvas-content .account-menu.show,
+.offcanvas-content .categorias-menu.show {
   display: flex;
   flex-direction: column;
 }
-.account-menu p {
+
+.offcanvas-content a {
+  text-decoration: none;
   color: #662f25;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+  transition: color 0.3s ease;
 }
-.dropdown-menu.show, .account-menu.show {
-  display: block;
+
+.offcanvas-content a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 5px;
+  border-radius: 5px;
+  background-color: #b66141;
+  transition: width 0.3s ease;
 }
-.dropdown-menu a:hover, .account-menu a:hover {
-  background-color: #b66141; 
-  color: #fff; 
-  padding: 5px; 
-  border-radius: 15px;
+
+.offcanvas-content a:hover::after {
+  width: 100%;
 }
-.icons a img:hover, .search button img:hover, .categorias a img:hover {
-  background-color: #662f25; 
-  border-radius: 50%; 
-  padding: 5px; 
-  transition: background-color 0.7s; 
+
+/* Estilos para el botón de cierre del offcanvas */
+.offcanvas-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.offcanvas-close {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.offcanvas-close img {
+  width: 24px;
+}
+
+/* Mostrar y ocultar elementos según el tamaño de pantalla */
+@media (max-width: 768px) {
+  .large-screen-menu {
+    display: none;
+  }
+
+  .small-screen-menu {
+    display: flex;
+    padding: 16px;
+  }
+  .categorias-wrapper {
+    width: 100%;
+    margin-top: 10px;
+  }
 }
 </style>
