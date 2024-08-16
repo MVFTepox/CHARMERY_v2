@@ -1,4 +1,25 @@
 <template>
+<<<<<<< HEAD
+    <div>
+        <Login/>
+    </div>
+</template>
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
+import Login from '@/components/Login.vue';
+
+export default {
+    components: {
+        
+        Login
+    }
+
+}
+</script>
+<style scoped>
+    
+</style>
+=======
   <div>
     <Navbarr2/>
     <Login />
@@ -24,3 +45,4 @@ export default defineComponent({
   setup() {}
 })
 </script>
+>>>>>>> bd5b11b0e6a9fc2722197d5688f79c329075c18c

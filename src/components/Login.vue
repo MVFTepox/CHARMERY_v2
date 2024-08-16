@@ -1,4 +1,22 @@
 <template>
+<<<<<<< HEAD
+  <div class="body">
+    <div class="container">
+      <h2 class="title">Bienvenido</h2>
+      <form @submit="login">
+        <div class="form-group">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" v-model="email" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" v-model="password" required>
+        </div>
+        <div class="linea"></div>
+        <a href="@/views/Registro.vue" class="register-link">¿Aún no tienes cuenta? Regístrate <span>aquí</span></a>
+        <button type="submit" class="submit-button">Iniciar sesión</button>
+      </form>
+=======
   <div class=" ">
     <div class="body">
       <div class="container border-2 rounded-3xl">
@@ -24,11 +42,16 @@
           </ul>
         </div>
       </div>
+>>>>>>> bd5b11b0e6a9fc2722197d5688f79c329075c18c
     </div>
   </div>
 </template>
 
 <style scoped>
+<<<<<<< HEAD
+/* Tu CSS aquí */
+=======
+>>>>>>> bd5b11b0e6a9fc2722197d5688f79c329075c18c
 .body {
   display: flex;
   justify-content: center;
@@ -193,6 +216,17 @@ export default defineComponent({
   setup() {
     const email = ref<string>('');
     const password = ref<string>('');
+<<<<<<< HEAD
+    
+    const login = (event: Event) => {
+      event.preventDefault();
+      console.log(email.value, password.value);
+    };
+
+    return {
+      email,
+      password,
+=======
     const errors = ref<{ email?: string; password?: string }>({});
 
     const login = () => {
@@ -217,6 +251,7 @@ export default defineComponent({
       email,
       password,
       errors,
+>>>>>>> bd5b11b0e6a9fc2722197d5688f79c329075c18c
       login
     };
   }
