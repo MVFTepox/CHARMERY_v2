@@ -33,6 +33,10 @@ export function fetchUsers() {
   return apiRequest('/user');
 }
 
+export function fetchCategory(id: number) {
+  return apiRequest(`/categories/${id}`);
+}
+
 export function fetchUser(id: string) {
   return apiRequest(`/user/${id}`);
 }
@@ -49,7 +53,7 @@ export function fetchProduct(id: number) {
   return apiRequest(`/products/${id}`);
 }
 
-export function fetchWishlist() {
+export function fetchWishlist(id: number) {
   return apiRequest('/favorites');
 }
 
