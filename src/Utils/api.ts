@@ -33,7 +33,7 @@ export function fetchUsers() {
   return apiRequest('/user');
 }
 
-export function fetchCategory(id: string) {
+export function fetchCategory(id: number) {
   return apiRequest(`/categories/${id}`);
 }
 
