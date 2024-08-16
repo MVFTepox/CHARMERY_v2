@@ -18,6 +18,10 @@
         </div>
       </div>
       <hr style="border-color: #eddaab" class="m-4" />
+      <div class="flex flex-wrap">
+        <div v-for""></div>
+        <h3>{{ blocked }}</h3>
+      </div>
     </div>
   </div>
   <div>
@@ -29,6 +33,9 @@ import { defineComponent } from 'vue'
 import Navbarr from '@/components/Navbarr.vue'
 import footerPage from '@/components/footer.vue'
 import Navbarr2 from '@/components/Navbarr2.vue';
+import { fetchWishlist } from '@/Utils/api';
+import { useUserStore } from '@/stores/authStore';
+import { mapState } from 'pinia';
 
 export default defineComponent({
   name: 'listasDeseos',
@@ -36,7 +43,33 @@ export default defineComponent({
     Navbarr,
     footerPage,
     Navbarr2
-  }
+  },
+  data() {
+    return {
+      wishlist: [],
+      loading: false,
+      blocked : ''
+    }
+  },
+  computed:{
+    ...mapState(useUserStore, ['userId'])
+  },
+  methods: {
+    async loadWishlist() {
+      if (this.userId !== null) {
+        this.loading = true;
+        try {
+          this.wishlist = await fetchWishlist(this.userId); // Fetch wishlist using userId
+        } catch (err) {
+          console.error('Failed to load Wishlist');
+        } finally {
+          this.loading = false;
+        }
+      } else {
+        this.blocked = 'Inicie sesión en el ícono de perfil'
+      }
+    },
+  },
 })
 </script>
 <style scoped>

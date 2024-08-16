@@ -1,18 +1,18 @@
 <template>
   <div class="container mx-auto sm:px-4 lg:px-16 pt-16 px-4">
-    <h1 class="text-6xl text-orange mb-6" style="font-family: 'El Messiri';">Bolsa de compras</h1>
+    <h1 class="text-4xl sm:text-5xl md:text-6xl text-orange mb-6" style="font-family: 'El Messiri';">Bolsa de compras</h1>
     <div class="flex flex-col lg:flex-row gap-6">
       <div class="w-full lg:w-2/3">
         <div class="border-2 rounded-3xl p-4" style="border-color: #eddaab;">
           <div class="flex items-center justify-between pb-2 mb-2">
-            <div class="flex items-center justify-center">
+            <div class="flex items-center">
               <input type="checkbox" v-model="selectAll" @change="toggleSelectAll" id="all"
-                class="transition-all hover:scale-105 me-3 border-2 rounded-3xl checkbox border-[#b66141] [--chkbg:#b66141] [--chkfg:#eddaab] checked:border-[#b66141]" />
+                class="transition-transform hover:scale-105 me-3 border-2 rounded-3xl checkbox border-[#b66141] [--chkbg:#b66141] [--chkfg:#eddaab] checked:border-[#b66141]" />
             </div>
-            <div class="flex w-full justify-between">
-              <span class="w-1/3 text-left text-orange text-lg" style="font-family: 'DM Sans';">Seleccionar todo</span>
-              <span class="w-1/3 text-center text-orange text-lg" style="font-family: 'DM Sans';">Cantidad</span>
-              <span class="w-1/3 text-center text-orange text-lg" style="font-family: 'DM Sans';">Total</span>
+            <div class="flex w-full justify-between text-sm md:text-base">
+              <span class="w-1/3 text-left text-orange" style="font-family: 'DM Sans';">Seleccionar todo</span>
+              <span class="w-1/3 text-center text-orange" style="font-family: 'DM Sans';">Cantidad</span>
+              <span class="w-1/3 text-center text-orange" style="font-family: 'DM Sans';">Total</span>
             </div>
           </div>
           <CartItem v-for="item in items" :key="item.id" :item="item" :update-totals="updateTotals"
@@ -20,52 +20,51 @@
         </div>
       </div>
 
-      <div class="w-full lg:w-1/3" style="font-family: 'El Messiri';">
+      <div class="w-full lg:w-1/3 mt-6 lg:mt-0" style="font-family: 'El Messiri';">
         <div class="border-2 rounded-3xl p-4" style="border-color: #cb8844;">
-          <div class="mb-4 flex justify-between items-end">
-            <p class="text-orange text-3xl">Subtotal</p>
-            <p class="text-brown text-4xl">${{ subtotal }}</p>
+          <div class="mb-4 flex justify-between items-end text-sm md:text-base">
+            <p class="text-orange text-xl md:text-3xl">Subtotal</p>
+            <p class="text-brown text-2xl md:text-4xl">${{ subtotal }}</p>
           </div>
-          <div class="mb-4 flex justify-between items-end">
-            <p class="text-orange text-3xl">IVA</p>
-            <p class="text-brown text-4xl">${{ iva }}</p>
+          <div class="mb-4 flex justify-between items-end text-sm md:text-base">
+            <p class="text-orange text-xl md:text-3xl">IVA</p>
+            <p class="text-brown text-2xl md:text-4xl">${{ iva }}</p>
           </div>
 
           <div class="mb-4 flex flex-col justify-between h-full">
-            <p class="text-orange text-3xl">Envío</p>
+            <p class="text-orange text-xl md:text-3xl">Envío</p>
             <div>
               <div class="flex mt-4">
                 <button :class="{ 'active-button': shipping === 'standard' }"
-                  class="ps-0 btn w-full justify-between hover:border-2 hover:bg-[#eddaab] bg-transparent"
+                  class="btn w-full justify-between hover:border-2 hover:bg-[#eddaab] bg-transparent text-sm md:text-base"
                   name="shipping" value="standard" @click="updateShipping('standard')" style="border-color: #cb8844;">
-                  <img src="../assets/img/deliver.png" alt="" class="max-h-10 min-h-8 w-auto">
-                  <p class="text-orange text-base xl:text-xl md:text-2xl sm:text-2xl lg:text-base">Envío estandar</p>
-                  <p class="text-brown text-2xl">$30</p>
+                  <img src="../assets/img/deliver.png" alt="" class="max-h-8 min-h-6 md:max-h-10 md:min-h-8 w-auto">
+                  <p class="text-orange md:text-lg">Envío estandar</p>
+                  <p class="text-brown text-lg md:text-2xl">$30</p>
                 </button>
               </div>
               <div class="flex mt-4">
                 <button :class="{ 'active-button': shipping === 'personal' }"
-                  class="btn w-full justify-between hover:border-2 hover:bg-[#eddaab] bg-transparent" name="shipping"
-                  value="personal" @click="updateShipping('personal')" style="border-color: #cb8844;">
-                  <img src="../assets/img/volunteer.png" alt="" class="max-h-10 min-h-8">
-                  <p class="text-orange text-base xl:text-xl md:text-2xl sm:text-2xl lg:text-base">Entrega en persona
-                  </p>
-                  <p class="text-brown text-2xl">$0</p>
+                  class="btn w-full justify-between hover:border-2 hover:bg-[#eddaab] bg-transparent text-sm md:text-base"
+                  name="shipping" value="personal" @click="updateShipping('personal')" style="border-color: #cb8844;">
+                  <img src="../assets/img/volunteer.png" alt="" class="max-h-8 min-h-6 md:max-h-10 md:min-h-8">
+                  <p class="text-orange md:text-lg">Entrega en persona</p>
+                  <p class="text-brown text-lg md:text-2xl">$0</p>
                 </button>
               </div>
             </div>
           </div>
 
           <div class="w-full flex justify-center">
-            <div class="pt-2 flex justify-between items-end w-4/6">
-              <p class="text-brown text-3xl">Total</p>
-              <p class="text-brown text-4xl">${{ total }}</p>
+            <div class="pt-2 flex justify-between items-end w-full md:w-4/6">
+              <p class="text-brown text-xl md:text-3xl">Total</p>
+              <p class="text-brown text-2xl md:text-4xl">${{ total }}</p>
             </div>
           </div>
 
           <div class="flex justify-center">
             <a href="/formulario">
-              <button class="btn btn-wide mt-4 rounded-3xl text-xl font-medium tracking-wide hover:scale-105"
+              <button class="btn btn-wide mt-4 rounded-3xl text-lg md:text-xl font-medium tracking-wide hover:scale-105"
                 style="background-color: #b66141; color: #eddaab; font-family: 'DM Sans';">Pagar</button>
             </a>
           </div>

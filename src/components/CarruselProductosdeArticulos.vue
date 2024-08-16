@@ -1,8 +1,8 @@
 <template>
     <div class="carousel-container carousel w-full overflow-x-auto py-4">
         <div class="  flex gap-4">
-            <ProductCard v-for="(product, index) in products" :key="index" :productName="product.name"
-                :productPrice="product.price" />
+            <ProductCard v-for="(products, index= 6) in products" :key="index" :productName="products.name"
+                :productPrice="products.price"  :v-if="index < 7"  />
         </div>
     </div>
     

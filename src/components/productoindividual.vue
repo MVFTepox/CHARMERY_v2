@@ -5,7 +5,6 @@
                 <CarouselProduct :images="images" />
             </div>
 
-
             <div class="font-DMsans flex flex-col justify-center">
                 <div>
                     <p class="text-7xl font-elmessiri text-[#CB8844] text-center">{{ nombreDelArticulo }}</p>
@@ -18,7 +17,7 @@
                 </div>
                 <div>
                     <p class="text-4xl text-[#662F25]">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci assumenda autem
+                        {{ description }}
                     </p>
                     <p class="text-7xl font-elmessiri my-4 text-[#CB8844]">{{ precioDelArticulo }}</p>
                 </div>
@@ -32,38 +31,57 @@
                 </div>
             </div>
         </div>
-
     </div>
-
-
-
 </template>
 
-
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import img1Src from '@/assets/img/moño perla zoom editado.png'
-import img2Src from '@/assets/img/collar corazon realista editado.png'
-import CarouselProduct from '@/components/CarruselProducto.vue'
+import { defineComponent } from 'vue';
+import { PropType } from 'vue';
+import CarouselProduct from '@/components/CarruselProducto.vue';
 import QuantitySelector from '@/components/Cantidad.vue';
 
 export default defineComponent({
-    name: 'pageVentaProducto',
+    name: 'productoindividual',
 
     components: {
         CarouselProduct,
         QuantitySelector
     },
 
+    props: {
+        images: {
+            type: Array as PropType<string[]>,
+            required: true
+        },
+        nombreDelArticulo: {
+            type: String,
+            required: true
+        },
+        precioDelArticulo: {
+            type: String,
+            required: true
+        },
+        description: {
+            type: String,
+            required: true
+        },
+        Categoría: {
+            type: String,
+            required: true
+        },
+        Estilo: {
+            type: String,
+            required: true
+        }
+    },
+
     data() {
         return {
-            images: [
-                img1Src, img2Src
-            ],
             productQuantity: 1,
             currentFill: 1
         };
     },
+
     methods: {
         updateQuantity(newQuantity: number) {
             this.productQuantity = newQuantity;
@@ -73,24 +91,8 @@ export default defineComponent({
         },
     },
 
-    setup() {
-            const img1 = ref(img1Src)
-            const img2 = ref(img2Src)
-
-            const Categoría = ref('Collar')
-            const Estilo = ref('Corazón Realista')
-
-            const nombreDelArticulo = ref('Collar Corazón Realista')
-            const precioDelArticulo = ref('$ 15')
-
-            return {
-                img1,
-                img2,
-                nombreDelArticulo,
-                precioDelArticulo,
-                Categoría,
-                Estilo
-            }
-        }
-    })
+    mounted() {
+        console.log('Images:', this.images);  // Verificar que las imágenes se reciben correctamente
+    }
+});
 </script>
