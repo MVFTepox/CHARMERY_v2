@@ -12,6 +12,7 @@ import footerpage from '@/components/footer.vue'
 import listaDeDeseos from '@/views/listaDeDeseos.vue'
 import carrito from '@/views/CarritoVista.vue'
 import categoria from '@/views/categorias.vue'
+import  NotFound from '@/views/NotFound.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -89,7 +90,13 @@ const router = createRouter({
       path: '/prueba',
       name: 'prueba',
       component: prueba
+    },
+    {
+      path: '/NotFound',
+      name: 'NotFound',
+      component: NotFound
     }
+
   ]
 })
 

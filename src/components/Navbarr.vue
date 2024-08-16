@@ -26,15 +26,15 @@
           </button>
         </form>
         <div class="icons">
-          <a href="#"><img src="../assets/img/fav.png" alt="Favorite"></a>
+          <a href="/NotFound"><img src="../assets/img/fav.png" alt="Favorite"></a>
           <a href="#" @click="toggleAccountMenu">
             <img src="../assets/img/perf.png" alt="Cuenta">
           </a>
           <div :class="{'account-menu': true, 'show': isAccountMenuVisible}" @click.stop>
             <p><b>¡Bienvenido usuario!</b></p>
-            <a href="#">Mi perfil</a>
-            <a href="#">Mis pedidos</a>
-            <a href="#">Cerrar sesión</a>
+            <a href="/NotFound">Mi perfil</a>
+            <a href="/NotFound">Mis pedidos</a>
+            <a href="/NotFound">Cerrar sesión</a>
           </div>
           <a href="#"><img src="../assets/img/bag.png" alt="Bolsa"></a>
         </div>
@@ -67,8 +67,8 @@
             <a href="#">Pulseras</a>
             <a href="#">Phone Charms</a>
           </div>
-          <a href="#">Favoritos</a>
-          <a href="#" @click="toggleOffcanvasAccountMenu">Cuenta</a>
+          <a href="/notFound">Favoritos</a>
+          <a href="/notFound" @click="toggleOffcanvasAccountMenu">Cuenta</a>
           <div :class="{'account-menu': true, 'show': isOffcanvasAccountMenu}">
             <a href="#">Mi perfil</a>
             <a href="#">Mis pedidos</a>
