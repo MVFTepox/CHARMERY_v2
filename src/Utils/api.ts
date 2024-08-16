@@ -53,7 +53,7 @@ export function fetchProduct(id: number) {
   return apiRequest(`/products/${id}`);
 }
 
-export function fetchWishlist() {
+export function fetchWishlist(id: number) {
   return apiRequest('/favorites');
 }
 
