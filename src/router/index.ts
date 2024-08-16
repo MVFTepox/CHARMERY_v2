@@ -51,9 +51,10 @@ const router = createRouter({
       component: SobreNosotros
     },
     {
-      path: '/vistaproducto',
+      path: '/vistaproducto/:id',
       name: 'vistaproducto',
-      component: vistaProducto
+      component: vistaProducto,
+      props: true
     },
     {
       path: '/login',

@@ -11,7 +11,11 @@
       <p >Gracias  por tu orden!</p>
       <a href="/">
       <input type="button" class="font-DMsans" value="Terminar" />
+<<<<<<< HEAD
       </a>
+=======
+    </a>
+>>>>>>> 0813986941934e343df8800ba957d509c3165d29
     </div>
   </div>
   <div>
