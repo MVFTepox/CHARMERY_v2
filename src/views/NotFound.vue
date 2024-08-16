@@ -4,18 +4,15 @@
   </div>
   <div>
     <div class="confirmation-page">
-      <h1 class="font-elmessiri">Tu pedido está confirmado!</h1>
-      <div class="confirmation-icon">
-        <img src="@/assets/img/listo.png" alt="Confirmación">
+      <h1 class="font-elmessiri">Página no encontrada</h1>
+      <div class="error-code">
+        <span class="number">4</span>
+        <img src="@/assets/img/logo.png" alt="0" class="number-img">
+        <span class="number">4</span>
       </div>
-      <p >Gracias  por tu orden!</p>
       <a href="/">
-      <input type="button" class="font-DMsans" value="Terminar" />
-<<<<<<< HEAD
+      <input type="button" class="font-DMsans" value="Volver" />
       </a>
-=======
-    </a>
->>>>>>> 0813986941934e343df8800ba957d509c3165d29
     </div>
   </div>
   <div>
@@ -24,26 +21,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue';
 import Navbarr from '@/components/Navbarr.vue';
 import footerPAge from '@/components/footer.vue';
 import Navbarr2 from '@/components/Navbarr2.vue';
 
 export default defineComponent({
-
   name: 'ConfirmationPage',
   components: {
     Navbarr,
     footerPAge,
     Navbarr2
   }
-})
-
-
-
-
-
-
+});
 </script>
 
 <style scoped>
@@ -66,20 +56,22 @@ h1 {
   margin: 20px;
 }
 
-.confirmation-icon {
-  margin: 20px 0;
+.error-code {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10rem; /* Ajusta el tamaño de la letra según sea necesario */
 }
 
-.confirmation-icon img {
-  width: 150px;
+.number {
+  font-size: inherit;
+  margin: 0 1rem; /* Espacio entre el número y la imagen */
+}
+
+.number-img {
+  width: 150px; /* Ajusta el tamaño del logo según sea necesario */
   height: 150px;
-}
-
-p {
-  font-family: 'elMessiri',sans-serif;
-  font-size: 1.6em;
-  margin: 30px;
-  color: #662F25;
+  object-fit: contain; /* Asegura que la imagen mantenga sus proporciones */
 }
 
 input[type="button"] {
@@ -101,18 +93,13 @@ input[type="button"] {
     font-size: 1.5em;
   }
 
-  p {
-    font-size: 1em;
+  .error-code {
+    font-size: 5rem;
   }
 
-  .confirmation-icon img {
+  .number-img {
     width: 80px;
     height: 80px;
-  }
-
-  input [type="button"] {
-    padding: 8px 16px;
-    font-size: 0.9em;
   }
 }
 
@@ -122,18 +109,13 @@ input[type="button"] {
     font-size: 1.75em;
   }
 
-  p {
-    font-size: 1.1em;
+  .error-code {
+    font-size: 7rem;
   }
 
-  .confirmation-icon img {
-    width: 45px;
-    height: 45px;
-  }
-
-  input [type="button"] {
-    padding: 9px 18px;
-    font-size: 0.95em;
+  .number-img {
+    width: 100px;
+    height: 100px;
   }
 }
 </style>

@@ -26,7 +26,7 @@
           </button>
         </form>
         <div class="icons">
-          <a href="/wishlist"><img src="../assets/img/fav.png" alt="Favorite"></a>
+          <a href="/NotFound"><img src="../assets/img/fav.png" alt="Favorite"></a>
           <a href="#" @click="toggleAccountMenu">
             <img src="../assets/img/perf.png" alt="Cuenta">
           </a>
