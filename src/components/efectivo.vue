@@ -8,9 +8,9 @@
         Dentro de la universidad Tecnologica De Torreón (UTT)
       </p>
       <input
+        @input="updateEfectivoData"
         type="text"
-        name=""
-        id=""
+        v-model="address"
         class="form-control border-2 rounded-3xl px-4 pt-0.5 border-[#B66141] w-full lg:w-9/12"
       />
     </div>
@@ -20,19 +20,58 @@
       <div class="flex justify-between gap-2">
         <input
           type="text"
-          name=""
-          id=""
+          v-model="time"
+          @input="updateEfectivoData"
           class="form-control border-2 rounded-3xl px-4 pt-0.5 border-[#B66141] lg:w-4/5"
         />
         <select
-          name=""
-          id=""
+          v-model="meridian"
+          @input="updateEfectivoData"
           class="form-control border-2 rounded-3xl px-4 pt-0.5 border-[#B66141] lg:w-2/5"
         >
-          <option value="">AM</option>
-          <option value="">PM</option>
+          <option value="AM">AM</option>
+          <option value="PM">PM</option>
         </select>
       </div>
     </div>
   </div>
 </template>
+
+<script lang="ts">
+import { defineComponent, ref, watch } from 'vue'
+
+export default defineComponent({
+  name: 'Efectivo',
+  props: {
+    efectivoData: {
+      type: Object,
+      default: () => ({
+        address: '',
+        time: '',
+        meridian: '',
+      }),
+    }
+  },
+  emits: ['update:efectivoData'],
+
+  setup(props, { emit }) {
+    const address = ref(props.efectivoData.address)
+    const time = ref(props.efectivoData.time)
+    const meridian = ref(props.efectivoData.meridian)
+
+    watch([address, time, meridian], () => {
+      emit('update:efectivoData', {
+        address: address.value,
+        time: time.value,
+        meridian: meridian.value,
+      })
+    })
+
+    return {
+      address,
+      time,
+      meridian,
+    }
+  },
+})
+</script>
