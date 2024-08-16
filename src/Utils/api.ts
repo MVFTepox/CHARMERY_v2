@@ -49,7 +49,7 @@ export function fetchProducts() {
   return apiRequest('/products');
 }
 
-export function fetchProduct(id: number) {
+export function fetchProduct(id: string) {
   return apiRequest(`/products/${id}`);
 }
 
@@ -70,7 +70,7 @@ export function fetchDeliveryAddress() {
   return apiRequest('/delivery-address');
 }
 
-export function fetchImageById(id: number) {
+export function fetchImageById(id: string) {
   return apiRequest(`/images/${id}`);
 }
 export function fetchDefaultAddress() {
