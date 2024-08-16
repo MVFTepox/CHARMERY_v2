@@ -68,11 +68,10 @@
           </ul>
         </div>
       </div>
-      <div
-        class="product-grid grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 p-4"
-      >
-        <ProductCard v-for="product in products" :key="product.id" :product="product" />
-      </div>
+      <div class="product-grid grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 p-4">
+  <ProductCard  />
+</div>
+
     </div>
   </div>
   <div>
@@ -102,16 +101,23 @@ export default defineComponent({
     const sortOpen = ref(false);
 
     const fetchCategoryData = async (categoryId: number) => {
-      try {
-        const response = await fetch(`http://3.134.108.48:3333/api/categories`);
-        const data = await response.json();
-        const category = data.find((cat: any) => cat.id === categoryId);
-        currentCategoryName.value = category.category_name || "Phone Charms";
-        products.value = category.products || [];
-      } catch (error) {
-        console.error("Error fetching category data:", error);
-      }
-    };
+  try {
+    const response = await fetch(`http://3.134.108.48:3333/api/categories`);
+    const data = await response.json();
+    const category = data.find((cat: any) => cat.id === categoryId);
+    if (category) {
+      currentCategoryName.value = category.category_name || "Phone Charms";
+      products.value = category.products || []; // Ensure products are filtered by the category
+    } else {
+      console.error("Category not found");
+      products.value = []; // Empty products if category is not found
+    }
+  } catch (error) {
+    console.error("Error fetching category data:", error);
+    products.value = []; // Empty products on error
+  }
+};
+
 
     onMounted(() => {
       const categoryId = 3; // example for 'phoneCharms'
@@ -147,7 +153,9 @@ export default defineComponent({
       toggleSort,
       closeDropdowns,
       sortBy,
+      
     };
+
   },
 });
 </script>

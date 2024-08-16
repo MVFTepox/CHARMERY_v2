@@ -3,11 +3,8 @@
   <div>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 rounded-3xl px-10">
       <div class="flex justify-center items-center">
-<<<<<<< HEAD
         <div class="carousel size-5/6 rounded-3xl shadow-lg shadow-gray-400">
-=======
         <div class="carousel w-full rounded-3xl shadow-lg shadow-gray-400">
->>>>>>> 51a95779429729c6ccd5c0586d75b4c87091d09e
           <div id="slide1" class="carousel-item relative w-full">
             <img :src="img1" class="w-full rounded-3xl" />
             <div
