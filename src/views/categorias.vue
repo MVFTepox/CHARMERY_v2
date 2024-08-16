@@ -97,6 +97,19 @@ export default defineComponent({
     footerPage
   },
   setup() {
+
+    async function Category(id:number) {
+      try{
+        const response = await fetch(`https://randomuser.me/api/`);
+            const data = await response.json();
+            let user = data.results[0];
+            
+      }
+      catch (error) {
+            console.error('Error fetching random user data:', error);
+        }
+    }
+
     const filterOpen = ref(false);
     const sortOpen = ref(false);
 
@@ -129,7 +142,7 @@ export default defineComponent({
       sortBy,
     };
 
-    
+
   },
 
 });
