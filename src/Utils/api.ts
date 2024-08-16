@@ -57,6 +57,13 @@ export function fetchDetailCart() {
   return apiRequest('/detail-cart');
 }
 
+export function fetchCategory() {
+  return apiRequest('/categories');
+}
+export function fetchProductsByCategory(id: number) {
+  return apiRequest(`/products/category/${id}`);
+}
+
 export function fetchDeliveryAddress(id: number) {
   return apiRequest('/delivery-address');
 }
