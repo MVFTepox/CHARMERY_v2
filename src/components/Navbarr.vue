@@ -1,45 +1,7 @@
 <template>
   <div>
     <!-- Diseño para pantallas grandes -->
-    <nav class="large-screen-menu" v-if="!isUserLoggedIn">
-      <div class="container">
-        <a class="navbar-brand" href="/">
-          <img src="../assets/img/logo.png" alt="Logo" />
-        </a>
-        <div class="categorias">
-          <p><b>Categorías</b></p>
-          <a href="#" @click="toggleCategorias">
-            <img src="../assets/img/down.png" alt="Cuenta">
-          </a>
-          <div :class="{'categorias-menu': true, 'show': isCategorias}" @click.stop>
-            <a href="#">Anillos</a>
-            <a href="#">Aretes</a>
-            <a href="#">Collares</a>
-            <a href="#">Pulseras</a>
-            <a href="#">Phone Charms</a>
-          </div>
-        </div>
-        <form class="search" role="search">
-          <input type="search" placeholder="Buscar..." class="placeholder:text-[#662f25]" />
-          <button type="submit">
-            <img src="../assets/img/search.png" alt="Search">
-          </button>
-        </form>
-        <div class="icons">
-          <a href="#"><img src="../assets/img/fav.png" alt="Favorite"></a>
-          <a href="#" @click="toggleAccountMenu">
-            <img src="../assets/img/perf.png" alt="Cuenta">
-          </a>
-          <div :class="{'account-menu': true, 'show': isAccountMenuVisible}" @click.stop>
-            <a href="#">Iniciar sesión</a>
-            <a href="#">Registrate</a>
-          </div>
-          <a href="#"><img src="../assets/img/bag.png" alt="Bolsa"></a>
-        </div>
-      </div>
-    </nav>
-
-    <nav class="large-screen-menu" v-else>
+    <nav class="large-screen-menu">
       <div class="container">
         <a class="navbar-brand" href="/">
           <img src="../assets/img/logo.png" alt="Logo" />
@@ -107,20 +69,18 @@
           </div>
           <a href="#">Favoritos</a>
           <a href="#" @click="toggleOffcanvasAccountMenu">Cuenta</a>
-          <div :class="{'account-menu': true, 'show': isOffcanvasAccountMenu}" v-if="isOffcanvasAccountMenu">
-            <a v-if="isUserLoggedIn" href="#">Mi perfil</a>
-            <a v-if="isUserLoggedIn" href="#">Mis pedidos</a>
-            <a v-if="!isUserLoggedIn" href="#">Iniciar sesión</a>
-            <a v-if="!isUserLoggedIn" href="#">Registrarse</a>
-            <a v-if="isUserLoggedIn" href="#" @click="logOut">Cerrar sesión</a>
+          <div :class="{'account-menu': true, 'show': isOffcanvasAccountMenu}">
+            <a href="#">Mi perfil</a>
+            <a href="#">Mis pedidos</a>
+            <a href="#">Cerrar sesión</a>
           </div>
           <a href="#">Bolsa</a>
           <form class="search-icon2" role="search">
-            <input type="search" placeholder="Buscar..." class="placeholder:text-[#662f25]" />
-            <button type="submit">
-              <img src="../assets/img/search.png" alt="Search">
-            </button>
-          </form>
+          <input type="search" placeholder="Buscar..." class="placeholder:text-[#662f25]" />
+          <button type="submit">
+            <img src="../assets/img/search.png" alt="Search">
+          </button>
+        </form>
         </div>
       </div>
     </nav>
@@ -132,7 +92,6 @@ import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   setup() {
-    const isUserLoggedIn = ref(false);
     const isCategorias = ref(false);
     const isAccountMenuVisible = ref(false);
     const isOffcanvasVisible = ref(false);
@@ -159,14 +118,6 @@ export default defineComponent({
       isOffcanvasAccountMenu.value = !isOffcanvasAccountMenu.value;
     };
 
-    const logIn = () => {
-      isUserLoggedIn.value = true;
-    };
-
-    const logOut = () => {
-      isUserLoggedIn.value = false;
-    };
-
     return {
       isCategorias,
       isAccountMenuVisible,
@@ -178,9 +129,6 @@ export default defineComponent({
       toggleOffcanvas,
       toggleOffcanvasCategorias,
       toggleOffcanvasAccountMenu,
-      logIn,
-      logOut,
-      isUserLoggedIn,
     };
   }
 });
