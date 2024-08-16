@@ -71,6 +71,9 @@
   import { defineComponent, ref, computed } from 'vue';
   import CartItem from '../components/cartCard.vue';
   import Navbar from '@/components/Navbarr2.vue';
+  import {fetchDetailCart} from '@/Utils/api';
+  import {fetchCart} from '@/Utils/api';
+
   
   interface Item {
     id: number;

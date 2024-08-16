@@ -18,10 +18,10 @@ export const useUserStore = defineStore('user', {
     userId: null as number | null,
   }),
   actions: {
-    setUserId(id: number) {
+    setUserId(id:number){
       this.userId = id;
     },
-    clearUserId() {
+    clearUserId(){
       this.userId = null;
     },
   },
