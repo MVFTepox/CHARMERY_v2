@@ -1,4 +1,7 @@
 
+node_modules
+=======
+
 
 # Logs
 logs
@@ -30,3 +33,4 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+

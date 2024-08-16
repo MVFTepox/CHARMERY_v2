@@ -1,32 +1,32 @@
 <template>
-<div class="body">
-  <div class="container">
-    <div class="text-section">
-      <h1>Charmery</h1>
-      <p>
-        El encanto<br>
-        de la joyería<br>
-      </p>
-    </div>
-    <div class="carousel">
-      <div class="card">
-        <img src="@/assets/img/corazones estilo bridgerton.jpg" alt="Bracelet">
+  <div class="body">
+    <div class="container">
+      <div class="text-section">
+        <h1 class="font-elmessiri text-x">Charmery</h1>
+        <p class="font-elmessiri">
+          El encanto<br>
+          de la joyería<br>
+        </p>
       </div>
-      <div class="card">
-        <img src="@/assets/img/colguijo AJAJAJA.jpg" alt="Rings">
-      </div>
-      <div class="card">
-        <img src="@/assets/img/estrellas.jpg" alt="Necklaces">
-      </div>
-      <div class="card">
-        <img src="@/assets/img/corazones pendientes.jpg" alt="Item 4">
-      </div>
-      <div class="card">
-        <img src="@/assets/img/PERLAS Y CORAZONN.jpg" alt="Item 5">
+      <div class="carousel">
+        <div class="card">
+          <img src="@/assets/img/corazones estilo bridgerton.jpg" alt="Bracelet">
+        </div>
+        <div class="card">
+          <img src="@/assets/img/colguijo AJAJAJA.jpg" alt="Rings">
+        </div>
+        <div class="card">
+          <img src="@/assets/img/estrellas.jpg" alt="Necklaces">
+        </div>
+        <div class="card">
+          <img src="@/assets/img/corazones pendientes.jpg" alt="Item 4">
+        </div>
+        <div class="card">
+          <img src="@/assets/img/PERLAS Y CORAZONN.jpg" alt="Item 5">
+        </div>
       </div>
     </div>
   </div>
-</div>
 </template>
 
 <script lang='ts'>
@@ -37,22 +37,14 @@ export default {
 
 <style scoped>
 .body {
-  margin: 0;
-  padding: 0;
-  font-family: 'El Messiri', sans-serif;
-  background-color: #f9f9f9;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
+  width: auto;
   position: relative;
   overflow: hidden;
 }
 
 .container {
-  width: 100%;
   height: 100%;
-  display: flex;
   align-items: stretch;
   justify-content: center;
   position: relative;
@@ -67,32 +59,34 @@ export default {
 }
 
 .text-section h1 {
-  top: 30%;
-  left: 50%;
+  top: 40%;
+  left: 60%;
   transform: translate(-50%, -50%);
-  font-size: 7rem;
+  font-size: 8rem;
+  font-weight: 600;
   text-shadow: 
-    2px 2px 10px rgba(255, 255, 255, 0.8), 
-    -2px -2px 10px rgba(255, 255, 255, 0.8),
-    2px -2px 10px rgba(255, 255, 255, 0.8),
-    -2px 2px 10px rgba(255, 255, 255, 0.8),
-    0px 0px 10px rgba(255, 255, 255, 0.8);
+    4px 4px 20px rgba(255, 255, 255, 0.8), 
+    -4px -4px 20px rgba(255, 255, 255, 0.8),
+    4px -4px 20px rgba(255, 255, 255, 0.8),
+    -4px 4px 20px rgba(255, 255, 255, 0.8),
+    0px 0px 20px rgba(255, 255, 255, 0.8);
 }
 
 .text-section p {
   top: 70%;
-  left: 50%;
+  left: 60%;
   transform: translate(-50%, -50%);
   font-size: 2rem;
   line-height: 1.2;
-  color: #000000;
+  color: #b66141;
 }
 
 .carousel {
-  width: 100%;
+  width: 100vw;
   height: 100%;
   display: flex;
   overflow: hidden;
+  flex-wrap: nowrap;
 }
 
 .card {
@@ -100,7 +94,6 @@ export default {
   height: 100%;
   transition: all 1s ease;
   cursor: pointer;
-  position: relative;
 }
 
 .card img {
@@ -119,10 +112,6 @@ export default {
   flex: 3;
 }
 
-.carousel:hover .card:not(:hover) img {
-  filter: grayscale(100%) opacity(0.5);
-}
-
 .carousel:hover .card:not(:hover)::after {
   content: '';
   position: absolute;
@@ -132,6 +121,20 @@ export default {
   height: 100%;
   background: linear-gradient(135deg, #f8f2dc 0%, #f7ecc9 100%);
   mix-blend-mode: multiply;
+}
+
+@media (max-width: 768px) {
+  .text-section h1 {
+    font-size: 4rem;
+    top: 35%;
+    left: 50%;
+  }
+
+  .text-section p {
+    font-size: 1.2rem;
+    top: 55%;
+    left: 50%;
+  }
 }
 
 @media (max-width: 300px) {
