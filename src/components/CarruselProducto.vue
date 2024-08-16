@@ -11,32 +11,29 @@
             </div>
             <button @click="prevSlide"
                 class="btn absolute top-1/2 left-0 transform p-2 -translate-y-1/2 bg-[#B66141] text-white  rounded-full">
-                < </button>
-                    <button @click="nextSlide"
-                        class="btn absolute top-1/2 right-0 transform -translate-y-1/2 bg-[#B66141] text-white p-2 rounded-full">
-                        >
-                    </button>
+                <
+            </button>
+            <button @click="nextSlide"
+                class="btn absolute top-1/2 right-0 transform -translate-y-1/2 bg-[#B66141] text-white p-2 rounded-full">
+                >   
+            </button>
         </div>
     </div>
-
+    
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { PropType } from 'vue';
-
 
 export default defineComponent({
-    name: 'CarruselProductosdeArticulos',
+    name: 'Carousel',
     props: {
         images: {
-            type: Array as PropType<string[]>,
-            required: true
-        }
+            type: Array as () => string[],
+            required: true,
+        },
     },
-
     setup(props) {
-        console.log('Images:', props.images); // Agrega esta línea para depurar
         const currentIndex = ref(0);
 
         const prevSlide = () => {
@@ -56,8 +53,7 @@ export default defineComponent({
         };
 
         return { currentIndex, prevSlide, nextSlide };
-    }
-
+    },
 });
 </script>
 
