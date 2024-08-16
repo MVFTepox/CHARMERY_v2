@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Diseño para pantallas grandes -->
-    <nav class="large-screen-menu" v-if="!isUserLoggedIn">
+    <nav class="large-screen-menu">
       <div class="container">
         <a class="navbar-brand" href="/">
           <img src="../assets/img/logo.png" alt="Logo" />
@@ -89,16 +89,11 @@ import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   setup() {
-    const isUserLoggedIn = ref(false);
     const isCategorias = ref(false);
     const isAccountMenuVisible = ref(false);
     const isOffcanvasVisible = ref(false);
     const isOffcanvasCategorias = ref(false);
     const isOffcanvasAccountMenu = ref(false);
-    const loginUsername = ref('');
-    const loginPassword = ref('');
-    const registerUsername = ref('');
-    const registerPassword = ref('');
 
     const toggleCategorias = () => {
       isCategorias.value = !isCategorias.value;
@@ -120,49 +115,7 @@ export default defineComponent({
       isOffcanvasAccountMenu.value = !isOffcanvasAccountMenu.value;
     };
 
-      // Función para manejar el inicio de sesión
-      const handleLogin = async () => {
-      try {
-        const response = await authService.login(loginUsername.value, loginPassword.value);
-        // Guardar el token en el almacenamiento local y actualizar el estado de autenticación
-        localStorage.setItem('authToken', response.token);
-        isUserLoggedIn.value = true;
-      } catch (error) {
-        console.error('Error en el inicio de sesión:', error);
-      }
-    };
-
-    // Función para manejar el registro
-    const handleRegister = async () => {
-      try {
-        const response = await authService.register(registerUsername.value, registerPassword.value);
-        // Guardar el token en el almacenamiento local y actualizar el estado de autenticación
-        localStorage.setItem('authToken', response.token);
-        isUserLoggedIn.value = true;
-      } catch (error) {
-        console.error('Error en el registro:', error);
-      }
-    };
-
-    // Función para manejar el cierre de sesión
-    const handleLogout = async () => {
-      try {
-        await authService.logout();
-        localStorage.removeItem('authToken');
-        isUserLoggedIn.value = false;
-      } catch (error) {
-        console.error('Error en el cierre de sesión:', error);
-      }
-    };
-
-    // Comprobar estado de autenticación al montar el componente
-    const checkAuthStatus = () => {
-      const token = localStorage.getItem('authToken');
-      isUserLoggedIn.value = !!token;
-    };
-
-    checkAuthStatus(); // Verificar el estado de autenticación al montar
-
+     
     return {
       isCategorias,
       isAccountMenuVisible,
@@ -174,14 +127,6 @@ export default defineComponent({
       toggleOffcanvas,
       toggleOffcanvasCategorias,
       toggleOffcanvasAccountMenu,
-      isUserLoggedIn,
-      loginUsername,
-      loginPassword,
-      registerUsername,
-      registerPassword,
-      handleLogin,
-      handleRegister,
-      handleLogout,
     };
   }
 });
