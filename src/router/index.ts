@@ -10,7 +10,7 @@ import account from '@/views/account.vue'
 import confirmationPage from '@/views/pedidoConfirmado.vue'
 import footerpage from '@/components/footer.vue'
 import listaDeDeseos from '@/views/listaDeDeseos.vue'
-import carrito from '@/views/Cart.vue'
+import carrito from '@/views/CarritoVista.vue'
 import categoria from '@/views/categorias.vue'
 
 const router = createRouter({
