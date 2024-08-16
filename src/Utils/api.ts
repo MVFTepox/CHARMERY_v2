@@ -31,6 +31,10 @@ export function fetchUsers() {
   return apiRequest('/user');
 }
 
+export function fetchCategory(id: string) {
+  return apiRequest(`/categories/${id}`);
+}
+
 export function fetchUser(id: string) {
   return apiRequest(`/user/${id}`);
 }

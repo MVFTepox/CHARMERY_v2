@@ -76,19 +76,16 @@
     </div>
   </div>
   <div>
-    <Navbarr2 />
-  </div>
-  <div>
     <footerPage />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
+import { fetchCategory } from '@/Utils/api';
 import ProductCard from "../components/ProductCard.vue";
 import Filtro from "../components/filtro.vue";
 import Navbar from "@/components/Navbarr2.vue";
-import Navbarr2 from "@/components/Navbarr2.vue";
 import footerPage from "@/components/footer.vue";
 
 export default defineComponent({
@@ -97,8 +94,7 @@ export default defineComponent({
     ProductCard,
     Filtro,
     Navbar,
-    footerPage,
-    Navbarr2,
+    footerPage
   },
   setup() {
     const filterOpen = ref(false);
