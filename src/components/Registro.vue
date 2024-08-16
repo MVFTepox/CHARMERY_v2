@@ -66,7 +66,22 @@
   max-width: 400px;
   text-align: center;
 }
+.container {
+  background-color: #fff8ec;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
 
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #c1785c;
+}
 .title {
   font-size: 24px;
   font-weight: 600;
@@ -78,7 +93,16 @@
   margin-bottom: 16px;
   text-align: left;
 }
+.form-group {
+  margin-bottom: 16px;
+  text-align: left;
+}
 
+.form-group label {
+  display: block;
+  color: #c1785c;
+  margin-bottom: 8px;
+}
 .form-group label {
   display: block;
   color: #c1785c;
@@ -98,7 +122,15 @@
 .form-group input:focus {
   border-color: #c1785c;
 }
+.form-group input:focus {
+  border-color: #c1785c;
+}
 
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
 .checkbox-group {
   display: flex;
   align-items: center;
@@ -108,7 +140,13 @@
 .checkbox-group input {
   margin-right: 8px;
 }
+.checkbox-group input {
+  margin-right: 8px;
+}
 
+.checkbox-group label {
+  color: #c1785c;
+}
 .checkbox-group label {
   color: #c1785c;
 }
@@ -129,7 +167,17 @@
   color: #c1785c;
   text-decoration: none;
 }
+.register-link {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: #c1785c;
+  text-decoration: none;
+}
 
+.register-link span {
+  text-decoration: underline;
+}
 .register-link span {
   text-decoration: underline;
 }
@@ -137,7 +185,21 @@
 .register-link:hover span {
   color: #a65c46;
 }
+.register-link:hover span {
+  color: #a65c46;
+}
 
+.submit-button {
+  width: 50%;
+  background-color: #a65c46;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
 .submit-button {
   width: 50%;
   background-color: #a65c46;
@@ -189,7 +251,14 @@
   .container {
     padding: 16px;
   }
+@media (max-width: 600px) {
+  .container {
+    padding: 16px;
+  }
 
+  .title {
+    font-size: 20px;
+  }
   .title {
     font-size: 20px;
   }
@@ -197,7 +266,13 @@
   .form-group label {
     font-size: 14px;
   }
+  .form-group label {
+    font-size: 14px;
+  }
 
+  .form-group input {
+    padding: 6px 10px;
+  }
   .form-group input {
     padding: 6px 10px;
   }
@@ -205,11 +280,22 @@
   .checkbox-group label {
     font-size: 14px;
   }
+  .checkbox-group label {
+    font-size: 14px;
+  }
 
   .register-link {
     font-size: 12px;
   }
+  .register-link {
+    font-size: 12px;
+  }
 
+  .submit-button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
   .submit-button {
     font-size: 14px;
     padding: 10px;
