@@ -1,6 +1,6 @@
 <template>
     <div v-for="product in products" :key="product.id"
-        class="rounded-lg border-solid border-[3px] p-3 m-2 flex flex-col justify-between h-[310px] w-[225px] border-[#eddaab] font-['DM Sans']">
+        class="rounded-lg border-solid border-[3px] p-3 m-2 flex flex-col justify-between h-[275px] w-[225px] border-[#eddaab] font-['DM Sans']">
         <a :href="`/vistaproducto/${product.id}`">
             <div class="flex justify-between">
                 <div class="flex flex-col mb-2">
