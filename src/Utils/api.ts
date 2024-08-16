@@ -78,3 +78,11 @@ export function postCart(data: any) {
 export function postUser(data: any) {
   return apiRequest('/user', 'POST', data);
 }
+
+export function postWishlist(data: any) {
+  return apiRequest('/favorites', 'POST', data);
+}
+
+export function deletewishlist(data: any) {
+  return apiRequest('/favorites', 'DELETE', data);
+}
