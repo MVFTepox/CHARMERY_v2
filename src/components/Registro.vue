@@ -1,30 +1,30 @@
 <template>
   <div class="body">
-    <div class="container">
-      <h2 class="title">Bienvenido! Crea una cuenta</h2>
+    <div class="container border-2 rounded-3xl font-DMsans">
+      <h2 class="title font-elmessiri">Bienvenido! Crea una cuenta</h2>
       <form @submit.prevent="register">
         <div class="form-group">
           <label for="name">Nombre y apellido</label>
-          <input type="text" id="name" v-model="name" >
+          <input type="text" id="name" v-model="name" class="rounded-full">
           <span v-if="errors.name" class="error-message">{{ errors.name }}</span>
         </div>
         <div class="form-group">
           <label for="email">Correo electrónico</label>
-          <input type="email" id="email" v-model="email" >
+          <input type="email" id="email" v-model="email" class="rounded-full">
           <span v-if="errors.email" class="error-message">{{ errors.email }}</span>
         </div>
         <div class="form-group">
           <label for="password">Contraseña</label>
-          <input type="password" id="password" v-model="password" >
+          <input type="password" id="password" v-model="password" class="rounded-full">
           <span v-if="errors.password" class="error-message">{{ errors.password }}</span>
         </div>
         <div class="form-group">
           <label for="confirm-password">Confirmar contraseña</label>
-          <input type="password" id="confirm-password" v-model="confirmPassword" >
+          <input type="password" id="confirm-password" v-model="confirmPassword" class="rounded-full">
           <span v-if="errors.confirmPassword" class="error-message">{{ errors.confirmPassword }}</span>
         </div>
         <div class="checkbox-group">
-          <input type="checkbox" id="terms" v-model="termsAccepted" >
+          <input type="checkbox" id="terms" v-model="termsAccepted">
           <label for="terms">Acepto los términos y condiciones</label>
           <span v-if="errors.termsAccepted" class="error-message">{{ errors.termsAccepted }}</span>
         </div>
@@ -34,7 +34,7 @@
         </div>
         <div class="linea"></div>
         <a href="/login" class="register-link">¿Ya tienes una cuenta? Inicia sesión <span>aquí</span></a>
-        <button type="submit" class="submit-button">Regístrate</button>
+        <button type="submit" class="submit-button btn">Regístrate</button>
       </form>
       <div v-if="Object.keys(errors).length" class="alert">
         <ul>
@@ -45,12 +45,97 @@
   </div>
 </template>
 
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
+import { postUser } from '@/Utils/api';
+
+export default defineComponent({
+  name: 'Registro',
+  setup() {
+    const name = ref<string>('');
+    const email = ref<string>('');
+    const password = ref<string>('');
+    const confirmPassword = ref<string>('');
+    const termsAccepted = ref<boolean>(false);
+    const promotionsAccepted = ref<boolean>(false);
+    const errors = ref<Record<string, string>>({});
+
+    const register = async () => {
+      errors.value = {};
+
+      if (!name.value) {
+        errors.value.name = "🔴 El nombre es obligatorio.";
+      }
+
+      if (!email.value) {
+        errors.value.email = "🔴 El correo electrónico es obligatorio.";
+      } else if (!validateEmail(email.value)) {
+        errors.value.email = "🔴 El correo electrónico no es válido.";
+      }
+
+      if (!password.value) {
+        errors.value.password = "🔴 La contraseña es obligatoria.";
+      }
+
+      if (!confirmPassword.value) {
+        errors.value.confirmPassword = "🔴 Debe confirmar su contraseña.";
+      } else if (password.value !== confirmPassword.value) {
+        errors.value.confirmPassword = "🔴 Las contraseñas no coinciden.";
+      }
+
+      if (!termsAccepted.value) {
+        errors.value.termsAccepted = "🔴 Debe aceptar los términos y condiciones.";
+      }
+
+      if (Object.keys(errors.value).length === 0) {
+        try {
+          const userData = {
+            user_name: name.value.split(" ")[0],  
+            user_lastname: name.value.split(" ")[1] || "",
+            email: email.value,
+            passsword: password.value.trim(),
+            promotionsAccepted: promotionsAccepted.value,
+          };
+
+          // Llamada a la API para registrar el usuario
+          const response = await postUser(userData);
+
+          console.log("Registro exitoso:", response);
+          // Aquí puedes redirigir al usuario a otra página o mostrar un mensaje de éxito
+        } catch (error) {
+          console.error("Error en el registro:", error);
+          errors.value.general = "🔴 Hubo un problema con el registro. Por favor, intenta de nuevo.";
+        }
+      } else {
+        console.log("Errores:", errors.value);
+      }
+    };
+
+    const validateEmail = (email: string) => {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email);
+    };
+
+    return {
+      name,
+      email,
+      password,
+      confirmPassword,
+      termsAccepted,
+      promotionsAccepted,
+      errors,
+      register,
+    };
+  },
+});
+</script>
+
 <style scoped>
 .body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 75vh;
   background-color: #fdfaf4;
   margin: 0;
   font-family: Arial, sans-serif;
@@ -58,23 +143,16 @@
 }
 
 .container {
+  font-family: 'DMSans', sans-serif;
   background-color: #fff8ec;
   padding: 24px;
-  border-radius: 12px;
+  
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 400px;
   text-align: center;
 }
-.container {
-  background-color: #fff8ec;
-  padding: 24px;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 400px;
-  text-align: center;
-}
+
 
 .title {
   font-size: 24px;
@@ -113,7 +191,6 @@
   width: 100%;
   padding: 8px 12px;
   border: 1px solid #c1785c;
-  border-radius: 4px;
   outline: none;
   transition: border-color 0.2s;
   background-color: #fff8ec;
@@ -302,74 +379,4 @@
   }
 }
 </style>
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
 
-export default defineComponent({
-  name: 'Registro',
-  setup() {
-    const name = ref<string>('');
-    const email = ref<string>('');
-    const password = ref<string>('');
-    const confirmPassword = ref<string>('');
-    const termsAccepted = ref<boolean>(false);
-    const promotionsAccepted = ref<boolean>(false);
-    const errors = ref<Record<string, string>>({});
-
-    const register = () => {
-      errors.value = {};
-
-      if (!name.value) {
-        errors.value.name = "🔴  El nombre es obligatorio.";
-      }
-
-      if (!email.value) {
-        errors.value.email = "🔴 El correo electrónico es obligatorio.";
-      } else if (!validateEmail(email.value)) {
-        errors.value.email = "🔴 El correo electrónico no es válido.";
-      }
-
-      if (!password.value) {
-        errors.value.password = "🔴 La contraseña es obligatoria.";
-      }
-
-      if (!confirmPassword.value) {
-        errors.value.confirmPassword = "🔴 Debe confirmar su contraseña.";
-      } else if (password.value !== confirmPassword.value) {
-        errors.value.confirmPassword = "🔴 Las contraseñas no coinciden.";
-      }
-
-      if (!termsAccepted.value) {
-        errors.value.termsAccepted = "🔴 Debe aceptar los términos y condiciones.";
-      }
-
-      if (Object.keys(errors.value).length === 0) {
-        console.log("Registro exitoso:", {
-          name: name.value,
-          email: email.value,
-          password: password.value,
-          promotionsAccepted: promotionsAccepted.value,
-        });
-      } else {
-        console.log("Errores:", errors.value);
-      }
-    };
-
-    const validateEmail = (email: string) => {
-      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return re.test(email);
-    };
-
-    return {
-      name,
-      email,
-      password,
-      confirmPassword,
-      termsAccepted,
-      promotionsAccepted,
-      errors,
-      register
-    };
-  }
-});
-</script>

@@ -1,27 +1,30 @@
 <template>
     <div>
-        <Navbarr />
+        <Navbarr2 />
     </div>
     <div>
-        <componetAccount />
+        <componentAccount  class=" mx-auto my-5"/>
     </div>
     <div>
         <Pagefooter />
     </div>
 </template>
+
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import componetAccount from '@/components/MiCuenta.vue';
+import { defineComponent } from 'vue';
+import componentAccount from '@/components/MiCuenta.vue';
 import Pagefooter from '@/components/footer.vue';
 import Navbarr from '@/components/Navbarr.vue';
+import Navbarr2 from '@/components/Navbarr2.vue';
 
 export default defineComponent({
     name: 'PageAccount',
-    component: {
-        componetAccount,
+    components: {  
+        componentAccount,
         Navbarr,
-        Pagefooter
+        Pagefooter,
+        Navbarr2
+
     }
 })
-
 </script>
