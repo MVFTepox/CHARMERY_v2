@@ -1,3 +1,5 @@
+import type { NumericLiteral } from "typescript";
+
 const urlApi = 'http://3.134.108.48:3333/api'
 
 async function apiRequest(endpoint: string, method: string = 'GET', data?: any) {
@@ -43,7 +45,7 @@ export function fetchProducts() {
   return apiRequest('/products');
 }
 
-export function fetchProduct(id: string) {
+export function fetchProduct(id: number) {
   return apiRequest(`/products/${id}`);
 }
 
@@ -55,11 +57,11 @@ export function fetchDetailCart() {
   return apiRequest('/detail-cart');
 }
 
-export function fetchDeliveryAddress() {
+export function fetchDeliveryAddress(id: number) {
   return apiRequest('/delivery-address');
 }
 
-export function fetchDefaultAddress() {
+export function fetchDefaultAddress(id: number) {
   return apiRequest('/default-address');
 }
 
@@ -77,4 +79,20 @@ export function postCart(data: any) {
 
 export function postUser(data: any) {
   return apiRequest('/user', 'POST', data);
+}
+
+export function postWishlist(data: any) {
+  return apiRequest('/favorites', 'POST', data);
+}
+
+export function postDetailCart(data: any) {
+  return apiRequest('/detail-cart', 'POST', data);
+}
+
+export function deletewishlist(data: any) {
+  return apiRequest('/favorites', 'DELETE', data);
+}
+
+export function deleteCart(data: any) {
+  return apiRequest('/carts', 'DELETE', data);
 }
