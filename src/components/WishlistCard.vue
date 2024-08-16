@@ -58,13 +58,19 @@
   </div>
 </template>
 <script lang="ts">
+import { fetchProduct } from '@/Utils/api';
 export default {
   name: 'WishlistCard',
   data() {
     return {
       productQuantity: 1,
-      currentFill: 1
+      currentFill: 1,
+      product: null, 
+      loading: false 
     }
+  },
+  props:{
+    product_id: Number,
   },
   methods: {
     quantityIncrement() {
@@ -79,7 +85,20 @@ export default {
 
     removeFromWished() {
       this.currentFill = 0
-    }
+    },
+    async loadProduct(product_id) {
+      this.loading = true;
+      try {
+        const response = await fetchProduct(id);
+        this.product = response.data; // Assuming the API response has a `data` property with product details
+      } catch (err) {
+        console.error('Failed to load product.');
+      } finally {
+        this.loading = false;
+      }
+    },
+
+
   }
 }
 </script>

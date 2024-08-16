@@ -9,7 +9,7 @@
           </div>
         </div>
         <div class="ml-4 font-DMsans">
-          <p class="text-brown sm:text-base lg:text-lg">{{ item.name }}</p>
+          <p class="text-brown sm:text-base lg:text-lg ">{{ item.name }}</p>
           <p class="text-brown sm:text-lg lg:text-xl">${{ item.price }}</p>
         </div>
       </div>

@@ -15,17 +15,11 @@
           una oportunidad para contar una historia. Charmery no solo vende productos, vende
           experiencias.
         </p>
-        <img src="" alt="" class="inline" />
+        <img src="/src/assets/img/Modelando Collar.jpg" alt="" class="inline" />
       </div>
-      <div class="container p-4 items-center my-2">
-        <span class="material-symbols-rounded inline text-[90px] text-[#b66141]">
-          arrow_back_ios
-        </span>
-        <p class="inline"></p>
-        <img src="" alt="" class="inline m-3" />
-      </div>
+
       <h2>¿CÓMO SURGIÓ CHARMERY?</h2>
-      <img src="" alt="" class="m-4" />
+      <img src="/src/assets/img/equipo.jpeg" alt="" class="m-4" />
       <div class="container p-4 flex items-center my-2">
         <span class="material-symbols-rounded inline text-[90px] text-[#b66141]">
           keyboard_double_arrow_right
@@ -47,7 +41,7 @@
           alta calidad diseñadas con creatividad y pasión que inspire la autenticidad de nuestros
           clientes
         </p>
-        <img src="" alt="" class="inline m-3" />
+        <img src="/src/assets/img/Tamagotchi con charm.jpg" alt="" class="inline m-3" />
       </div>
       <div class="container p-4 flex items-center my-2">
         <p class="inline text-end">
@@ -60,7 +54,7 @@
         <span class="material-symbols-rounded inline text-[90px] text-[#b66141]">
           arrow_back_ios
         </span>
-        <img src="" alt="" class="inline m-3" />
+        <img src="/src/assets/img/Bolsita de productos.jpg" alt="" class="inline m-3" />
       </div>
     </div>
   </div>

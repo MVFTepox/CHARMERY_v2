@@ -59,7 +59,8 @@
             </div>
   
             <div class="flex justify-center">
-              <button class="btn btn-wide mt-4 rounded-3xl text-xl font-medium tracking-wide hover:scale-105 font-DMsans" style="background-color: #b66141; color: #eddaab;">Pagar</button>
+              <button class="btn btn-wide mt-4 rounded-3xl text-xl font-medium tracking-wide hover:scale-105 font-DMsans" style="background-color: #b66141; color: #eddaab;">
+                <a href="/pedidoConfirmado">Pagar</a></button>
             </div>
           </div>
         </div>
@@ -71,6 +72,9 @@
   import { defineComponent, ref, computed } from 'vue';
   import CartItem from '../components/cartCard.vue';
   import Navbar from '@/components/Navbarr2.vue';
+  import {fetchDetailCart} from '@/Utils/api';
+  import {fetchCart} from '@/Utils/api';
+
   
   interface Item {
     id: number;
